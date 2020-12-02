@@ -25,5 +25,6 @@
     <fragment
         android:id="@+id/navigation_matchs"
         android:name="com.example.tindergathering.ui.matchs.MatchsFragment"
-        android:label="MatchsFragment" />
+        android:label="@string/title_matchs"
+        tools:layout="@layout/fragment_matchs" />
 </navigation>
