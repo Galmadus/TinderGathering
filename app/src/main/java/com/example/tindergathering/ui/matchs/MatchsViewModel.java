@@ -1,16 +1,16 @@
-package com.example.tindergathering.ui.swipe;
+package com.example.tindergathering.ui.matchs;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SwipeViewModel extends ViewModel {
+public class MatchsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SwipeViewModel() {
+    public MatchsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is swipe fragment");
+        mText.setValue("This is matchs fragment");
     }
 
     public LiveData<String> getText() {
