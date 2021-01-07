@@ -22,4 +22,9 @@
         android:name="com.example.tindergathering.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_matchs"
+        android:name="com.example.tindergathering.ui.matchs.MatchsFragment"
+        android:label="@string/title_matchs"
+        tools:layout="@layout/fragment_matchs" />
 </navigation>

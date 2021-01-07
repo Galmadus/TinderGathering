@@ -1,11 +1,11 @@
-package com.example.tindergathering.ui.swipe;
+package com.example.tindergathering.ui.matchs;
 
 import com.example.tindergathering.ui.user.User;
 
-public class Swipe {
+public class Matchs {
     private User user;
 
-    public Swipe() {
+    public Matchs() {
         this.user = null;
     }
 
