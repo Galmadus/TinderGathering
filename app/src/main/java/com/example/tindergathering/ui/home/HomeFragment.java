@@ -1,5 +1,7 @@
 package com.example.tindergathering.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +20,12 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if(authTokenValid()){
+
+        }
+
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.pseudo);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -31,5 +35,19 @@ public class HomeFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    public boolean authTokenValid(){
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String authToken = getResources().getString(R.string.authToken);
+        // Request API with
+        return false;
+    }
+
+    public void saveAuthToken(String token){
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.authToken), token);
+        editor.apply();
     }
 }

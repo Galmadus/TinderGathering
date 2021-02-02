@@ -3,8 +3,11 @@ package com.example.tindergathering;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.LogPrinter;
 import android.view.Gravity;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -55,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         */
+    }
+
+    public void main(String[] args) {
+        Toast.makeText(getApplicationContext(), "mon message", Toast.LENGTH_LONG).show();
     }
 
 }
