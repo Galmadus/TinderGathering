@@ -21,10 +21,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(authTokenValid()){
-
-        }
-
+        
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.pseudo);
@@ -39,7 +36,7 @@ public class HomeFragment extends Fragment {
 
     public boolean authTokenValid(){
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        String authToken = getResources().getString(R.string.authToken);
+        String authToken = getResources().getString(R.string.url_start);
         // Request API with
         return false;
     }
@@ -47,7 +44,8 @@ public class HomeFragment extends Fragment {
     public void saveAuthToken(String token){
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.authToken), token);
+        editor.putString(getString(R.string.url_start), token);
         editor.apply();
+
     }
 }
