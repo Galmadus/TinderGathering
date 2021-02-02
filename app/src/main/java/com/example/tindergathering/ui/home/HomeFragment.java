@@ -34,18 +34,4 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    public boolean authTokenValid(){
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        String authToken = getResources().getString(R.string.url_start);
-        // Request API with
-        return false;
-    }
-
-    public void saveAuthToken(String token){
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.url_start), token);
-        editor.apply();
-
-    }
 }

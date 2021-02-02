@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
+        Toast.makeText(getApplicationContext(), "mon message", Toast.LENGTH_LONG).show();
 
         //Logo dans la navigation à droite, à supprimer si non fonctionnel
         androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
@@ -58,10 +58,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         */
-    }
-
-    public void main(String[] args) {
-        Toast.makeText(getApplicationContext(), "mon message", Toast.LENGTH_LONG).show();
     }
 
 }
