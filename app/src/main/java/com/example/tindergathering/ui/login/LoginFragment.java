@@ -1,4 +1,4 @@
-package com.example.tindergathering.ui.matchs;
+package com.example.tindergathering.ui.login;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tindergathering.R;
 
-public class MatchsFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
-    private MatchsViewModel matchsViewModel;
+    private LoginViewModel loginViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        matchsViewModel =
-                ViewModelProviders.of(this).get(MatchsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_matchs, container, false);
+        loginViewModel =
+                ViewModelProviders.of(this).get(LoginViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_login, container, false);
         final TextView textView = root.findViewById(R.id.text_login);
-        matchsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        loginViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
