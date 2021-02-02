@@ -1,5 +1,16 @@
 package com.example.tindergathering.ui.user;
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.example.tindergathering.R;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
 
 public class User {
@@ -8,6 +19,14 @@ public class User {
     private Date birthday;
     private String sexe;
     private String email;
+
+    public User() {}
+
+    public User(Context context) {
+        this.context = context;
+    }
+
+    private Context context;
 
     public String getUsername() {
         return username;
@@ -48,4 +67,22 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String findResource(){
+        return context.getResources().getString(R.string.url_start);
+    }
+
+    public void testJson() throws IOException {
+        String s = findResource() + "test.json";
+        URL url = new URL(s);
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        try {
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+//            readStream(in);
+            int d = 1;
+        } finally {
+            urlConnection.disconnect();
+        }
+    }
 }
+
