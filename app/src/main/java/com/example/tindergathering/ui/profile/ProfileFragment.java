@@ -1,4 +1,4 @@
-package com.example.tindergathering.ui.swipe;
+package com.example.tindergathering.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tindergathering.R;
 
-public class SwipeFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private SwipeViewModel SwipeViewModel;
+    private ProfileViewModel ProfileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SwipeViewModel =
-                ViewModelProviders.of(this).get(SwipeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        SwipeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        ProfileViewModel =
+                ViewModelProviders.of(this).get(ProfileViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
+        final TextView textView = root.findViewById(R.id.pseudo);
+        ProfileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
