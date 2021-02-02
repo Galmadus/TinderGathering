@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.LogPrinter;
@@ -48,12 +49,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         Toast.makeText(getApplicationContext(), "T'es le meilleur, lâche rien !", Toast.LENGTH_LONG).show();
-        try {
-            testJson();
-        } catch (IOException e) {
-            Log.v("testJSON error", e.toString());
-            e.printStackTrace();
-        }
+
+        new AsyncTask<Void,String,String>(){
+
+            @Override
+            protected String doInBackground(Void... voids) {
+
+                try {
+                    testJson();
+                } catch (IOException e) {
+                    Log.v("testJSON error", e.toString());
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        }.execute();
         //Logo dans la navigation à droite, à supprimer si non fonctionnel
         androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(actionBar.getDisplayOptions()
@@ -81,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
     public void testJson() throws IOException {
         Log.v("testJSON", "debut");
         String s = this.getResources().getString(R.string.url_start) + "test.json";
+        Log.v("testJSON", s);
+
         String result = downloadUrl(s);
         Log.v("testJSON", result);
     }
@@ -124,8 +136,8 @@ public class MainActivity extends AppCompatActivity {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
-            conn.setRequestMethod("POST");
-            conn.setDoInput(true);
+            conn.setRequestMethod("GET");
+//            conn.setDoInput(true);
             // Starts the query
             conn.connect();
 
