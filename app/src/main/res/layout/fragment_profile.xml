@@ -20,14 +20,14 @@
         app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_bar"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.053" />
 
     <TextView
         android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="22 ans"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -38,7 +38,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="20dp"
         android:text=","
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -146,9 +147,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="417dp"
-        android:layout_height="175dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="414dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="50dp"
         android:background="#FFFFFF"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -167,14 +168,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#FD5068"
+                android:padding="5dp"
                 android:text="Commander"
-                android:textColor="#FD5068" />
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#FD5068"
+                android:padding="5dp"
                 android:text="Standard"
-                android:textColor="#FD5068" />
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -187,14 +194,33 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#FD5068"
+                android:padding="5dp"
                 android:text="Pioneer"
-                android:textColor="#FD5068" />
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#FD5068"
+                android:padding="5dp"
                 android:text="Vintage"
-                android:textColor="#FD5068" />
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#FD5068"
+                android:padding="5dp"
+                android:text="Brawl"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
     </LinearLayout>

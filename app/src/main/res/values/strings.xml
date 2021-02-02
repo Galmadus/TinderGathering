@@ -6,5 +6,16 @@
     <string name="title_matchs">Matchs</string>
     <string name="title_profile">Profil</string>
     <string name="title_login">Connexion</string>
+    <string name="title_registration">Inscription</string>
     <string name="url_start">http://appandroid.vqkxiaz.cluster023.hosting.ovh.net/</string>
+
+    <!-- Strings des layout login et registration -->
+    <string name="pseudo">Pseudo</string>
+    <string name="password">Mot de passe</string>
+    <string name="password_confirm">Confirmation mot de passe</string>
+    <string name="login_button">Valider</string>
+    <string name="registration_button">Valider</string>
+    <string name="mail">E-mail</string>
+    <string name="name">Nom</string>
+    <string name="fisrtname">Prénom</string>
 </resources>

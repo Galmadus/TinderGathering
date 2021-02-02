@@ -25,4 +25,8 @@
         android:id="@+id/navigation_login"
         android:name="com.example.tindergathering.ui.login.LoginFragment"
         android:label="@string/title_login" />
+    <fragment
+        android:id="@+id/navigation_registration"
+        android:name="com.example.tindergathering.ui.Registration.RegistrationFragment"
+        android:label="@string/title_registration" />
 </navigation>

@@ -16,14 +16,14 @@ import com.example.tindergathering.R;
 
 public class RegistrationFragment extends Fragment {
 
-    private RegistrationViewModel matchsViewModel;
+    private RegistrationViewModel registrationViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        matchsViewModel =
+        registrationViewModel =
                 ViewModelProviders.of(this).get(RegistrationViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_matchs, container, false);
-        // final TextView textView = root.findViewById(R.id.text_matchs);
+        View root = inflater.inflate(R.layout.fragment_registration, container, false);
+        // final TextView textView = root.findViewById(R.id.text_registration);
         return root;
     }
 }

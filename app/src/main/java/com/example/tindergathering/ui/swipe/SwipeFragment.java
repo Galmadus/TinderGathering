@@ -22,12 +22,12 @@ public class SwipeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         SwipeViewModel =
                 ViewModelProviders.of(this).get(SwipeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        //final TextView textView = root.findViewById(R.id.text_home);
         SwipeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                //textView.setText(s);
             }
         });
         return root;
