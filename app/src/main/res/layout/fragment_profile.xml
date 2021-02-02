@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_bar" />
 
     <TextView
-        android:id="@+id/ville"
+        android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reims"
@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ville"
+        app:layout_constraintTop_toBottomOf="@+id/city"
         app:layout_constraintVertical_bias="0.016" />
 
     <TextView
@@ -90,7 +90,7 @@
         app:layout_constraintVertical_bias="0.029" />
 
     <ImageView
-        android:id="@+id/photo_profil"
+        android:id="@+id/profile_picture"
         android:layout_width="149dp"
         android:layout_height="130dp"
         android:layout_marginTop="16dp"
@@ -120,7 +120,7 @@
         android:background="#F4F4F4"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo_profil">
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture">
 
         <Button
             android:id="@+id/number_matchs"
