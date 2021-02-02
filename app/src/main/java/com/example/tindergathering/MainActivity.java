@@ -72,14 +72,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void testJson() throws IOException {
         Log.v("testJSON", "ici");
-        String s = this.getResources() + "test.json";
+        String s = this.getResources().getString(R.string.url_start) + "test.json";
         URL url = new URL(s);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            int d = 1;
             Log.v("testJSON", in.toString());
 //            readStream(in);
-            int d = 1;
+
         } finally {
             urlConnection.disconnect();
         }
