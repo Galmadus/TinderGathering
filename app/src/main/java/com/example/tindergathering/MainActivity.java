@@ -17,6 +17,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("WrongConstant")
@@ -34,8 +40,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        Toast.makeText(getApplicationContext(), "mon message", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getApplicationContext(), "T'es le meilleur, lâche rien !", Toast.LENGTH_LONG).show();
+        try {
+            testJson();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //Logo dans la navigation à droite, à supprimer si non fonctionnel
         androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(actionBar.getDisplayOptions()
@@ -58,6 +68,21 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         */
+    }
+
+    public void testJson() throws IOException {
+        Log.v("testJSON", "ici");
+        String s = this.getResources() + "test.json";
+        URL url = new URL(s);
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        try {
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            Log.v("testJSON", in.toString());
+//            readStream(in);
+            int d = 1;
+        } finally {
+            urlConnection.disconnect();
+        }
     }
 
 }
