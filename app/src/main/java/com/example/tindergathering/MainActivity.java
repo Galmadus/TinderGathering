@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        Toast.makeText(getApplicationContext(), "T'es le meilleur, lâche rien !", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "T'es le meilleur, lâche rien !", Toast.LENGTH_SHORT).show();
 
 
         //Logo dans la navigation à droite, à supprimer si non fonctionnel
@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         */
-        Registration registration = new Registration(this, "email", "123");
-        registration.register();
     }
 
 }

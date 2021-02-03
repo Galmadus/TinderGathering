@@ -16,4 +16,5 @@ public class RegistrationViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+
 }

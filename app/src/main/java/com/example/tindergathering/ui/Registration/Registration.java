@@ -15,19 +15,25 @@ import static android.provider.Settings.Global.getString;
 
 
 public class Registration {
-    private String email;
-    private String password;
     private Context context;
+    private String email;
+    private String pseudo;
+    private String password;
+    private String name;
+    private String firstname;
 
     private static final String TAG = "Registration";
 
-    public Registration(Context context, String email, String password){
+    public Registration(Context context, String email, String pseudo, String password, String name, String firstname ) {
         this.context = context;
         this.email = email;
+        this.pseudo = pseudo;
         this.password = password;
+        this.name = name;
+        this.firstname = firstname;
     }
 
-    //Send email, password to API
+    //Send registration to API
     public boolean register(){
         new AsyncTask<Void,String,String>(){
 
@@ -39,9 +45,6 @@ public class Registration {
                 try {
                     // API Request
                     String result = network.downloadUrl(url);
-                    Log.v(TAG, result.toString());
-
-                    //this.context.getSharedPreferences("AuthToken", Context.MODE_PRIVATE);
 
                     // Save the new value of Authentification Token
                     SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
@@ -57,5 +60,53 @@ public class Registration {
 
         }.execute();
         return true;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 }
