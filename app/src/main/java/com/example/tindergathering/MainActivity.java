@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.tindergathering.ui.Registration.Registration;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,20 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), "T'es le meilleur, lâche rien !", Toast.LENGTH_LONG).show();
 
-        new AsyncTask<Void,String,String>(){
 
-            @Override
-            protected String doInBackground(Void... voids) {
-
-                try {
-                    testJson();
-                } catch (IOException e) {
-                    Log.v("testJSON error", e.toString());
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        }.execute();
         //Logo dans la navigation à droite, à supprimer si non fonctionnel
         androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(actionBar.getDisplayOptions()
@@ -87,103 +75,5 @@ public class MainActivity extends AppCompatActivity {
 
         */
     }
-
-    public void testJson() throws IOException {
-        Log.v("testJSON", "debut");
-        String s = this.getResources().getString(R.string.url_start) + "test.json";
-        Log.v("testJSON", s);
-
-        String result = downloadUrl(s);
-        Log.v("testJSON", result);
-    }
-    private String getNetworkName() {
-
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-        NetworkInfo networkInfoWifi = connectivityManager
-                .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-        NetworkInfo networkInfoMobile = connectivityManager
-                .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-        if (networkInfo != null && networkInfo.isConnected()) {
-            return networkInfo.getTypeName();
-        }
-
-        return "";
-    }
-
-    public void checkNetwork(View v) {
-
-        String rtmp = getNetworkName();
-        String reseau = rtmp == "" ? "Vous n'êtes pas connecté"
-                : "Vous êtes connecté au réseau : " + rtmp;
-
-        Toast.makeText(getApplicationContext(), reseau, Toast.LENGTH_SHORT)
-                .show();
-    }
-
-    private String downloadUrl(String myurl) throws IOException {
-
-        InputStream is = null;
-        // Only display the first 500 characters of the retrieved
-        // web page content.
-        int len = 500;
-
-        try {
-            URL url = new URL(myurl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000 /* milliseconds */);
-            conn.setConnectTimeout(15000 /* milliseconds */);
-            conn.setRequestMethod("GET");
-//            conn.setDoInput(true);
-            // Starts the query
-            conn.connect();
-
-            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                is = conn.getInputStream();
-
-                int response = conn.getResponseCode();
-                Log.d("HTTP response", "The response is: " + response);
-
-                // Convert the InputStream into a string
-                String contentAsString = readIt(is);
-                String contentAsString2 = readIt(is, len);
-                return contentAsString;
-            }
-
-            conn.disconnect();
-
-            // Makes sure that the InputStream is closed after the app is
-            // finished using it.
-        } finally {
-            if (is != null) {
-                is.close();
-            }
-        }
-
-        return null;
-
-    }
-    public String readIt(InputStream stream) throws IOException {
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(stream));
-        StringBuilder out = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            out.append(line);
-        }
-        return out.toString();
-    }
-
-    // Reads an InputStream and converts it to a String.
-    public String readIt(InputStream stream, int len) throws IOException,
-            UnsupportedEncodingException {
-        Reader reader = null;
-        reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[len];
-        reader.read(buffer);
-        return new String(buffer);
-    }
+    Registration registration = new Registration()
 }
