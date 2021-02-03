@@ -37,12 +37,31 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Context context = this;
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        Network net = new Network(this);
-        net.testingPost();
+        new AsyncTask<Void,String,String>(){
+
+            Network network = new Network(context);
+            @Override
+            protected String doInBackground(Void... voids) {
+                String url = "https://localhost/users";
+                String testJson = "{ \"username\": \"hugo\",  \"password\": \"error\" }";
+                try {
+                    // API Request
+                    network.postRequest(url, testJson);
+
+                    String s = "mc";
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+        }.execute();
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

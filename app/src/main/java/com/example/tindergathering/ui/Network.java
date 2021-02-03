@@ -214,26 +214,4 @@ public class Network {
         reader.read(buffer);
         return new String(buffer);
     }
-
-    public void testingPost() {
-        new AsyncTask<Void,String,String>(){
-
-            Network network = new Network();
-            @Override
-            protected String doInBackground(Void... voids) {
-                String url = "https://localhost/users";
-                String testJson = "{ \"username\": \"hugo\",  \"password\": \"error\" }";
-                try {
-                    // API Request
-                    network.postRequest(url, testJson);
-
-                    String s = "mc";
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-        }.execute();
-    }
 }
