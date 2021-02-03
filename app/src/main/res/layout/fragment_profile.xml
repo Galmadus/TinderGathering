@@ -155,7 +155,7 @@
 
         <Button
             android:id="@+id/number_matchs"
-            android:layout_width="239dp"
+            android:layout_width="27dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#FFFFFF"
@@ -171,7 +171,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#FFFFFF"
+            android:paddingEnd="15dp"
             android:text="Éditer"
+            android:textAlignment="textEnd"
             android:textColor="#FD5068" />
 
     </LinearLayout>
