@@ -75,5 +75,5 @@ public class MainActivity extends AppCompatActivity {
 
         */
     }
-    Registration registration = new Registration()
+
 }
