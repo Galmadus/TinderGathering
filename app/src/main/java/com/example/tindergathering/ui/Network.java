@@ -61,6 +61,7 @@ public class Network {
         // Only display the first 500 characters of the retrieved
         // web page content.
         int len = 500;
+        boolean connected = false;
 
         try {
             URL url = new URL(myurl);
@@ -77,6 +78,8 @@ public class Network {
 //            conn.setDoInput(true);
             // Starts the query
             conn.connect();
+
+            connected = true;
 
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 is = conn.getInputStream();
@@ -97,6 +100,10 @@ public class Network {
         } finally {
             if (is != null) {
                 is.close();
+            }
+
+            if(!connected) {
+                return "{ \"code\": 500,  \"message\": \"Connection error.\" }";
             }
         }
 
