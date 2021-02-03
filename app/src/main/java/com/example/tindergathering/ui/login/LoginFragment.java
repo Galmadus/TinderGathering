@@ -40,10 +40,10 @@ public class LoginFragment extends Fragment {
                 String password = passwordView.getText().toString();
 
                 if(pseudo.equals("") & password.equals("")){
+                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
+                }else{
                     Login login = new Login(context, pseudo, password);
                     login.connect();
-                }else{
-                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
                 }
 
                 //TODO change to homeFragment
