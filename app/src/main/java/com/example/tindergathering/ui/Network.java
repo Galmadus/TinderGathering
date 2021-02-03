@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -127,7 +128,8 @@ public class Network {
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.setRequestMethod("POST");
-            conn.connect();
+            int code = conn.getResponseCode();
+//            conn.connect();
 
             os = conn.getOutputStream();
             os.write(attributes.getBytes("UTF-8"));
@@ -211,5 +213,27 @@ public class Network {
         char[] buffer = new char[len];
         reader.read(buffer);
         return new String(buffer);
+    }
+
+    public void testingPost() {
+        new AsyncTask<Void,String,String>(){
+
+            Network network = new Network();
+            @Override
+            protected String doInBackground(Void... voids) {
+                String url = "https://localhost/users";
+                String testJson = "{ \"username\": \"hugo\",  \"password\": \"error\" }";
+                try {
+                    // API Request
+                    network.postRequest(url, testJson);
+
+                    String s = "mc";
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+        }.execute();
     }
 }

@@ -2,6 +2,8 @@ package com.example.tindergathering;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.tindergathering.ui.Network;
 import com.example.tindergathering.ui.Registration.Registration;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Network net = new Network(this);
+        net.testingPost();
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
