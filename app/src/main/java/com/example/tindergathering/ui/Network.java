@@ -12,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -53,7 +55,7 @@ public class Network {
                 .show();
     }
 
-    public String downloadUrl(String myurl) throws IOException {
+    public String getRequest(String myurl) throws IOException {
 
         InputStream is = null;
         // Only display the first 500 characters of the retrieved
@@ -101,6 +103,89 @@ public class Network {
         return null;
 
     }
+
+    public String postRequest(String myurl, String attributes) throws IOException {
+
+        OutputStream os = null;
+        // Only display the first 500 characters of the retrieved
+        // web page content.
+        int len = 500;
+
+        try {
+            URL url = new URL(myurl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestMethod("POST");
+            conn.connect();
+
+            os = conn.getOutputStream();
+            os.write(attributes.getBytes("UTF-8"));
+            os.flush();
+
+            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            Log.v("Post Request", "Output from Server ....");
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+
+            conn.disconnect();
+
+        } finally {
+            if (os != null) {
+                os.close();
+            }
+        }
+
+        return null;
+    }
+
+    public String putRequest(String myurl, String attributes) throws IOException {
+
+        OutputStreamWriter osw = null;
+        HttpURLConnection conn = null;
+        // Only display the first 500 characters of the retrieved
+        // web page content.
+        int len = 500;
+
+        try {
+            URL url = new URL(myurl);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestMethod("PUT");
+
+            osw = new OutputStreamWriter(conn.getOutputStream());
+            osw.write(attributes);
+            osw.flush();
+
+
+        } finally {
+            if (osw != null) {
+                osw.close();
+                System.err.println(conn.getResponseCode());
+                conn.disconnect();
+            }
+        }
+
+        return null;
+    }
+
     public String readIt(InputStream stream) throws IOException {
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(stream));
