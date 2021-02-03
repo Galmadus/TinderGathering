@@ -18,4 +18,5 @@
     <string name="mail">E-mail</string>
     <string name="name">Nom</string>
     <string name="fisrtname">Prénom</string>
+    <string name="AuthToken" />
 </resources>
