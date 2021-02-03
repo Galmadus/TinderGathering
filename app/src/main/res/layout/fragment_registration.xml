@@ -8,17 +8,23 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-70dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/pseudo"
                 android:textSize="18sp" />
@@ -34,6 +40,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-77dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/mail"
                 android:textSize="18sp" />
@@ -49,6 +56,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-48dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/password"
                 android:textSize="18sp" />
@@ -64,6 +72,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/password_confirm"
                 android:textSize="18sp" />
@@ -79,6 +88,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-82dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/name"
                 android:textSize="18sp" />
@@ -94,6 +104,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-70dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/fisrtname"
                 android:textSize="18sp" />
@@ -109,21 +120,29 @@
                 android:id="@+id/textview8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-28dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/birthdate"
                 android:textSize="18sp" />
 
             <DatePicker
                 android:id="@+id/birthdate"
+                style="@android:style/Widget.DatePicker"
                 android:layout_width="225dp"
-                android:layout_height="307dp" />
+                android:layout_height="wrap_content"
+                android:calendarTextColor="@color/colorPrimary"
+                android:dayOfWeekBackground="@color/colorPrimary"
+                android:headerBackground="@color/colorPrimary"
+                android:yearListSelectorColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/registration_button"
                 android:layout_width="210dp"
                 android:layout_height="42dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="70dp"
-                android:backgroundTint="#FD5068"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/registration_button"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
