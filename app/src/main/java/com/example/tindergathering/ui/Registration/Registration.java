@@ -14,6 +14,7 @@ public class Registration {
     private String email;
     private String password;
     private Context context;
+    private static final String TAG = "Registration";
 
     public Registration(Context context, String email, String password){
         this.context = context;
@@ -28,11 +29,13 @@ public class Registration {
             Network network = new Network(context);
             @Override
             protected String doInBackground(Void... voids) {
+                Network network = new Network(context);
+                String url = context.getResources().getString(R.string.url_start) + "test.json";
                 try {
-                    String url = context.getResources().getString(R.string.url_start) + "test.json";
-                    network.downloadUrl(url);
+                    String result = network.downloadUrl(url);
+                    Log.v(TAG, result.toString());
+
                 } catch (IOException e) {
-                    Log.v("testJSON error", e.toString());
                     e.printStackTrace();
                 }
                 return null;

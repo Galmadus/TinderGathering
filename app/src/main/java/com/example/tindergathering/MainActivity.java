@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         */
+        Registration registration = new Registration(this, "email", "123");
+        registration.register();
     }
 
 }
