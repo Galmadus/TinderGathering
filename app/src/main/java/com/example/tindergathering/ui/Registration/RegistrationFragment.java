@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.login.Login;
 import com.example.tindergathering.ui.login.LoginFragment;
 
 public class RegistrationFragment extends Fragment {
@@ -52,11 +53,20 @@ public class RegistrationFragment extends Fragment {
                 TextView firstnameView =  view.getRootView().findViewById(R.id.pseudo);
                 String firstname = firstnameView.getText().toString();
 
-                Registration registration = new Registration(context, mail, pseudo, password, name, firstname);
-                Boolean registered = registration.register();
+                TextView birthdayView =  view.getRootView().findViewById(R.id.pseudo);
+                String birthday = birthdayView.getText().toString();
 
-                String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
-                Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
+
+                if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
+                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
+                }else{
+                    Registration registration = new Registration(context, mail, pseudo, password, name, firstname);
+                    Boolean registered = registration.register();
+                    String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
+                    Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
+                }
+
+
 
                 //redirection
                 // Intent intent = new Intent(context, LoginFragment.class);

@@ -75,6 +75,7 @@ public class Registration {
             }
 
         }.execute();
+        //check if API call succeed
         return true;
     }
 

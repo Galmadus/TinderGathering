@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,8 +39,12 @@ public class LoginFragment extends Fragment {
                 TextView passwordView =  view.getRootView().findViewById(R.id.pseudo);
                 String password = passwordView.getText().toString();
 
-                Login login = new Login(context, pseudo, password);
-                login.connect();
+                if(pseudo.equals("") & password.equals("")){
+                    Login login = new Login(context, pseudo, password);
+                    login.connect();
+                }else{
+                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
+                }
 
                 //TODO change to homeFragment
             }
