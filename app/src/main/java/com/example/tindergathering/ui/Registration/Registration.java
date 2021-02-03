@@ -1,12 +1,20 @@
 package com.example.tindergathering.ui.Registration;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.tindergathering.R;
 import com.example.tindergathering.ui.Network;
+import com.example.tindergathering.ui.login.LoginFragment;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -38,19 +46,30 @@ public class Registration {
             @Override
             protected String doInBackground(Void... voids) {
                 Network network = new Network(context);
-                String url = context.getResources().getString(R.string.url_start) + "test.json";
+                String url = context.getResources().getString(R.string.url_start) + "user";
                 try {
                     // API Request
-                    String result = network.getRequest(url);
+                    // TODO Change to POST
+//                    String result = network.getRequest(url);
+                    String result = "{\n" +
+                            "  \"@context\": \"string\",\n" +
+                            "  \"@id\": \"string\",\n" +
+                            "  \"@type\": \"string\",\n" +
+                            "  \"id\": 0,\n" +
+                            "  \"username\": \"string\"\n" +
+                            "}";
+                    // Read result
+                    JSONObject obj = new JSONObject(result);
+                    // Get values
+                    String username = obj.getString("username");
 
-                    // Save the new value of Authentification Token
-                    SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
-                    sharedPref.edit().putString("AuthToken", result).apply();
+                    Log.v(TAG, "username :"+username );
 
-                    Log.v(TAG, sharedPref.getString("AuthToken", null) );
+                    // TODO move to LoginFragment
 
-                } catch (IOException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.v(TAG, e.toString() );
                 }
                 return null;
             }

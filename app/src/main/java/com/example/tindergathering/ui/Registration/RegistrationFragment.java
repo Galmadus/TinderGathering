@@ -41,16 +41,16 @@ public class RegistrationFragment extends Fragment {
                 String pseudo = pseudoView.getText().toString();
 
                 TextView mailView =  view.getRootView().findViewById(R.id.pseudo);
-                String mail = pseudoView.getText().toString();
+                String mail = mailView.getText().toString();
 
                 TextView passwordView =  view.getRootView().findViewById(R.id.pseudo);
-                String password = pseudoView.getText().toString();
+                String password = passwordView.getText().toString();
 
                 TextView nameView =  view.getRootView().findViewById(R.id.pseudo);
-                String name = pseudoView.getText().toString();
+                String name = nameView.getText().toString();
 
                 TextView firstnameView =  view.getRootView().findViewById(R.id.pseudo);
-                String firstname = pseudoView.getText().toString();
+                String firstname = firstnameView.getText().toString();
 
                 Registration registration = new Registration(context, mail, pseudo, password, name, firstname);
                 Boolean registered = registration.register();
