@@ -1,6 +1,7 @@
 package com.example.tindergathering.ui;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -65,6 +66,12 @@ public class Network {
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestMethod("GET");
+
+            // Add AuthToken un param
+            SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
+            String authToken = sharedPref.getString("AuthToken", null);
+            if(authToken != null)
+                conn.setRequestProperty("Authorization", "Bearer "+authToken);
 //            conn.setDoInput(true);
             // Starts the query
             conn.connect();
