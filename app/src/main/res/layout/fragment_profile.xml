@@ -145,17 +145,18 @@
 
     <LinearLayout
         android:id="@+id/profile_bar"
-        android:layout_width="413dp"
+        android:layout_width="0dp"
         android:layout_height="31dp"
         android:layout_marginTop="40dp"
         android:background="#F4F4F4"
         android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_picture">
 
         <Button
             android:id="@+id/number_matchs"
-            android:layout_width="239dp"
+            android:layout_width="27dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#FFFFFF"
@@ -171,19 +172,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#FFFFFF"
+            android:paddingEnd="15dp"
             android:text="Éditer"
+            android:textAlignment="textEnd"
             android:textColor="#FD5068" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="414dp"
-        android:layout_height="152dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="40dp"
         android:background="#FFFFFF"
         android:gravity="center_vertical"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/biography">
