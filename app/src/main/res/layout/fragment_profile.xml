@@ -8,6 +8,36 @@
     android:textAlignment="viewStart"
     tools:context=".ui.profile.ProfileFragment">
 
+    <View
+        android:id="@+id/view5"
+        android:layout_width="418dp"
+        android:layout_height="776dp"
+        android:layout_marginBottom="136dp"
+        android:background="@drawable/background_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="426dp"
+        android:layout_height="188dp"
+        android:background="#E9FD5068"
+        app:layout_constraintBottom_toTopOf="@+id/profile_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="412dp"
+        android:layout_height="519dp"
+        android:background="#FD5068"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_bar" />
+
     <TextView
         android:id="@+id/pseudo"
         android:layout_width="wrap_content"
@@ -98,8 +128,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/sym_def_app_icon"
-        tools:src="@android:drawable/sym_def_app_icon"
+        app:srcCompat="@drawable/profile_picture"
+        tools:src="@drawable/profile_picture"
         tools:srcCompat="@android:drawable/sym_def_app_icon" />
 
     <LinearLayout
@@ -147,6 +177,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="414dp"
         android:layout_height="152dp"
         android:layout_marginTop="50dp"

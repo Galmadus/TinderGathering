@@ -52,28 +52,25 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "T'es le meilleur, lâche rien !", Toast.LENGTH_SHORT).show();
 
 
-        //Logo dans la navigation à droite, à supprimer si non fonctionnel
+        /*Logo dans la navigation à droite, à supprimer si non fonctionnel
         androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(actionBar.getDisplayOptions()
                 | ActionBar.DISPLAY_SHOW_CUSTOM);
         ImageView imageView = new ImageView(actionBar.getThemedContext());
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.ic_launcher_foreground);
+        imageView.setScaleType(ImageView.ScaleType.FIT_END);
+        imageView.setImageResource(R.drawable.app_logo);
         ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT,
                 ActionBar.LayoutParams.WRAP_CONTENT, Gravity.RIGHT
                 | Gravity.CENTER_VERTICAL);
-        layoutParams.rightMargin = 40;
         imageView.setLayoutParams(layoutParams);
         actionBar.setCustomView(imageView);
-
-        /* Ajouter un logo à la nav à gauche du titre de la page
+        */
+        // Ajouter un logo à la nav à gauche du titre de la page
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.ic_launcher_foreground);
+        getSupportActionBar().setLogo(R.drawable.app_logo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-
-        */
     }
 
 }
