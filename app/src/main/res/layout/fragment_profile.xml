@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FD5068"
+    android:background="@color/colorPrimary"
     android:textAlignment="viewStart"
     tools:context=".ui.profile.ProfileFragment">
 
@@ -33,7 +33,7 @@
         android:id="@+id/view7"
         android:layout_width="412dp"
         android:layout_height="519dp"
-        android:background="#FD5068"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_bar" />
@@ -164,7 +164,7 @@
             android:paddingLeft="15dp"
             android:text="X matchs"
             android:textAlignment="viewStart"
-            android:textColor="#FD5068" />
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:id="@+id/edit"
@@ -175,7 +175,7 @@
             android:paddingEnd="15dp"
             android:text="Éditer"
             android:textAlignment="textEnd"
-            android:textColor="#FD5068" />
+            android:textColor="@color/colorPrimary" />
 
     </LinearLayout>
 
@@ -205,7 +205,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="#FD5068"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Commander"
                 android:textColor="#FFFFFF" />
@@ -214,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="#FD5068"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Standard"
                 android:textColor="#FFFFFF" />
@@ -232,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FD5068"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Pioneer"
                 android:textColor="#FFFFFF" />
@@ -242,7 +242,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FD5068"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Vintage"
                 android:textColor="#FFFFFF" />
@@ -253,7 +253,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FD5068"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Brawl"
                 android:textColor="#FFFFFF" />
