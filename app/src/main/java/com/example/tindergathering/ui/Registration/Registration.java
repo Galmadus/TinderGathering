@@ -3,15 +3,12 @@ package com.example.tindergathering.ui.Registration;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.example.tindergathering.R;
 import com.example.tindergathering.ui.Network;
 
 import java.io.IOException;
-
-import static android.provider.Settings.Global.getString;
 
 
 public class Registration {
@@ -44,7 +41,7 @@ public class Registration {
                 String url = context.getResources().getString(R.string.url_start) + "test.json";
                 try {
                     // API Request
-                    String result = network.downloadUrl(url);
+                    String result = network.getRequest(url);
 
                     // Save the new value of Authentification Token
                     SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
