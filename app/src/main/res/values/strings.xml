@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TinderGathering</string>
     <string name="title_home">Tinder : The Gathering</string>
-    <string name="nav_home">Home</string>
+    <string name="nav_home">Swipe</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_matchs">Matchs</string>
