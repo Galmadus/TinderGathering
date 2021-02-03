@@ -27,6 +27,6 @@
         android:label="@string/title_login" />
     <fragment
         android:id="@+id/navigation_registration"
-        android:name="com.example.tindergathering.ui.Registration.RegistrationFragment"
+        android:name="com.example.tindergathering.ui.Registration.EditProfileFragment"
         android:label="@string/title_registration" />
 </navigation>

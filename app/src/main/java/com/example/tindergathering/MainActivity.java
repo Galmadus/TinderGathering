@@ -1,22 +1,11 @@
 package com.example.tindergathering;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.LogPrinter;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.tindergathering.ui.Network;
-import com.example.tindergathering.ui.Registration.Registration;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,15 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
