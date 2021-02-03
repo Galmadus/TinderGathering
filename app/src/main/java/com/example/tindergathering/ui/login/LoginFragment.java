@@ -28,7 +28,7 @@ public class LoginFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_login, container, false);
 
 
-        Button connect = root.findViewById(R.id.registration_button);
+        Button connect = root.findViewById(R.id.login_button);
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
