@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_edit_profile">
+    app:startDestination="@id/navigation_swipe">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -20,7 +20,7 @@
         android:id="@+id/navigation_matchs"
         android:name="com.example.tindergathering.ui.matchs.MatchsFragment"
         android:label="@string/title_matchs"
-        tools:layout="@layout/fragment_matchs" />
+        tools:layout="@layout/fragment_edit_profile" />
     <fragment
         android:id="@+id/navigation_login"
         android:name="com.example.tindergathering.ui.login.LoginFragment"
@@ -31,6 +31,11 @@
         android:label="@string/title_registration" />
     <fragment
         android:id="@+id/navigation_edit_profile"
-        android:name="com.example.tindergathering.ui.Registration.RegistrationFragment"
+        android:name="com.example.tindergathering.ui.edit_profile.EditProfileFragment"
         android:label="@string/title_edit_profile" />
+    <fragment
+        android:id="@+id/navigation_swipe"
+        android:name="com.example.tindergathering.ui.swipe.SwipeFragment"
+        android:label="@string/title_swipe"
+        tools:layout="@layout/fragment_swipe" />
 </navigation>

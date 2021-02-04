@@ -2,6 +2,7 @@
     <string name="app_name">TinderGathering</string>
     <string name="title_home">Tinder : The Gathering</string>
     <string name="nav_home">Swipe</string>
+    <string name="title_swipe">Swipe</string>
     <string name="title_matchs">Matchs</string>
     <string name="title_profile">Profil</string>
     <string name="title_edit_profile">Modifier mon profil</string>
@@ -21,4 +22,5 @@
     <string name="fisrtname">Prénom</string>
     <string name="birthdate">Date de naissance</string>
     <string name="AuthToken" />
+
 </resources>

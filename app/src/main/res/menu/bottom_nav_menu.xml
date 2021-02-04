@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_swipe"
         android:icon="@drawable/ic_swipe"
-        android:title="@string/nav_home" />
+        android:title="@string/title_swipe" />
 
     <item
         android:id="@+id/navigation_login"

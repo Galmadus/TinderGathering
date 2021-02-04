@@ -4,25 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.swipe.HomeFragment">
+    tools:context=".ui.swipe.SwipeFragment">
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="408dp"
-        android:layout_height="687dp"
-        android:background="@drawable/background_black"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/card_stack_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:id="@+id/view4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#E9FD5068" />
-
-
-
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <!--
     <TextView
         android:id="@+id/pseudo"
         android:layout_width="wrap_content"
@@ -75,4 +70,5 @@
         app:srcCompat="@drawable/profile_picture"
         tools:src="@drawable/profile_picture"
         tools:srcCompat="@drawable/profile_picture" />
+        -->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,6 +30,21 @@ public class ProfileFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+/*
+        Button ID = (Button) root.findViewById(R.id.edit_profile_button);
+        ID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditProfileFragment editProfileFragment = new EditProfileFragment();
+                fragmentTransaction.replace(R.id.layout_profile, editProfileFragment);
+                fragmentTransaction.commit();
+            }
+        });
+*/
+
         return root;
     }
 }
