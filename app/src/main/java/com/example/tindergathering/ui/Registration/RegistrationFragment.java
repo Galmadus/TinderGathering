@@ -3,6 +3,7 @@ package com.example.tindergathering.ui.Registration;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import com.example.tindergathering.ui.login.LoginFragment;
 public class RegistrationFragment extends Fragment {
 
     private RegistrationViewModel registrationViewModel;
+
+    private static final String TAG = "RegistrationFragment";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,14 +60,15 @@ public class RegistrationFragment extends Fragment {
                 String birthday = birthdayView.getText().toString();
 
 
-                if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
-                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
-                }else{
+//                if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
+//                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
+//                }else{
                     Registration registration = new Registration(context, mail, pseudo, password, name, firstname);
                     Boolean registered = registration.register();
                     String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
                     Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
-                }
+
+//                }
 
 
 
