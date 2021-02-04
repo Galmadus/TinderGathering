@@ -31,7 +31,6 @@ public class RegistrationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
-                Toast.makeText(view.getContext().getApplicationContext(), "Tapes pas trop fort stp...", Toast.LENGTH_SHORT).show();
 
                 TextView pseudoView =  view.getRootView().findViewById(R.id.pseudo);
                 String pseudo = pseudoView.getText().toString();
@@ -52,14 +51,14 @@ public class RegistrationFragment extends Fragment {
                 String birthday = birthdayView.getText().toString();
 
 
-                if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
-                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
-                }else{
+//                if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
+//                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
+//                }else{
                     com.example.tindergathering.ui.Registration.Registration registration = new com.example.tindergathering.ui.Registration.Registration(context, mail, pseudo, password, name, firstname);
                     Boolean registered = registration.register();
                     String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
                     Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
-                }
+//                }
 
 
 
