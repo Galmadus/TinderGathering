@@ -59,13 +59,13 @@ public class SwipeFragment extends Fragment {
                     Toast.makeText(getContext(), "Direction Right", Toast.LENGTH_SHORT).show();
                 }
                 if (direction == Direction.Top){
-                    Toast.makeText(getContext(), "Direction Top", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Direction Left", Toast.LENGTH_SHORT).show();
                 }
                 if (direction == Direction.Left){
                     Toast.makeText(getContext(), "Direction Left", Toast.LENGTH_SHORT).show();
                 }
                 if (direction == Direction.Bottom){
-                    Toast.makeText(getContext(), "Direction Bottom", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Direction Right", Toast.LENGTH_SHORT).show();
                 }
 
                 // Paginating
@@ -88,13 +88,13 @@ public class SwipeFragment extends Fragment {
             @Override
             public void onCardAppeared(View view, int position) {
                 TextView tv = view.findViewById(R.id.item_name);
-                Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.getText());
+                Log.d(TAG, "onCardAppeared: " + position + ", name: " + tv.getText());
             }
 
             @Override
             public void onCardDisappeared(View view, int position) {
                 TextView tv = view.findViewById(R.id.item_name);
-                Log.d(TAG, "onCardAppeared: " + position + ", nama: " + tv.getText());
+                Log.d(TAG, "onCardAppeared: " + position + ", name: " + tv.getText());
             }
         });
         manager.setStackFrom(StackFrom.None);
@@ -114,27 +114,20 @@ public class SwipeFragment extends Fragment {
     }
 
     private void paginate() {
-        List<ItemModel> old = adapter.getItems();
-        List<ItemModel> baru = new ArrayList<>(addList());
-        CardStackCallback callback = new CardStackCallback(old, baru);
+        List<ItemModel> ancien = adapter.getItems();
+        List<ItemModel> nouveau = new ArrayList<>(addList());
+        CardStackCallback callback = new CardStackCallback(ancien, nouveau);
         DiffUtil.DiffResult hasil = DiffUtil.calculateDiff(callback);
-        adapter.setItems(baru);
+        adapter.setItems(nouveau);
         hasil.dispatchUpdatesTo(adapter);
     }
 
     private List<ItemModel> addList() {
         List<ItemModel> items = new ArrayList<>();
-        items.add(new ItemModel(R.drawable.sample1, "Markonah", "24", "Jember"));
-        items.add(new ItemModel(R.drawable.sample2, "Marpuah", "20", "Malang"));
-        items.add(new ItemModel(R.drawable.sample3, "Sukijah", "27", "Jonggol"));
-        items.add(new ItemModel(R.drawable.sample4, "Markobar", "19", "Bandung"));
-        items.add(new ItemModel(R.drawable.sample5, "Marmut", "25", "Hutan"));
-
-        items.add(new ItemModel(R.drawable.sample1, "Markonah", "24", "Jember"));
-        items.add(new ItemModel(R.drawable.sample2, "Marpuah", "20", "Malang"));
-        items.add(new ItemModel(R.drawable.sample3, "Sukijah", "27", "Jonggol"));
-        items.add(new ItemModel(R.drawable.sample4, "Markobar", "19", "Bandung"));
-        items.add(new ItemModel(R.drawable.sample5, "Marmut", "25", "Hutan"));
+        items.add(new ItemModel(R.drawable.sample1, "Antonin", "24", "Reims","Pioneer, Commander, Standard"));
+        items.add(new ItemModel(R.drawable.sample2, "Clément", "20", "Épernay","Commander, Standard"));
+        items.add(new ItemModel(R.drawable.sample3, "Hugo", "27", "Reims","Brawl"));
+        items.add(new ItemModel(R.drawable.sample4, "Jérémy", "19", "Reims","Commander, Standard"));
         return items;
     }
 }

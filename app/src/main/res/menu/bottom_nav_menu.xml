@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_swipe"
         android:icon="@drawable/ic_swipe"
-        android:title="@string/title_swipe" />
+        android:title="@string/nav_swipe" />
 
     <item
         android:id="@+id/navigation_login"

@@ -6,30 +6,30 @@ import java.util.List;
 
 public class CardStackCallback extends DiffUtil.Callback {
 
-    private List<ItemModel> old, baru;
+    private List<ItemModel> ancien, nouveau;
 
-    public CardStackCallback(List<ItemModel> old, List<ItemModel> baru) {
-        this.old = old;
-        this.baru = baru;
+    public CardStackCallback(List<ItemModel> ancien, List<ItemModel> nouveau) {
+        this.ancien = ancien;
+        this.nouveau = nouveau;
     }
 
     @Override
     public int getOldListSize() {
-        return old.size();
+        return ancien.size();
     }
 
     @Override
     public int getNewListSize() {
-        return baru.size();
+        return nouveau.size();
     }
 
     @Override
-    public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return old.get(oldItemPosition).getImage() == baru.get(newItemPosition).getImage();
+    public boolean areItemsTheSame(int ancienItemPosition, int newItemPosition) {
+        return ancien.get(ancienItemPosition).getImage() == nouveau.get(newItemPosition).getImage();
     }
 
     @Override
-    public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        return old.get(oldItemPosition) == baru.get(newItemPosition);
+    public boolean areContentsTheSame(int ancienItemPosition, int newItemPosition) {
+        return ancien.get(ancienItemPosition) == nouveau.get(newItemPosition);
     }
 }
