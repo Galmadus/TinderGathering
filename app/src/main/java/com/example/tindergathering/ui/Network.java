@@ -24,6 +24,7 @@ import static android.content.Context.CONNECTIVITY_SERVICE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 public class Network {
+    private static final String TAG = "Registration";
     private Context context;
     public Network(Context context){
         this.context = context;
@@ -98,6 +99,9 @@ public class Network {
 
             // Makes sure that the InputStream is closed after the app is
             // finished using it.
+        } catch(Exception e) {
+            Log.v(TAG, e.toString());
+            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
         } finally {
             if (is != null) {
                 is.close();
