@@ -1,4 +1,4 @@
-package com.example.tindergathering.ui.Registration;
+package com.example.tindergathering.ui.edit_profile;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,18 +15,18 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tindergathering.R;
 
-public class RegistrationFragment extends Fragment {
+public class EditProfileFragment extends Fragment {
 
-    private com.example.tindergathering.ui.Registration.RegistrationViewModel registrationViewModel;
+    private EditProfileViewModel editProfileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        registrationViewModel =
-                ViewModelProviders.of(this).get(com.example.tindergathering.ui.Registration.RegistrationViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_registration, container, false);
+        editProfileViewModel =
+                ViewModelProviders.of(this).get(EditProfileViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         // final TextView textView = root.findViewById(R.id.text_registration);
 
-        Button valider = root.findViewById(R.id.registration_button);
+        Button valider = root.findViewById(R.id.edit_profile_button);
         valider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +55,7 @@ public class RegistrationFragment extends Fragment {
                 if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
                     Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
                 }else{
-                    com.example.tindergathering.ui.Registration.Registration registration = new com.example.tindergathering.ui.Registration.Registration(context, mail, pseudo, password, name, firstname);
+                    EditProfile registration = new EditProfile(context, mail, pseudo, password, name, firstname);
                     Boolean registered = registration.register();
                     String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
                     Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
