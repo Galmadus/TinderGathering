@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".ui.matchs.MatchsFragment">
 
     <ScrollView
@@ -139,11 +140,13 @@
 
             <Button
                 android:id="@+id/edit_profile_button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="42dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="70dp"
                 android:backgroundTint="@color/colorPrimary"
+                android:paddingStart="90dp"
+                android:paddingEnd="90dp"
                 android:text="@string/registration_button"
                 android:textColor="#FFFFFF" />
 

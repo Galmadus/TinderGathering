@@ -11,9 +11,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.profile.ProfileFragment;
 
 public class EditProfileFragment extends Fragment {
 
@@ -61,7 +64,11 @@ public class EditProfileFragment extends Fragment {
                     Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
                 }
 
-
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ProfileFragment ProfileFragment = new ProfileFragment();
+                fragmentTransaction.replace(R.id.layout_profile, ProfileFragment, "Profile");
+                fragmentTransaction.commit();
 
                 //redirection
                 // Intent intent = new Intent(context, LoginFragment.class);
