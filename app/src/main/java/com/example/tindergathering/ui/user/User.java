@@ -11,7 +11,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class User {
     private String username;
@@ -20,10 +24,22 @@ public class User {
     private String sexe;
     private String email;
 
-    public User() {}
+    public User(String username) {
+        this.username = username;
+    }
 
     public User(Context context) {
         this.context = context;
+    }
+
+    public User(){
+        Random rd = new Random();
+        Boolean bool = rd.nextBoolean();
+        this.username = bool ? randomNameBoy() : randomNameGirl();
+        this.password = "";
+        this.birthday = new Date(ThreadLocalRandom.current().nextInt() * 1000L);
+        this.sexe =  bool ? "Homme" : "Femme";
+        this.email = this.username+"@email.com";
     }
 
     private Context context;
@@ -68,21 +84,30 @@ public class User {
         this.email = email;
     }
 
-    public String findResource(){
-        return context.getResources().getString(R.string.url_start);
+    public String randomNameGirl(){
+        List<String> list = new ArrayList<>();
+        list.add("Alice");
+        list.add("Lina");
+        list.add("Chloé");
+        list.add("Rose");
+        list.add("Léa");
+        list.add("Mila");
+        list.add("Mila");
+        Random rand = new Random();
+        return list.get(rand.nextInt(list.size()));
+    }
+    public String randomNameBoy(){
+        List<String> list = new ArrayList<>();
+        list.add("Gabriel");
+        list.add("Léo");
+        list.add("Raphaël");
+        list.add("Arthur");
+        list.add("Louis");
+        list.add("Lucas");
+        list.add("Adam");
+        Random rand = new Random();
+        return list.get(rand.nextInt(list.size()));
     }
 
-    public void testJson() throws IOException {
-        String s = findResource() + "test.json";
-        URL url = new URL(s);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        try {
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-//            readStream(in);
-            int d = 1;
-        } finally {
-            urlConnection.disconnect();
-        }
-    }
 }
 
