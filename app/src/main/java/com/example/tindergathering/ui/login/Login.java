@@ -28,11 +28,23 @@ public class Login {
         this.password = password;
     }
 
+    public String getPseudo() {
+        return pseudo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     //Send registration to API
     public boolean connect(){
         boolean connected = false;
-        new AsyncTask<Void,String,String>(){
 
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
+        sharedPref.edit().putString("username", getPseudo()).apply();
+        sharedPref.edit().putString("password", getPassword()).apply();
+
+        new AsyncTask<Void,String,String>(){
             Network network = new Network(context);
             @Override
             protected String doInBackground(Void... voids) {
@@ -42,9 +54,10 @@ public class Login {
 
                 Network network = new Network(context);
                 String url = context.getResources().getString(R.string.url_start) + "login_check";
+                String jsonIdentifiant = "{ \"username\": \"" + sharedPref.getString("username", null) + "\",  \"password\": \"" + sharedPref.getString("password", null) + "\" }";
                 try {
                     // API Request
-                    String result = network.getRequest(url);
+                    String result = network.postRequest(url, jsonIdentifiant);
 
                     Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
                     // Read result
@@ -65,7 +78,7 @@ public class Login {
             }
 
         }.execute();
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
+//        SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
         connected = sharedPref.getString("AuthToken", null) == null;
         return connected;
     }
