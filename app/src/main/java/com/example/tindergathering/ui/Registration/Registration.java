@@ -46,7 +46,7 @@ public class Registration {
             @Override
             protected String doInBackground(Void... voids) {
                 Network network = new Network(context);
-                String url = context.getResources().getString(R.string.url_start) + "user";
+//                String url = context.getResources().getString(R.string.url_start) + "user";
                 try {
                     // API Request
                     // TODO Change to POST
