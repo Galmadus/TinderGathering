@@ -56,16 +56,16 @@ public class SwipeFragment extends Fragment {
             public void onCardSwiped(Direction direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
                 if (direction == Direction.Right){
-                    Toast.makeText(getContext(), "Direction Right", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Matched", Toast.LENGTH_SHORT).show();
                 }
                 if (direction == Direction.Top){
-                    Toast.makeText(getContext(), "Direction Left", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Discarded", Toast.LENGTH_SHORT).show();
                 }
                 if (direction == Direction.Left){
-                    Toast.makeText(getContext(), "Direction Left", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Discarded", Toast.LENGTH_SHORT).show();
                 }
                 if (direction == Direction.Bottom){
-                    Toast.makeText(getContext(), "Direction Right", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Matched", Toast.LENGTH_SHORT).show();
                 }
 
                 // Paginating
