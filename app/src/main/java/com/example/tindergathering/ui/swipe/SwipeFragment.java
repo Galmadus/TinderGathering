@@ -36,7 +36,8 @@ public class SwipeFragment extends Fragment {
     private static final String TAG = SwipeFragment.class.getSimpleName();
     private CardStackLayoutManager manager;
     private CardStackAdapter adapter;
-    private String current_card;
+    private List<ItemModel> items;
+    private int current_item;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_swipe, container, false);
@@ -55,11 +56,12 @@ public class SwipeFragment extends Fragment {
             @Override
             public void onCardSwiped(Direction direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
+                ItemModel current = items.get(current_item);
                 if (direction == Direction.Right) {
-                    Toast.makeText(getContext(), "Matched : "+current_card, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Matched : "+current.getName(), Toast.LENGTH_SHORT).show();
                 }
                 if (direction == Direction.Left){
-                    Toast.makeText(getContext(), "Discarded : "+current_card, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Discarded : "+current.getName(), Toast.LENGTH_SHORT).show();
                 }
                 /* A ajouter si l'on met une action dans les direction top et bottom (intéressé, non intéréssé)
                 if (direction == Direction.Top){
@@ -95,7 +97,7 @@ public class SwipeFragment extends Fragment {
             @Override
             public void onCardDisappeared(View view, int position) {
                 TextView tv = view.findViewById(R.id.item_name);
-                current_card = (String) tv.getText();
+                current_item = position;
                 Log.d(TAG, "onCardAppeared: " + position + ", name: " + tv.getText());
             }
         });
@@ -127,7 +129,7 @@ public class SwipeFragment extends Fragment {
     }
 
     private List<ItemModel> addList() {
-        List<ItemModel> items = new ArrayList<>();
+        items = new ArrayList<>();
         items.add(new ItemModel(R.drawable.sample1, "Antonin", "24", "Reims","Pioneer, Commander, Standard, ..."));
         items.add(new ItemModel(R.drawable.sample2, "Clément", "20", "Épernay","Commander, Standard"));
         items.add(new ItemModel(R.drawable.sample3, "Hugo", "27", "Reims","Brawl"));
