@@ -20,10 +20,10 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private Context context = this;
+    private static AccesLocal accesLocal;
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         new AsyncTask<Void,String,String>(){
 
