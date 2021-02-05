@@ -12,8 +12,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,6 +122,67 @@
                 android:dayOfWeekBackground="@color/colorPrimary"
                 android:headerBackground="@color/colorPrimary"
                 android:yearListSelectorColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-60dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/biography"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/biography"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/Formats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-68dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/formats"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/standard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-60dp"
+                android:text="@string/standard" />
+
+            <CheckBox
+                android:id="@+id/commander"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-49dp"
+                android:text="@string/commander" />
+
+            <CheckBox
+                android:id="@+id/brawl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-72dp"
+                android:text="@string/brawl" />
+
+            <CheckBox
+                android:id="@+id/pioneer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-65dp"
+                android:text="@string/pioneer" />
+
+            <CheckBox
+                android:id="@+id/vintage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-65dp"
+                android:text="@string/vintage" />
 
             <Button
                 android:id="@+id/edit_profile_button"
