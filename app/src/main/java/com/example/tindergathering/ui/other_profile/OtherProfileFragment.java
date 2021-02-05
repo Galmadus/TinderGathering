@@ -21,7 +21,6 @@ public class OtherProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         OtherProfileViewModel = ViewModelProviders.of(this).get(OtherProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_other_profile, container, false);
         final TextView pseudoTextView = root.findViewById(R.id.pseudo);

@@ -36,7 +36,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
         Button goEdit = (Button) root.findViewById(R.id.go_edit_profile);
         goEdit.setOnClickListener(new View.OnClickListener() {
             @Override
