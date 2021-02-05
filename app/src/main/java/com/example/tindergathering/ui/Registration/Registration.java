@@ -47,7 +47,7 @@ public class Registration {
             protected String doInBackground(Void... voids) {
                 Network network = new Network(context);
 //                String url = context.getResources().getString(R.string.url_start) + "user";
-                String url = "https://localhost/user";
+                String url = "https://192.168.1.26/user";
                 try {
                     // API Request
                     // TODO Change to POST

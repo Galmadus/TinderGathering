@@ -65,7 +65,7 @@ public class Swipe {
             @Override
             protected String doInBackground(Void... voids) {
                 Network network = new Network(context);
-                String url = context.getResources().getString(R.string.url_start) + "user_swiped";
+                String url = "https://192.168.1.26/user";;
                 try {
                     // API Request
                     String result = network.getRequest(url);

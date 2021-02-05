@@ -63,9 +63,7 @@ public class SwipeFragment extends Fragment {
                 ItemModel current = items.get(current_item);
                 if (direction == Direction.Right) {
                     Toast.makeText(getContext(), "Matched : "+current.getName(), Toast.LENGTH_SHORT).show();
-                    // Send User swiped to API
-                    Swipe swipe = new Swipe(context);
-                    swipe.userSwiped(new User());
+                    // TODO Send User swiped to API
                 }
                 if (direction == Direction.Left){
                     Toast.makeText(getContext(), "Discarded : "+current.getName(), Toast.LENGTH_SHORT).show();
