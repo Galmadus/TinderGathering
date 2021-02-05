@@ -30,7 +30,6 @@ import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -136,9 +135,11 @@ public class SwipeFragment extends Fragment {
         manager.setScaleInterval(0.95f);
         manager.setSwipeThreshold(0.3f);
         manager.setMaxDegree(20.0f);
-        manager.setDirections(Direction.FREEDOM);
-        //manager.setDirections(Collections.singletonList(Direction.Top));
-        manager.setCanScrollHorizontal(true);
+        ArrayList<Direction> directions = new ArrayList<Direction>();
+        directions.add(Direction.Top);
+        directions.add(Direction.Left);
+        directions.add(Direction.Right);
+        manager.setDirections(directions);
         manager.setSwipeableMethod(SwipeableMethod.Manual);
         manager.setOverlayInterpolator(new LinearInterpolator());
         adapter = new CardStackAdapter(addList());
