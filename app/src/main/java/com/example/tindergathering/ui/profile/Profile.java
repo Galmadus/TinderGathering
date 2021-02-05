@@ -20,10 +20,14 @@ public class Profile {
     private String description;
     private Context context;
 
-    public Profile(User user, String biography, Context context) {
+    public Profile(User user, String description, Context context) {
         this.user = user;
         this.description = description;
         this.context = context;
+    }
+
+    public Profile(String description) {
+        this.description = description;
     }
 
     public String getDescription() {
