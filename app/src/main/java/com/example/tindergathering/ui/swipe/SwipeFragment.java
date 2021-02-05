@@ -138,7 +138,7 @@ public class SwipeFragment extends Fragment {
     }
 
     private List<ItemModel> addList() {
-        List<ItemModel> items = new ArrayList<>();
+        items = new ArrayList<>();
 
         User u;
         for (int i=0; i<20; i++){
