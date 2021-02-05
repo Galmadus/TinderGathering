@@ -57,7 +57,7 @@ public class Login {
                 String jsonIdentifiant = "{ \"username\": \"" + sharedPref.getString("username", null) + "\",  \"password\": \"" + sharedPref.getString("password", null) + "\" }";
                 try {
                     // API Request
-                    String result = network.postRequest(url, jsonIdentifiant);
+                    String result = network.getRequest(url);
 
                     Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
                     // Read result
