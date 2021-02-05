@@ -11,12 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 
@@ -24,8 +19,6 @@ import com.example.tindergathering.CardStackAdapter;
 import com.example.tindergathering.CardStackCallback;
 import com.example.tindergathering.ItemModel;
 import com.example.tindergathering.R;
-import com.example.tindergathering.ui.edit_profile.EditProfileFragment;
-import com.example.tindergathering.ui.matchs.Matchs;
 import com.example.tindergathering.ui.other_profile.OtherProfileFragment;
 import com.example.tindergathering.ui.user.User;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
@@ -44,12 +37,21 @@ public class SwipeFragment extends Fragment {
     private static final String TAG = SwipeFragment.class.getSimpleName();
     private CardStackLayoutManager manager;
     private CardStackAdapter adapter;
-    private List<ItemModel> items;
+    private List<ItemModel> items = new ArrayList<>();
     private int current_item;
     private Context context = this.getContext();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_swipe, container, false);
+
+        //Si l'on provient de la page profil
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            String receivedPseudo = bundle.getString("name", "John");
+            items.add(new ItemModel(R.drawable.sample4, receivedPseudo, "19", "Reims","Commander, Standard"));
+        }
+
+
         init(root);
         return root;
     }
@@ -79,11 +81,17 @@ public class SwipeFragment extends Fragment {
 
                 if (direction == Direction.Top){
                     Toast.makeText(getContext(), "View profile", Toast.LENGTH_SHORT).show();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    OtherProfileFragment otherProfileFragment = new OtherProfileFragment();
-                    fragmentTransaction.replace(R.id.layout_swipe, otherProfileFragment, "Show other profile");
-                    fragmentTransaction.commit();
+                    // Set data to pass
+                    OtherProfileFragment fragment = new OtherProfileFragment(); //Your Fragment
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", current.getName());  // Key, value
+                    bundle.putString("id", "45");
+                    fragment.setArguments(bundle);
+                    // Pass data to other Fragment
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.layout_swipe, fragment)
+                            .commit();
                 }
                 /* A ajouter si l'on met une action dans la direction top et bottom (intéressé, non intéréssé)
                 if (direction == Direction.Bottom){
@@ -126,8 +134,8 @@ public class SwipeFragment extends Fragment {
         manager.setScaleInterval(0.95f);
         manager.setSwipeThreshold(0.3f);
         manager.setMaxDegree(20.0f);
-        manager.setDirections(Direction.HORIZONTAL);
-        manager.setDirections(Collections.singletonList(Direction.Top));
+        manager.setDirections(Direction.FREEDOM);
+        //manager.setDirections(Collections.singletonList(Direction.Top));
         manager.setCanScrollHorizontal(true);
         manager.setSwipeableMethod(SwipeableMethod.Manual);
         manager.setOverlayInterpolator(new LinearInterpolator());
@@ -147,8 +155,6 @@ public class SwipeFragment extends Fragment {
     }
 
     private List<ItemModel> addList() {
-        items = new ArrayList<>();
-
         User u;
         for (int i=0; i<20; i++){
             u = new User();
