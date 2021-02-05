@@ -21,23 +21,6 @@
             android:gravity="center"
             android:orientation="vertical">
 
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="-70dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/pseudo"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/pseudo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
