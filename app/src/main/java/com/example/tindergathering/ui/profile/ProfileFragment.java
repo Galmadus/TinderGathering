@@ -31,6 +31,10 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+//        final TextView textViewDesc = root.findViewById(R.id.description);
+        Profile profile = new Profile();
+        profile.getAndSetDescription();
+
 /*
         Button ID = (Button) root.findViewById(R.id.edit_profile_button);
         ID.setOnClickListener(new View.OnClickListener() {
