@@ -1,6 +1,7 @@
 package com.example.tindergathering.ui.swipe;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SwipeFragment extends Fragment {
 
@@ -159,7 +161,7 @@ public class SwipeFragment extends Fragment {
         User u;
         for (int i=0; i<20; i++){
             u = new User();
-            items.add(new ItemModel(R.drawable.sample1, u.getUsername(), u.getAge()+"", u.getVille(),"Pioneer, Commander, Standard"));
+            items.add(new ItemModel(randomNameDrawable(), u.getUsername(), u.getAge()+"", u.getVille(),"Pioneer, Commander, Standard"));
         }
         items.add(new ItemModel(R.drawable.sample1, "Antonin", "24", "Reims","Pioneer, Commander, Standard"));
         items.add(new ItemModel(R.drawable.sample2, "Clément", "20", "Épernay","Commander, Standard"));
@@ -167,4 +169,27 @@ public class SwipeFragment extends Fragment {
         items.add(new ItemModel(R.drawable.sample4, "Jérémy", "19", "Reims","Commander, Standard"));
         return items;
     }
+
+    public int randomNameDrawable(){
+        List<Integer>list = new ArrayList<>();
+        list.add(R.drawable.sample1);
+        list.add(R.drawable.sample2);
+        list.add(R.drawable.sample3);
+        list.add(R.drawable.sample4);
+        list.add(R.drawable.sample5);
+        list.add(R.drawable.sample6);
+        list.add(R.drawable.sample7);
+        list.add(R.drawable.sample8);
+        list.add(R.drawable.sample9);
+        list.add(R.drawable.sample10);
+        list.add(R.drawable.sample11);
+        list.add(R.drawable.sample12);
+        list.add(R.drawable.sample13);
+        list.add(R.drawable.sample14);
+        list.add(R.drawable.sample15);
+        list.add(R.drawable.sample16);
+        Random rand = new Random();
+        return list.get(rand.nextInt(list.size()));
+    }
+
 }
