@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_profile"
+    android:id="@+id/layout_other_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -39,6 +39,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_bar" />
 
+    <ImageButton
+        android:id="@+id/go_swipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
     <TextView
         android:id="@+id/pseudo"
         android:layout_width="wrap_content"
@@ -48,7 +55,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_bar"
         app:layout_constraintVertical_bias="0.053" />
@@ -155,27 +162,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_picture">
 
-        <Button
-            android:id="@+id/go_matchs"
-            android:layout_width="27dp"
+        <TextView
+            android:id="@+id/other_matchs_number"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#FFFFFF"
-            android:capitalize="none"
-            android:paddingLeft="15dp"
-            android:text="X matchs"
-            android:textAlignment="viewStart"
-            android:textColor="@color/colorPrimary" />
-
-        <Button
-            android:id="@+id/go_edit_profile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            android:paddingEnd="15dp"
-            android:text="Éditer"
-            android:textAlignment="textEnd"
+            android:paddingStart="15dp"
+            android:paddingTop="5dp"
+            android:text="X MATCHS"
             android:textColor="@color/colorPrimary" />
 
     </LinearLayout>

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.example.tindergathering.ui.Network;
+import com.example.tindergathering.ui.swipe.SwipeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,10 +20,10 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private Context context = this;
+    private static AccesLocal accesLocal;
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         new AsyncTask<Void,String,String>(){
 
