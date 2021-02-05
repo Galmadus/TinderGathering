@@ -89,7 +89,8 @@
 
     </FrameLayout>
 
-    <!--<FrameLayout
+    <!-- A ajouter si l'on place des actions en haut et en bas (intéressé, non intéressé)
+    <FrameLayout
         android:id="@+id/top_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

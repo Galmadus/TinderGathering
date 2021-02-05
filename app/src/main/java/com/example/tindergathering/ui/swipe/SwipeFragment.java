@@ -55,18 +55,19 @@ public class SwipeFragment extends Fragment {
             @Override
             public void onCardSwiped(Direction direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
-                if (direction == Direction.Right){
+                if (direction == Direction.Right) {
                     Toast.makeText(getContext(), "Matched", Toast.LENGTH_SHORT).show();
-                }
-                if (direction == Direction.Top){
-                    Toast.makeText(getContext(), "Discarded", Toast.LENGTH_SHORT).show();
                 }
                 if (direction == Direction.Left){
                     Toast.makeText(getContext(), "Discarded", Toast.LENGTH_SHORT).show();
                 }
+                /* A ajouter si l'on met une action dans les direction top et bottom (intéressé, non intéréssé)
+                if (direction == Direction.Top){
+                    Toast.makeText(getContext(), "Discarded", Toast.LENGTH_SHORT).show();
+                }
                 if (direction == Direction.Bottom){
                     Toast.makeText(getContext(), "Matched", Toast.LENGTH_SHORT).show();
-                }
+                }*/
 
                 // Paginating
                 if (manager.getTopPosition() == adapter.getItemCount() - 5){
@@ -103,8 +104,10 @@ public class SwipeFragment extends Fragment {
         manager.setScaleInterval(0.95f);
         manager.setSwipeThreshold(0.3f);
         manager.setMaxDegree(20.0f);
-        manager.setDirections(Direction.FREEDOM);
+        //manager.setDirections(Direction.FREEDOM);
+        manager.setDirections(Direction.HORIZONTAL);
         manager.setCanScrollHorizontal(true);
+        manager.setCanScrollVertical(false);
         manager.setSwipeableMethod(SwipeableMethod.Manual);
         manager.setOverlayInterpolator(new LinearInterpolator());
         adapter = new CardStackAdapter(addList());
