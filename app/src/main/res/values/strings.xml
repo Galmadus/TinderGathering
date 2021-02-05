@@ -19,7 +19,7 @@
     <string name="mail">E-mail</string>
     <string name="name">Nom</string>
     <string name="fisrtname">Prénom</string>
-    <string name="biography">Biographie</string>
+    <string name="description">Description</string>
     <string name="formats">Formats</string>
     <string name="standard">Standard</string>
     <string name="commander">Commander</string>

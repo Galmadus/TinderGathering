@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -22,7 +24,9 @@ import com.example.tindergathering.CardStackAdapter;
 import com.example.tindergathering.CardStackCallback;
 import com.example.tindergathering.ItemModel;
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.edit_profile.EditProfileFragment;
 import com.example.tindergathering.ui.matchs.Matchs;
+import com.example.tindergathering.ui.other_profile.OtherProfileFragment;
 import com.example.tindergathering.ui.user.User;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
@@ -32,6 +36,7 @@ import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SwipeFragment extends Fragment {
@@ -52,6 +57,7 @@ public class SwipeFragment extends Fragment {
     private void init(View root) {
         CardStackView cardStackView = root.findViewById(R.id.card_stack_view);
         manager = new CardStackLayoutManager(getContext(), new CardStackListener() {
+
             @Override
             public void onCardDragging(Direction direction, float ratio) {
                 Log.d(TAG, "onCardDragging: d=" + direction.name() + " ratio=" + ratio);
@@ -70,10 +76,16 @@ public class SwipeFragment extends Fragment {
                 }
 
 
-                /* A ajouter si l'on met une action dans les direction top et bottom (intéressé, non intéréssé)
+
                 if (direction == Direction.Top){
-                    Toast.makeText(getContext(), "Discarded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "View profile", Toast.LENGTH_SHORT).show();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    OtherProfileFragment otherProfileFragment = new OtherProfileFragment();
+                    fragmentTransaction.replace(R.id.layout_swipe, otherProfileFragment, "Show other profile");
+                    fragmentTransaction.commit();
                 }
+                /* A ajouter si l'on met une action dans la direction top et bottom (intéressé, non intéréssé)
                 if (direction == Direction.Bottom){
                     Toast.makeText(getContext(), "Matched", Toast.LENGTH_SHORT).show();
                 }*/
@@ -114,10 +126,9 @@ public class SwipeFragment extends Fragment {
         manager.setScaleInterval(0.95f);
         manager.setSwipeThreshold(0.3f);
         manager.setMaxDegree(20.0f);
-        //manager.setDirections(Direction.FREEDOM);
         manager.setDirections(Direction.HORIZONTAL);
+        manager.setDirections(Collections.singletonList(Direction.Top));
         manager.setCanScrollHorizontal(true);
-        manager.setCanScrollVertical(false);
         manager.setSwipeableMethod(SwipeableMethod.Manual);
         manager.setOverlayInterpolator(new LinearInterpolator());
         adapter = new CardStackAdapter(addList());
