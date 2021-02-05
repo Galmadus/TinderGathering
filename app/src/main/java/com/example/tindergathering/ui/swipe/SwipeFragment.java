@@ -1,5 +1,6 @@
 package com.example.tindergathering.ui.swipe;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -21,6 +24,10 @@ import com.example.tindergathering.CardStackAdapter;
 import com.example.tindergathering.CardStackCallback;
 import com.example.tindergathering.ItemModel;
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.edit_profile.EditProfileFragment;
+import com.example.tindergathering.ui.matchs.Matchs;
+import com.example.tindergathering.ui.other_profile.OtherProfileFragment;
+import com.example.tindergathering.ui.user.User;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -29,6 +36,7 @@ import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SwipeFragment extends Fragment {
@@ -36,7 +44,9 @@ public class SwipeFragment extends Fragment {
     private static final String TAG = SwipeFragment.class.getSimpleName();
     private CardStackLayoutManager manager;
     private CardStackAdapter adapter;
-
+    private List<ItemModel> items;
+    private int current_item;
+    private Context context = this.getContext();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_swipe, container, false);
@@ -47,6 +57,7 @@ public class SwipeFragment extends Fragment {
     private void init(View root) {
         CardStackView cardStackView = root.findViewById(R.id.card_stack_view);
         manager = new CardStackLayoutManager(getContext(), new CardStackListener() {
+
             @Override
             public void onCardDragging(Direction direction, float ratio) {
                 Log.d(TAG, "onCardDragging: d=" + direction.name() + " ratio=" + ratio);
@@ -55,18 +66,29 @@ public class SwipeFragment extends Fragment {
             @Override
             public void onCardSwiped(Direction direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
-                if (direction == Direction.Right){
-                    Toast.makeText(getContext(), "Matched", Toast.LENGTH_SHORT).show();
-                }
-                if (direction == Direction.Top){
-                    Toast.makeText(getContext(), "Discarded", Toast.LENGTH_SHORT).show();
+                ItemModel current = items.get(current_item);
+                if (direction == Direction.Right) {
+                    Toast.makeText(getContext(), "Matched : "+current.getName(), Toast.LENGTH_SHORT).show();
+                    // TODO Send User swiped to API
                 }
                 if (direction == Direction.Left){
-                    Toast.makeText(getContext(), "Discarded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Discarded : "+current.getName(), Toast.LENGTH_SHORT).show();
                 }
+
+
+
+                if (direction == Direction.Top){
+                    Toast.makeText(getContext(), "View profile", Toast.LENGTH_SHORT).show();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    OtherProfileFragment otherProfileFragment = new OtherProfileFragment();
+                    fragmentTransaction.replace(R.id.layout_swipe, otherProfileFragment, "Show other profile");
+                    fragmentTransaction.commit();
+                }
+                /* A ajouter si l'on met une action dans la direction top et bottom (intéressé, non intéréssé)
                 if (direction == Direction.Bottom){
                     Toast.makeText(getContext(), "Matched", Toast.LENGTH_SHORT).show();
-                }
+                }*/
 
                 // Paginating
                 if (manager.getTopPosition() == adapter.getItemCount() - 5){
@@ -94,6 +116,7 @@ public class SwipeFragment extends Fragment {
             @Override
             public void onCardDisappeared(View view, int position) {
                 TextView tv = view.findViewById(R.id.item_name);
+                current_item = position;
                 Log.d(TAG, "onCardAppeared: " + position + ", name: " + tv.getText());
             }
         });
@@ -103,7 +126,8 @@ public class SwipeFragment extends Fragment {
         manager.setScaleInterval(0.95f);
         manager.setSwipeThreshold(0.3f);
         manager.setMaxDegree(20.0f);
-        manager.setDirections(Direction.FREEDOM);
+        manager.setDirections(Direction.HORIZONTAL);
+        manager.setDirections(Collections.singletonList(Direction.Top));
         manager.setCanScrollHorizontal(true);
         manager.setSwipeableMethod(SwipeableMethod.Manual);
         manager.setOverlayInterpolator(new LinearInterpolator());
@@ -123,7 +147,13 @@ public class SwipeFragment extends Fragment {
     }
 
     private List<ItemModel> addList() {
-        List<ItemModel> items = new ArrayList<>();
+        items = new ArrayList<>();
+
+        User u;
+        for (int i=0; i<20; i++){
+            u = new User();
+            items.add(new ItemModel(R.drawable.sample1, u.getUsername(), u.getAge()+"", u.getVille(),"Pioneer, Commander, Standard"));
+        }
         items.add(new ItemModel(R.drawable.sample1, "Antonin", "24", "Reims","Pioneer, Commander, Standard"));
         items.add(new ItemModel(R.drawable.sample2, "Clément", "20", "Épernay","Commander, Standard"));
         items.add(new ItemModel(R.drawable.sample3, "Hugo", "27", "Reims","Brawl"));

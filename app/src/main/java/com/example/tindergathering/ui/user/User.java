@@ -37,7 +37,9 @@ public class User {
         Boolean bool = rd.nextBoolean();
         this.username = bool ? randomNameBoy() : randomNameGirl();
         this.password = "";
-        this.birthday = new Date(ThreadLocalRandom.current().nextInt() * 1000L);
+        Date birthday = new Date(ThreadLocalRandom.current().nextInt() * 1000L);
+        birthday.setYear(new Random().nextInt((2002 - 1950) + 1) + 1950);
+        this.birthday = birthday;
         this.sexe =  bool ? "Homme" : "Femme";
         this.email = this.username+"@email.com";
     }
@@ -74,6 +76,23 @@ public class User {
 
     public void setSexe(String sexe) {
         this.sexe = sexe;
+    }
+
+    public int getAge() {
+        return (2020 - this.getBirthday().getYear());
+    }
+
+    public String getVille() {
+        List<String> list = new ArrayList<>();
+        list.add("Reims");
+        list.add("Epernay");
+        list.add("Châlons");
+        list.add("Paris");
+        list.add("Dormans");
+        list.add("Chateau-Thierry");
+        list.add("Fisme");
+        Random rand = new Random();
+        return list.get(rand.nextInt(list.size()));
     }
 
     public String getEmail() {

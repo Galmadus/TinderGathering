@@ -19,6 +19,13 @@
     <string name="mail">E-mail</string>
     <string name="name">Nom</string>
     <string name="fisrtname">Prénom</string>
+    <string name="description">Description</string>
+    <string name="formats">Formats</string>
+    <string name="standard">Standard</string>
+    <string name="commander">Commander</string>
+    <string name="pioneer">Pioneer</string>
+    <string name="brawl">Brawl</string>
+    <string name="vintage">Vintage</string>
     <string name="birthdate">Date de naissance</string>
     <string name="AuthToken" />
 

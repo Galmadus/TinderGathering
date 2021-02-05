@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".ui.matchs.MatchsFragment">
 
     <ScrollView
@@ -11,31 +12,16 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="-70dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/pseudo"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/pseudo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView"
@@ -137,13 +123,81 @@
                 android:headerBackground="@color/colorPrimary"
                 android:yearListSelectorColor="@color/colorPrimary" />
 
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-60dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/description"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/Formats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-68dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/formats"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/standard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-60dp"
+                android:text="@string/standard"
+                android:buttonTint="@color/colorPrimary" />
+
+            <CheckBox
+                android:id="@+id/commander"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-49dp"
+                android:text="@string/commander"
+                android:buttonTint="@color/colorPrimary" />
+
+            <CheckBox
+                android:id="@+id/brawl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-72dp"
+                android:text="@string/brawl"
+                android:buttonTint="@color/colorPrimary" />
+
+            <CheckBox
+                android:id="@+id/pioneer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-65dp"
+                android:text="@string/pioneer"
+                android:buttonTint="@color/colorPrimary" />
+
+            <CheckBox
+                android:id="@+id/vintage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-65dp"
+                android:text="@string/vintage"
+                android:buttonTint="@color/colorPrimary" />
+
             <Button
                 android:id="@+id/edit_profile_button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="42dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="70dp"
                 android:backgroundTint="@color/colorPrimary"
+                android:paddingStart="90dp"
+                android:paddingEnd="90dp"
                 android:text="@string/registration_button"
                 android:textColor="#FFFFFF" />
 

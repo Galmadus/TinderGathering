@@ -47,17 +47,18 @@ public class Registration {
             protected String doInBackground(Void... voids) {
                 Network network = new Network(context);
 //                String url = context.getResources().getString(R.string.url_start) + "user";
+                String url = "https://192.168.1.26/user";
                 try {
                     // API Request
                     // TODO Change to POST
-//                    String result = network.getRequest(url);
-                    String result = "{\n" +
-                            "  \"@context\": \"string\",\n" +
-                            "  \"@id\": \"string\",\n" +
-                            "  \"@type\": \"string\",\n" +
-                            "  \"id\": 0,\n" +
-                            "  \"username\": \"string\"\n" +
-                            "}";
+                    String result = network.getRequest(url);
+//                    result = "{\n" +
+//                            "  \"@context\": \"string\",\n" +
+//                            "  \"@id\": \"string\",\n" +
+//                            "  \"@type\": \"string\",\n" +
+//                            "  \"id\": 0,\n" +
+//                            "  \"username\": \"string\"\n" +
+//                            "}";
                     // Read result
                     JSONObject obj = new JSONObject(result);
                     // Get values
@@ -67,7 +68,7 @@ public class Registration {
 
                     // TODO move to LoginFragment
 
-                } catch (JSONException e) {
+                } catch (JSONException | IOException e) {
                     e.printStackTrace();
                     Log.v(TAG, e.toString() );
                 }

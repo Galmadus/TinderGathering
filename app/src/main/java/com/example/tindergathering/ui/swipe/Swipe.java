@@ -26,6 +26,7 @@ public class Swipe {
     }
     private static final String TAG = "Registration";
 
+    // Récupère une liste d'utilisateur pour les swipe
     public void findUsers(){
         new AsyncTask<Void,String,String>(){
             Network network = new Network(context);
@@ -56,6 +57,39 @@ public class Swipe {
             }
 
         }.execute();
+    }
+
+    public boolean userSwiped(User user){
+        new AsyncTask<Void,String,String>(){
+            Network network = new Network(context);
+            @Override
+            protected String doInBackground(Void... voids) {
+                Network network = new Network(context);
+                String url = "https://192.168.1.26/user";;
+                try {
+                    // API Request
+                    String result = network.getRequest(url);
+
+                    Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
+                    // Read result
+                    JSONObject obj = new JSONObject(result);
+
+                    // Get values
+                    String token = obj.getString("token");
+
+                    // Save the new value of Authentification Token
+                    SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
+                    sharedPref.edit().putString("AuthToken", token).apply();
+                    Log.v(TAG, sharedPref.getString("AuthToken", null) );
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+        }.execute();
+        return true;
     }
 
     boolean acceptUser(User user){

@@ -4,15 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.edit_profile.EditProfileFragment;
+import com.example.tindergathering.ui.matchs.MatchsFragment;
 
 public class ProfileFragment extends Fragment {
 
@@ -31,23 +36,31 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-//        final TextView textViewDesc = root.findViewById(R.id.description);
-        Profile profile = new Profile();
-        profile.getAndSetDescription();
 
-/*
-        Button ID = (Button) root.findViewById(R.id.edit_profile_button);
-        ID.setOnClickListener(new View.OnClickListener() {
+        Button goEdit = (Button) root.findViewById(R.id.go_edit_profile);
+        goEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 EditProfileFragment editProfileFragment = new EditProfileFragment();
-                fragmentTransaction.replace(R.id.layout_profile, editProfileFragment);
+                fragmentTransaction.replace(R.id.layout_profile, editProfileFragment, "Edit profile");
                 fragmentTransaction.commit();
             }
         });
-*/
+
+        Button goMatchs = (Button) root.findViewById(R.id.go_matchs);
+        goMatchs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                MatchsFragment matchsFragment = new MatchsFragment();
+                fragmentTransaction.replace(R.id.layout_profile, matchsFragment, "Matchs");
+                fragmentTransaction.commit();
+            }
+        });
+
 
         return root;
     }
