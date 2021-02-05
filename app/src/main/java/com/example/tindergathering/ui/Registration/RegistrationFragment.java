@@ -32,22 +32,24 @@ public class RegistrationFragment extends Fragment {
             public void onClick(View view) {
                 Context context = view.getContext();
 
-                TextView pseudoView =  view.getRootView().findViewById(R.id.pseudo);
+                TextView pseudoView =  view.getRootView().findViewById(R.id.mail);
                 String pseudo = pseudoView.getText().toString();
 
-                TextView mailView =  view.getRootView().findViewById(R.id.pseudo);
+                TextView mailView =  view.getRootView().findViewById(R.id.mail);
                 String mail = mailView.getText().toString();
 
-                TextView passwordView =  view.getRootView().findViewById(R.id.pseudo);
+                TextView passwordView =  view.getRootView().findViewById(R.id.password);
                 String password = passwordView.getText().toString();
+                TextView passwordConfirmView =  view.getRootView().findViewById(R.id.password_confirm);
+                String passwordConfirm = passwordView.getText().toString();
 
-                TextView nameView =  view.getRootView().findViewById(R.id.pseudo);
+                TextView nameView =  view.getRootView().findViewById(R.id.name);
                 String name = nameView.getText().toString();
 
-                TextView firstnameView =  view.getRootView().findViewById(R.id.pseudo);
+                TextView firstnameView =  view.getRootView().findViewById(R.id.mail);
                 String firstname = firstnameView.getText().toString();
 
-                TextView birthdayView =  view.getRootView().findViewById(R.id.pseudo);
+                TextView birthdayView =  view.getRootView().findViewById(R.id.firstname);
                 String birthday = birthdayView.getText().toString();
 
 

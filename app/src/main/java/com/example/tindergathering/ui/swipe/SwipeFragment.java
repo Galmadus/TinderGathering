@@ -1,5 +1,6 @@
 package com.example.tindergathering.ui.swipe;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,8 @@ import com.example.tindergathering.CardStackAdapter;
 import com.example.tindergathering.CardStackCallback;
 import com.example.tindergathering.ItemModel;
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.matchs.Matchs;
+import com.example.tindergathering.ui.user.User;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -38,6 +41,7 @@ public class SwipeFragment extends Fragment {
     private CardStackAdapter adapter;
     private List<ItemModel> items;
     private int current_item;
+    private Context context = this.getContext();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_swipe, container, false);
@@ -59,10 +63,15 @@ public class SwipeFragment extends Fragment {
                 ItemModel current = items.get(current_item);
                 if (direction == Direction.Right) {
                     Toast.makeText(getContext(), "Matched : "+current.getName(), Toast.LENGTH_SHORT).show();
+                    // Send User swiped to API
+                    Swipe swipe = new Swipe(context);
+                    swipe.userSwiped(new User());
                 }
                 if (direction == Direction.Left){
                     Toast.makeText(getContext(), "Discarded : "+current.getName(), Toast.LENGTH_SHORT).show();
                 }
+
+
                 /* A ajouter si l'on met une action dans les direction top et bottom (intéressé, non intéréssé)
                 if (direction == Direction.Top){
                     Toast.makeText(getContext(), "Discarded", Toast.LENGTH_SHORT).show();
@@ -129,8 +138,14 @@ public class SwipeFragment extends Fragment {
     }
 
     private List<ItemModel> addList() {
-        items = new ArrayList<>();
-        items.add(new ItemModel(R.drawable.sample1, "Antonin", "24", "Reims","Pioneer, Commander, Standard, ..."));
+        List<ItemModel> items = new ArrayList<>();
+
+        User u;
+        for (int i=0; i<20; i++){
+            u = new User();
+            items.add(new ItemModel(R.drawable.sample1, u.getUsername(), u.getAge()+"", u.getVille(),"Pioneer, Commander, Standard"));
+        }
+        items.add(new ItemModel(R.drawable.sample1, "Antonin", "24", "Reims","Pioneer, Commander, Standard"));
         items.add(new ItemModel(R.drawable.sample2, "Clément", "20", "Épernay","Commander, Standard"));
         items.add(new ItemModel(R.drawable.sample3, "Hugo", "27", "Reims","Brawl"));
         items.add(new ItemModel(R.drawable.sample4, "Jérémy", "19", "Reims","Commander, Standard"));
