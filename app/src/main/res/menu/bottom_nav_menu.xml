@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_matchs"
+        android:icon="@drawable/ic_matchs"
+        android:title="@string/title_matchs" />
 
     <item
         android:id="@+id/navigation_swipe"
@@ -11,8 +15,5 @@
         android:icon="@drawable/ic_profile"
         android:title="@string/title_profile" />
 
-    <item
-        android:id="@+id/navigation_matchs"
-        android:icon="@drawable/ic_matchs"
-        android:title="@string/title_matchs" />
+
 </menu>
