@@ -25,6 +25,15 @@ public class User {
     private String firstName;
     private String description;
     private String ville;
+    private int idAddress;
+
+    public int getIdAddress() {
+        return idAddress;
+    }
+
+    public void setIdAddress(int idAddress) {
+        this.idAddress = idAddress;
+    }
 
     public User(String username) {
         this.username = username;
@@ -84,6 +93,7 @@ public class User {
         this.firstName = bool ? randomNameBoy() : randomNameGirl();
         this.description = "description";
         this.ville = this.getVille();
+        this.idAddress = 1;
     }
 
     private Context context;
