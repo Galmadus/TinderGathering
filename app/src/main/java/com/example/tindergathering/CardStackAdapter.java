@@ -53,14 +53,14 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
         void setData(ItemModel data) {
             Picasso.get()
-                    .load(data.getImage())
+                    .load(data.getUser().getPicture())
                     .fit()
                     .centerCrop()
                     .into(image);
-            name.setText(data.getName());
-            age.setText(data.getAge());
-            city.setText(data.getCity());
-            formats.setText(data.getFormats());
+            name.setText(data.getUser().getName());
+            age.setText(data.getUser().getAge());
+            city.setText(data.getUser().getCity());
+            formats.setText("INSERER LES FORMATS DANS USER");
         }
     }
 

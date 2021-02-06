@@ -82,7 +82,7 @@ public class AccesLocal {
         return u;
     }
 
-    public ArrayList<User> selectAllUserExceptUserInParamSQLite(User u) throws ParseException {
+    public ArrayList<User> selectAllUserExceptUserInParamSQLite(int idCurrentUser) throws ParseException {
         DB = accesBD.getWritableDatabase();
         ArrayList<User> users = new ArrayList<>();
         String req = "SELECT " +
@@ -96,7 +96,7 @@ public class AccesLocal {
                 "description, \n" +
                 "city, \n" +
                 "address_id " +
-                " FROM user WHERE id <> 1" /*+u.getId()*/;
+                " FROM user WHERE id <> "+idCurrentUser;
         Cursor cursor = DB .rawQuery(req,null);
         if(cursor.moveToFirst()){
             while (!cursor.isAfterLast()) {
@@ -108,7 +108,7 @@ public class AccesLocal {
                 String dateJson = cursor.getColumnName(cursor.getColumnIndex("birthday"));
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                 Date date = format.parse(dateJson);
-                u.setBirthday(date);
+                user.setBirthday(date);
 
                 user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("firstName")));
                 user.setName(cursor.getColumnName(cursor.getColumnIndex("name")));

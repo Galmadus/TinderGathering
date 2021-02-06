@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 for (int i=0; i<20; i++){
                     u = new User();
                     accesLocal.insertUserSQLite(u);
-                    Log.v("MainActivity", accesLocal.selectAllUserExceptUserInParamSQLite(new User()).toString());
                 }
             }
         }catch (Exception e){
