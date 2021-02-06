@@ -185,6 +185,9 @@ public class SwipeFragment extends Fragment {
         list.add(R.drawable.sample14);
         list.add(R.drawable.sample15);
         list.add(R.drawable.sample16);
+        list.add(R.drawable.sample17);
+        list.add(R.drawable.sample18);
+        list.add(R.drawable.sample19);
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }

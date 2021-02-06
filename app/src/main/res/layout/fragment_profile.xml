@@ -131,7 +131,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile_picture"
         tools:src="@drawable/profile_picture"
-        tools:srcCompat="@android:drawable/sym_def_app_icon" />
+        tools:srcCompat="@drawable/profile_picture" />
 
     <LinearLayout
         android:id="@+id/separator"

@@ -39,8 +39,9 @@ public class AccesLocal {
     }
 
     // Return boolean true if entry found
-    public User selectUserSQLite(User u) throws ParseException {
+    public User selectUserSQLite(int id) throws ParseException {
         DB = accesBD.getWritableDatabase();
+        User u = new User();
         String req = "SELECT " +
                 "username, \n" +
                 "gender, \n" +
@@ -52,7 +53,7 @@ public class AccesLocal {
                 "description, \n" +
                 "ville, \n" +
                 "address_id " +
-                " FROM user WHERE id = "+u.getId();
+                " FROM user WHERE id = "+id;
         Cursor cursor = DB .rawQuery(req,null);
         if(cursor.getCount() <= 0){
             cursor.moveToFirst();
