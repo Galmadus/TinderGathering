@@ -12,8 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -21,7 +19,6 @@ import com.example.tindergathering.DisconnectActivity;
 import com.example.tindergathering.AccesLocal;
 import com.example.tindergathering.ManageFragments;
 import com.example.tindergathering.R;
-import com.example.tindergathering.ui.edit_profile.EditProfileFragment;
 import com.example.tindergathering.ui.edit_profile_activity.EditProfileActivity;
 import com.example.tindergathering.ui.matchs.MatchsFragment;
 import com.example.tindergathering.ui.user.User;
@@ -91,8 +88,6 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
 
         return root;
     }

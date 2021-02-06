@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class RegistrationFragment extends Fragment {
             public void onClick(View view) {
                 Context context = view.getContext();
 
-                TextView pseudoView =  view.getRootView().findViewById(R.id.mail);
+                TextView pseudoView =  view.getRootView().findViewById(R.id.pseudo);
                 String pseudo = pseudoView.getText().toString();
 
                 TextView mailView =  view.getRootView().findViewById(R.id.mail);
@@ -49,11 +50,11 @@ public class RegistrationFragment extends Fragment {
                 TextView nameView =  view.getRootView().findViewById(R.id.name);
                 String name = nameView.getText().toString();
 
-                TextView firstnameView =  view.getRootView().findViewById(R.id.mail);
+                TextView firstnameView =  view.getRootView().findViewById(R.id.firstname);
                 String firstname = firstnameView.getText().toString();
 
-                TextView birthdayView =  view.getRootView().findViewById(R.id.firstname);
-                String birthday = birthdayView.getText().toString();
+                DatePicker birthdayView =  view.getRootView().findViewById(R.id.birthdate);
+                String birthday = birthdayView.getDayOfMonth()+"/"+birthdayView.getMonth()+"/"+birthdayView.getYear();
 
 
 //                if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
@@ -67,8 +68,6 @@ public class RegistrationFragment extends Fragment {
                     startActivity(intent);
 //                }
 
-
-
                 //redirection
                 // Intent intent = new Intent(context, LoginFragment.class);
                 // startActivity(intent);
@@ -76,5 +75,4 @@ public class RegistrationFragment extends Fragment {
         });
         return root;
     }
-
 }

@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 
+import com.example.tindergathering.AccesLocal;
 import com.example.tindergathering.CardStackAdapter;
 import com.example.tindergathering.CardStackCallback;
 import com.example.tindergathering.ItemModel;
@@ -31,6 +32,7 @@ import com.yuyakaido.android.cardstackview.Direction;
 import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -51,15 +53,17 @@ public class SwipeFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             String receivedPseudo = bundle.getString("name", "John");
-            items.add(new ItemModel(R.drawable.sample4, receivedPseudo, "19", "Reims","Commander, Standard"));
+//            items.add(new ItemModel(R.drawable.sample4, receivedPseudo, "19", "Reims","Commander, Standard"));
         }
-
-
-        init(root);
+        try {
+            init(root);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return root;
     }
 
-    private void init(View root) {
+    private void init(View root) throws ParseException {
         CardStackView cardStackView = root.findViewById(R.id.card_stack_view);
         manager = new CardStackLayoutManager(getContext(), new CardStackListener() {
 
@@ -73,11 +77,11 @@ public class SwipeFragment extends Fragment {
                 Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
                 ItemModel current = items.get(current_item);
                 if (direction == Direction.Right) {
-                    Toast.makeText(getContext(), "Matched : "+current.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Matched : "+current.getUser().getName(), Toast.LENGTH_SHORT).show();
                     // TODO Send User swiped to API
                 }
                 if (direction == Direction.Left){
-                    Toast.makeText(getContext(), "Discarded : "+current.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Discarded : "+current.getUser().getName(), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -86,8 +90,7 @@ public class SwipeFragment extends Fragment {
                     Toast.makeText(getContext(), "View profile", Toast.LENGTH_SHORT).show();
                     // Set data to pass
                     Bundle bundle = new Bundle();
-                    bundle.putString("name", current.getName());  // Key, value
-                    bundle.putString("id", "45");
+                    bundle.putString("id", "1");
                     new ManageFragments().goToWithParams(SwipeFragment.this, new OtherProfileFragment(),bundle);
                 }
                 /* A ajouter si l'on met une action dans la direction top et bottom (intéressé, non intéréssé)
@@ -97,7 +100,11 @@ public class SwipeFragment extends Fragment {
 
                 // Paginating
                 if (manager.getTopPosition() == adapter.getItemCount() - 5){
-                    paginate();
+                    try {
+                        paginate();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
@@ -144,7 +151,7 @@ public class SwipeFragment extends Fragment {
         cardStackView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void paginate() {
+    private void paginate() throws ParseException {
         List<ItemModel> ancien = adapter.getItems();
         List<ItemModel> nouveau = new ArrayList<>(addList());
         CardStackCallback callback = new CardStackCallback(ancien, nouveau);
@@ -153,17 +160,21 @@ public class SwipeFragment extends Fragment {
         hasil.dispatchUpdatesTo(adapter);
     }
 
-    private List<ItemModel> addList() {
+    private List<ItemModel> addList() throws ParseException {
+        AccesLocal accesLocal = new AccesLocal(this.getContext());
+        ArrayList<User> users = accesLocal.selectAllUserExceptUserInParamSQLite(1);
         User u;
-        // ArrayList<User> usersSwipe = accesLocal.selectAllUserExceptUserInParamSQLite(new User()).toString();
-        for (int i=0; i<20; i++){
-            u = new User();
-            items.add(new ItemModel(randomNameDrawable(), u.getUsername(), u.getAge()+"", u.getVille(),"Pioneer, Commander, Standard"));
-        }
-        items.add(new ItemModel(R.drawable.sample1, "Antonin", "24", "Reims","Pioneer, Commander, Standard"));
-        items.add(new ItemModel(R.drawable.sample2, "Clément", "20", "Épernay","Commander, Standard"));
-        items.add(new ItemModel(R.drawable.sample3, "Hugo", "27", "Reims","Brawl"));
-        items.add(new ItemModel(R.drawable.sample4, "Jérémy", "19", "Reims","Commander, Standard"));
+
+//        for (int i=0; i<20; i++){
+//            u = new User();
+//            items.add(new ItemModel(randomNameDrawable(), u.getUsername(), u.getAge()+"", u.getVille(),"Pioneer, Commander, Standard"));
+//        }
+//        items.add(new ItemModel(R.drawable.sample1, "Antonin", "24", "Reims","Pioneer, Commander, Standard"));
+//        items.add(new ItemModel(R.drawable.sample2, "Clément", "20", "Épernay","Commander, Standard"));
+//        items.add(new ItemModel(R.drawable.sample3, "Hugo", "27", "Reims","Brawl"));
+//        items.add(new ItemModel(R.drawable.sample4, "Jérémy", "19", "Reims","Commander, Standard"));
+        for(User s : users)
+            items.add(new ItemModel(s));
         return items;
     }
 
