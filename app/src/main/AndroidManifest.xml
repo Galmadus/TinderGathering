@@ -37,7 +37,15 @@
         <activity
             android:name=".ui.edit_profile_activity.EditProfileActivity"
             android:label="@string/app_name">
-
         </activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.tindergathering.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"></meta-data>
+        </provider>
     </application>
 </manifest>
