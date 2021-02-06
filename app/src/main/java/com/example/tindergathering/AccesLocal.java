@@ -51,7 +51,7 @@ public class AccesLocal {
                 "password, \n" +
                 "description, \n" +
                 "ville, \n" +
-                "address, " +
+                "address_id " +
                 " FROM user WHERE id = "+u.getId();
         Cursor cursor = DB .rawQuery(req,null);
         if(cursor.getCount() <= 0){
@@ -87,8 +87,8 @@ public class AccesLocal {
                 "password, \n" +
                 "description, \n" +
                 "ville, \n" +
-                "address, " +
-                " FROM user WHERE id <> "+u.getId();
+                "address_id " +
+                " FROM user WHERE id <> 1" /*+u.getId()*/;
         Cursor cursor = DB .rawQuery(req,null);
         if(cursor.moveToFirst()){
             while (!cursor.isAfterLast()) {
@@ -123,7 +123,7 @@ public class AccesLocal {
                 "password, \n" +
                 "description, \n" +
                 "ville, \n" +
-                "address, " +
+                "address_id " +
                 " FROM user WHERE id = "+u.getId();
         Cursor cursor = DB .rawQuery(req,null);
         boolean haveEntry = (cursor.getCount() <= 0);
@@ -135,15 +135,15 @@ public class AccesLocal {
     public void updateUserSQLite(User u) throws ParseException {
         DB = accesBD.getWritableDatabase();
         String req = "UPDATE " +
-                "SET username="+u.getEmail()+", \n" +
-                "SET gender="+u.getEmail()+", \n" +
-                "SET email="+u.getEmail()+", \n" +
-                "SET birthday="+u.getEmail()+", \n" +
-                "SET firstName="+u.getEmail()+", \n" +
-                "SET name="+u.getEmail()+", \n" +
-                "SET password="+u.getEmail()+", \n" +
-                "SET description="+u.getEmail()+", \n" +
-                "SET ville="+u.getEmail()+", \n" +
+                "SET username=\""+u.getEmail()+"\", \n" +
+                "SET gender=\""+u.getEmail()+"\", \n" +
+                "SET email=\""+u.getEmail()+"\", \n" +
+                "SET birthday=\""+u.getEmail()+"\", \n" +
+                "SET firstName=\""+u.getEmail()+"\", \n" +
+                "SET name=\""+u.getEmail()+"\", \n" +
+                "SET password=\""+u.getEmail()+"\", \n" +
+                "SET description=\""+u.getEmail()+"\", \n" +
+                "SET ville=\""+u.getEmail()+"\" \n" +
                 " FROM user WHERE id = "+u.getId();
         DB.execSQL(req);
     }
@@ -152,15 +152,15 @@ public class AccesLocal {
         DB = accesBD.getWritableDatabase();
         String req = "INSERT INTO user (username, gender, email, birthday, firstName, name, password, description, ville) " +
                 "VALUES (" +
-                u.getUsername()  +","+
-                u.getGender() +","+
-                u.getEmail() +","+
-                u.getBirthday() +","+
-                u.getFirstName() +","+
-                u.getName() +","+
-                u.getPassword() +","+
-                u.getDescription() +","+
-                u.getVille() +")";
+                "\""+u.getUsername()  +"\","+
+                "\""+u.getGender() +"\","+
+                "\""+u.getEmail() +"\","+
+                "\""+u.getBirthday() +"\","+
+                "\""+u.getFirstName() +"\","+
+                "\""+u.getName() +"\","+
+                "\""+u.getPassword() +"\","+
+                "\""+u.getDescription() +"\","+
+                "\""+u.getVille() +"\")";
         DB.execSQL(req);
     }
 

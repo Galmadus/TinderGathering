@@ -149,9 +149,9 @@ public class User {
         List<String> list = new ArrayList<>();
         list.add("Alice");
         list.add("Lina");
-        list.add("Chloé");
+        list.add("Chloe");
         list.add("Rose");
-        list.add("Léa");
+        list.add("Lea");
         list.add("Mila");
         list.add("Mila");
         Random rand = new Random();
@@ -160,7 +160,7 @@ public class User {
     public String randomNameBoy(){
         List<String> list = new ArrayList<>();
         list.add("Gabriel");
-        list.add("Léo");
+        list.add("Leo");
         list.add("Raphaël");
         list.add("Arthur");
         list.add("Louis");

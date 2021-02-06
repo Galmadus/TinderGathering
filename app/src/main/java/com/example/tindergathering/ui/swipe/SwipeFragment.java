@@ -159,6 +159,7 @@ public class SwipeFragment extends Fragment {
 
     private List<ItemModel> addList() {
         User u;
+        // ArrayList<User> usersSwipe = accesLocal.selectAllUserExceptUserInParamSQLite(new User()).toString();
         for (int i=0; i<20; i++){
             u = new User();
             items.add(new ItemModel(randomNameDrawable(), u.getUsername(), u.getAge()+"", u.getVille(),"Pioneer, Commander, Standard"));
