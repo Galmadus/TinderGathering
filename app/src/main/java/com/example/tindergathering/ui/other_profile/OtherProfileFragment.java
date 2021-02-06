@@ -39,7 +39,7 @@ public class OtherProfileFragment extends Fragment {
         User user = null;
 
         if (bundleRecieved != null) {
-            int receivedId = Integer.parseInt(bundleRecieved.getString("id", "1"));
+            int receivedId = Integer.parseInt(bundleRecieved.getString("id"));
             accesLocal = new AccesLocal(this.getContext());
             try {
                 user = accesLocal.selectUserSQLite(receivedId);
@@ -60,8 +60,6 @@ public class OtherProfileFragment extends Fragment {
                 new ManageFragments().goToWithParams(OtherProfileFragment.this, new SwipeFragment(),bundle);
             }
         });
-
-
         return root;
     }
 }

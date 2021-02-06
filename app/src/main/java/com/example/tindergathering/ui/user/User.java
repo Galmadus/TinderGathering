@@ -5,10 +5,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.widget.ImageView;
 
 import com.example.tindergathering.AccesLocal;
+import com.example.tindergathering.R;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -130,6 +133,12 @@ public class User {
         this.description = "description";
         this.city = this.getVille();
         this.idAddress = 1;
+        /*Bitmap bitmapOrg = BitmapFactory.decodeResource(getResources(), randomDrawable());
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+        byte [] ba = bao.toByteArray();
+        String ba1=Base64.encodeToString(ba,Base64.DEFAULT);*/
+        //this.picture = ba1;
     }
 
     private Context context;
@@ -225,6 +234,31 @@ public class User {
         list.add("Louis");
         list.add("Lucas");
         list.add("Adam");
+        Random rand = new Random();
+        return list.get(rand.nextInt(list.size()));
+    }
+
+    public int randomDrawable(){
+        List<Integer>list = new ArrayList<>();
+        list.add(R.drawable.sample1);
+        list.add(R.drawable.sample2);
+        list.add(R.drawable.sample3);
+        list.add(R.drawable.sample4);
+        list.add(R.drawable.sample5);
+        list.add(R.drawable.sample6);
+        list.add(R.drawable.sample7);
+        list.add(R.drawable.sample8);
+        list.add(R.drawable.sample9);
+        list.add(R.drawable.sample10);
+        list.add(R.drawable.sample11);
+        list.add(R.drawable.sample12);
+        list.add(R.drawable.sample13);
+        list.add(R.drawable.sample14);
+        list.add(R.drawable.sample15);
+        list.add(R.drawable.sample16);
+        list.add(R.drawable.sample17);
+        list.add(R.drawable.sample18);
+        list.add(R.drawable.sample19);
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }
