@@ -63,7 +63,7 @@ public class Login {
                     // API Request
                     String result = network.getRequest(url);
 
-                    Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
                     // Read result
                     JSONObject obj = new JSONObject(result);
 
@@ -113,7 +113,7 @@ public class Login {
                     // API Request
                     String result = network.getRequest(url);
 
-                    Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
                     // Read result
                     JSONObject obj = new JSONObject(result);
 
