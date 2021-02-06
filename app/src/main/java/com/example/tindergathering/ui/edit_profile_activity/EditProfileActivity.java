@@ -1,10 +1,14 @@
 package com.example.tindergathering.ui.edit_profile_activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,8 +22,13 @@ import com.example.tindergathering.MainActivity;
 import com.example.tindergathering.R;
 import com.example.tindergathering.ui.edit_profile.EditProfile;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+
 public class EditProfileActivity extends AppCompatActivity {
     private ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +93,12 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         switch(requestCode) {
             case 0:
+                if(resultCode== RESULT_OK){
+                    Bundle extras = imageReturnedIntent.getExtras();
+                    Log.d("------------------------------------------------------NORMAL :",extras.toString());
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    imageView.setImageBitmap(imageBitmap);
+                }
             case 1:
                 if(resultCode == RESULT_OK){
                     Uri selectedImage = imageReturnedIntent.getData();
