@@ -41,6 +41,12 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "        constraint fk_8d93d649f5b7af75\n" +
             "            references address\n" +
             ");";
+    private String createTableMatch ="create table profile\n" +
+            "(\n" +
+            "    id integer not null constraint user_pkey primary key,\n" +
+            "    user1 integer," +
+            "    user2 integer" +
+            ");";
 
     public MySQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -52,6 +58,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTableUser);
         sqLiteDatabase.execSQL(createTableAdresse);
         sqLiteDatabase.execSQL(createTableProfile);
+        sqLiteDatabase.execSQL(createTableMatch);
     }
 
     //If BD version change
