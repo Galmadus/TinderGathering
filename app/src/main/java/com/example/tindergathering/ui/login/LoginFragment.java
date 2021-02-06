@@ -44,6 +44,7 @@ public class LoginFragment extends Fragment {
                 }else{
                     Login login = new Login(context, pseudo, password);
                     login.connect();
+                    login.getCurrentUser();
                 }
 
                 //TODO change to homeFragment
