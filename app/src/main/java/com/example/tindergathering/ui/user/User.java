@@ -35,6 +35,7 @@ public class User {
     private String description;
     private String city;
     private int idAddress;
+    private String formats;
 
     public int getIdAddress() {
         return idAddress;
@@ -52,7 +53,7 @@ public class User {
         this.city = city;
     }
 
-    public User(String username, String password, Date birthday, String gender, String email, int picture, String name, String firstName, String description, String city) {
+    public User(String username, String password, Date birthday, String gender, String email, int picture, String name, String firstName, String description, String city, String formats) {
         this.username = username;
         this.password = password;
         this.birthday = birthday;
@@ -63,6 +64,7 @@ public class User {
         this.firstName = firstName;
         this.description = description;
         this.city = city;
+        this.formats = formats;
     }
 
     public User(String username) {
@@ -131,6 +133,7 @@ public class User {
         this.city = this.getVille();
         this.idAddress = 1;
         this.picture = randomDrawable();
+        this.formats = getRandomFormat();
     }
 
     public String getUsername() {
