@@ -9,7 +9,9 @@ import com.example.tindergathering.AccesLocal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -135,7 +137,20 @@ public class User {
     }
 
     public int getAge() {
-        return (2020 - this.getBirthday().getYear());
+        GregorianCalendar dateNow = new GregorianCalendar();
+        GregorianCalendar birthday = new GregorianCalendar();
+        GregorianCalendar birthdayCurrentYear = new GregorianCalendar();
+
+        birthday.setTime(this.birthday);
+        birthdayCurrentYear.setTime(this.birthday);
+        birthdayCurrentYear.set(Calendar.YEAR, dateNow.get(Calendar.YEAR));
+
+        int age = dateNow.get(Calendar.YEAR) - birthday.get(Calendar.YEAR);
+
+        if(dateNow.getTimeInMillis() < birthdayCurrentYear.getTimeInMillis())
+            age--;
+
+        return age;
     }
 
     public String getVille() {
