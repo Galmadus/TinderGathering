@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         try{
             accesLocal = new AccesLocal(getApplicationContext());
             User u;
-            u = new User("Adminus", "123", new Date("01/01/1970"), "Homme", "adminus@mail.com", "", "John", "Does", "Admirable et affectueux", "Reims");
+            u = new User("Adminus", "123", new Date("01-01-1970"), "Homme", "adminus@mail.com", "", "John", "Does", "Admirable et affectueux", "Reims");
             // if BD not init with user data
             if(accesLocal.findUserSQLite(u)){
                 accesLocal.insertUserSQLite(u);

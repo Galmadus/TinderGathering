@@ -48,40 +48,40 @@ public class Login {
         sharedPref.edit().putString("username", getPseudo()).apply();
         sharedPref.edit().putString("password", getPassword()).apply();
 
-        new AsyncTask<Void,String,String>(){
-            Network network = new Network(context);
-            @Override
-            protected String doInBackground(Void... voids) {
-                //reset value AuthToken
-                SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
-                sharedPref.edit().putString("AuthToken", null).apply();
-
-                Network network = new Network(context);
-                String url = context.getResources().getString(R.string.url_start) + "login_check";
-                String jsonIdentifiant = "{ \"username\": \"" + sharedPref.getString("username", null) + "\",  \"password\": \"" + sharedPref.getString("password", null) + "\" }";
-                try {
-                    // API Request
-                    String result = network.getRequest(url);
-
-//                    Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
-                    // Read result
-                    JSONObject obj = new JSONObject(result);
-
-                    // Get values
-                    String token = obj.getString("token");
-
-                    // Save the new value of Authentification Token
-                    sharedPref.edit().putString("AuthToken", token).apply();
-                    sharedPref.edit().putInt("IdUser", 1).apply();
-                    Log.v(TAG, sharedPref.getString("AuthToken", null) );
-
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-        }.execute();
+//        new AsyncTask<Void,String,String>(){
+//            Network network = new Network(context);
+//            @Override
+//            protected String doInBackground(Void... voids) {
+//                //reset value AuthToken
+//                SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
+//                sharedPref.edit().putString("AuthToken", null).apply();
+//
+//                Network network = new Network(context);
+//                String url = context.getResources().getString(R.string.url_start) + "login_check";
+//                String jsonIdentifiant = "{ \"username\": \"" + sharedPref.getString("username", null) + "\",  \"password\": \"" + sharedPref.getString("password", null) + "\" }";
+//                try {
+//                    // API Request
+//                    String result = network.getRequest(url);
+//
+////                    Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
+//                    // Read result
+//                    JSONObject obj = new JSONObject(result);
+//
+//                    // Get values
+//                    String token = obj.getString("token");
+//
+//                    // Save the new value of Authentification Token
+//                    sharedPref.edit().putString("AuthToken", token).apply();
+//                    sharedPref.edit().putInt("IdUser", 1).apply();
+//                    Log.v(TAG, sharedPref.getString("AuthToken", null) );
+//
+//                } catch (IOException | JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                return null;
+//            }
+//
+//        }.execute();
 //        SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
         connected = sharedPref.getString("AuthToken", null) == null;
         return connected;
@@ -92,54 +92,55 @@ public class Login {
             Network network = new Network(context);
             @Override
             protected String doInBackground(Void... voids) {
-                //reset value AuthToken
-                SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
-                sharedPref.edit().putString("AuthToken", null).apply();
-
-                Network network = new Network(context);
-                String url = context.getResources().getString(R.string.url_start) + "users/current";
-                String jsonCurrentUser = "{ " +
-                        "\"username\": \"" + sharedPref.getString("username", null) + "\"," +
-                        " \"password\": \"" + sharedPref.getString("password", null) + "\"," +
-                        " \"gender\": \"" + "homme" + "\"," +
-                        " \"id\": \"" + sharedPref.getInt("IdUser", 0) + "\"," +
-                        " \"email\": \"" + sharedPref.getString("password", null) + "\"," +
-                        " \"description\": \"" + sharedPref.getString("password", null) + "\"," +
-                        " \"picture\": \"" + sharedPref.getString("password", null) + "\"," +
-                        " \"myFriends\": \"" + sharedPref.getString("password", null) + "\"," +
-                        " \"formats\": \"" + sharedPref.getString("password", null) + "\","
-                        + "\" }";
-                try {
-                    // API Request
-                    String result = network.getRequest(url);
-
-//                    Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
-                    // Read result
-                    JSONObject obj = new JSONObject(result);
-
-                    String dateJson = obj.getString("birthday");
-                    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                    Date date = format.parse(dateJson);
-
-                    User user = new User();
-                    user.setBirthday(date);
-                    user.setUsername(obj.getString("username"));
-                    user.setPassword(obj.getString("password"));
-                    user.setGender(obj.getString("gender"));
-                    user.setEmail(obj.getString("email"));
-                    user.setId(obj.getInt("id"));
-
-//                    boolean alreadyExist = user.selectUserSQLite(obj.getInt("id"));
-//                    if(alreadyExist){
-//                        user.updateUserSQLite();
-//                    } else {
-//                        user.insertUserSQLite();
-//                    }
-
-
-                } catch (IOException | JSONException | ParseException e) {
-                    e.printStackTrace();
-                }
+//                //reset value AuthToken
+//                SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
+//                sharedPref.edit().putString("AuthToken", null).apply();
+//
+//                Network network = new Network(context);
+//                String url = context.getResources().getString(R.string.url_start) + "users/current";
+//                String jsonCurrentUser = "{ " +
+//                        "\"username\": \"" + sharedPref.getString("username", null) + "\"," +
+//                        " \"password\": \"" + sharedPref.getString("password", null) + "\"," +
+//                        " \"gender\": \"" + "homme" + "\"," +
+//                        " \"id\": \"" + sharedPref.getInt("IdUser", 0) + "\"," +
+//                        " \"email\": \"" + sharedPref.getString("password", null) + "\"," +
+//                        " \"birthday\": \"" + sharedPref.getString("username", null) + "\"," +
+//                        " \"description\": \"" + sharedPref.getString("password", null) + "\"," +
+//                        " \"picture\": \"" + sharedPref.getString("password", null) + "\"," +
+//                        " \"myFriends\": \"" + sharedPref.getString("password", null) + "\"," +
+//                        " \"formats\": \"" + sharedPref.getString("password", null) + "\","
+//                        + "\" }";
+//                try {
+//                    // API Request
+//                    String result = network.getRequest(url);
+//
+////                    Toast.makeText(context, "result : "+result, Toast.LENGTH_SHORT).show();
+//                    // Read result
+//                    JSONObject obj = new JSONObject(result);
+//
+//                    String dateJson = obj.getString("birthday");
+//                    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+//                    Date date = format.parse(dateJson);
+//
+//                    User user = new User();
+//                    user.setBirthday(date);
+//                    user.setUsername(obj.getString("username"));
+//                    user.setPassword(obj.getString("password"));
+//                    user.setGender(obj.getString("gender"));
+//                    user.setEmail(obj.getString("email"));
+//                    user.setId(obj.getInt("id"));
+//
+////                    boolean alreadyExist = user.selectUserSQLite(obj.getInt("id"));
+////                    if(alreadyExist){
+////                        user.updateUserSQLite();
+////                    } else {
+////                        user.insertUserSQLite();
+////                    }
+//
+//
+//                } catch (IOException | JSONException | ParseException e) {
+//                    e.printStackTrace();
+//                }
                 return null;
             }
 

@@ -106,8 +106,9 @@ public class AccesLocal {
                 user.setEmail(cursor.getColumnName(cursor.getColumnIndex("email")));
 
                 String dateJson = cursor.getColumnName(cursor.getColumnIndex("birthday"));
-                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                Date date = format.parse(dateJson);
+//                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+//                Date date = format.parse(dateJson);
+                Date date = new Date();
                 user.setBirthday(date);
 
                 user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("firstName")));
