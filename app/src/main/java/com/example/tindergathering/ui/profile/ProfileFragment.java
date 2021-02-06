@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,13 +40,6 @@ public class ProfileFragment extends Fragment {
         ProfileViewModel =
                 ViewModelProviders.of(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        final TextView textView = root.findViewById(R.id.pseudo);
-//        ProfileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
 
         accesLocal = new AccesLocal(this.getContext());
         try {
@@ -53,13 +47,15 @@ public class ProfileFragment extends Fragment {
             final TextView textViewDescription = root.findViewById(R.id.biography);
             textViewDescription.setText(user.getDescription());
             final TextView textViewUsername = root.findViewById(R.id.pseudo);
-            textViewUsername.setText(user.getUsername());
+            textViewUsername.setText(user.getDisplayName());
             final TextView textViewCity = root.findViewById(R.id.city);
             textViewCity.setText(user.getCity());
             final TextView textViewGender = root.findViewById(R.id.gender);
             textViewGender.setText(user.getGender());
             final TextView textViewAge = root.findViewById(R.id.age);
-            textViewAge.setText(String.valueOf(user.getAge()));
+            textViewAge.setText(String.valueOf(user.getAge())+" ans");
+            final ImageView imageViewPicture = root.findViewById(R.id.profile_picture);
+            imageViewPicture.setImageResource(user.getPicture());
         } catch (ParseException e) {
             e.printStackTrace();
         }
