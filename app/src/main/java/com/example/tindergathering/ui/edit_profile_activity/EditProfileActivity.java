@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,11 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tindergathering.MainActivity;
 import com.example.tindergathering.R;
-import com.example.tindergathering.ui.edit_profile.EditProfile;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 
 public class EditProfileActivity extends AppCompatActivity {
     private ImageView imageView;
@@ -74,11 +70,16 @@ public class EditProfileActivity extends AppCompatActivity {
                 DatePicker birthdayView =  findViewById(R.id.birthdate);
                 String birthday = birthdayView.getDayOfMonth()+"/"+birthdayView.getMonth()+"/"+birthdayView.getYear();
 
+                java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+                Bitmap bm = ((android.graphics.drawable.BitmapDrawable) imageView.getDrawable()).getBitmap();
+                bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageBytes = baos.toByteArray();
+                String imageString = android.util.Base64.encodeToString(imageBytes, android.util.Base64.DEFAULT);
 
                 if(mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
                     Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
                 }else{
-                    EditProfile registration = new EditProfile(context, mail, "", password, name, firstname);
+                    EditProfile registration = new EditProfile(context, imageString, mail, "", password, name, firstname);
                     Boolean registered = registration.register();
                     String textToastRegistered = registered ? "Profil mis à jour":"Echec de la mise à jour!";
                     Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
