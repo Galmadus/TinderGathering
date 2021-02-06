@@ -196,6 +196,24 @@ public class User {
         return list.get(rand.nextInt(list.size()));
     }
 
+    public String getRandomFormat(){
+        List<String> list = new ArrayList<>();
+        list.add("Standard");
+        list.add("Commander");
+        list.add("Brawl");
+        list.add("Pioneer");
+        list.add("Vintage");
+        int randomNumber = 1 + (int)(Math.random() * ((list.size() - 1) + 1));
+        String listeFormat = "";
+        Random rand = new Random();
+        for(int i = 0; i < randomNumber; i++){
+            String t = list.get(rand.nextInt(list.size()));
+            listeFormat = listeFormat + t + ",";
+            list.remove(t);
+        }
+        return listeFormat;
+    }
+
     public String getEmail() {
         return email;
     }
