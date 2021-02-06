@@ -53,7 +53,7 @@ public class ProfileFragment extends Fragment {
         accesLocal = new AccesLocal(this.getContext());
         try {
             User user = accesLocal.selectUserSQLite(1);
-            final TextView textViewDescription = root.findViewById(R.id.description);
+            final TextView textViewDescription = root.findViewById(R.id.biography);
             textViewDescription.setText(user.getDescription());
         } catch (ParseException e) {
             e.printStackTrace();
