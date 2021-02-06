@@ -90,6 +90,7 @@ public class AccesLocal {
         DB = accesBD.getWritableDatabase();
         ArrayList<User> users = new ArrayList<>();
         String req = "SELECT " +
+                "id, \n" +
                 "username, \n" +
                 "gender, \n" +
                 "email, \n" +
@@ -105,6 +106,7 @@ public class AccesLocal {
         if(cursor.moveToFirst()){
             while (!cursor.isAfterLast()) {
                 User user = new User();
+                user.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 user.setUsername(cursor.getString(cursor.getColumnIndex("username")));
                 user.setGender(cursor.getString(cursor.getColumnIndex("gender")));
                 user.setEmail(cursor.getString(cursor.getColumnIndex("email")));
