@@ -35,6 +35,7 @@ public class User {
     private String description;
     private String city;
     private int idAddress;
+    private Context context;
 
     public int getIdAddress() {
         return idAddress;
@@ -67,10 +68,6 @@ public class User {
 
     public User(String username) {
         this.username = username;
-    }
-
-    public User(Context context) {
-        this.context = context;
     }
 
     public Bitmap getPictureBitmap() {
@@ -119,6 +116,9 @@ public class User {
     }
 
     public User(){
+
+    }
+    public User(Context context){
         Random rd = new Random();
         Boolean bool = rd.nextBoolean();
         this.username = bool ? randomNameBoy() : randomNameGirl();
@@ -133,15 +133,13 @@ public class User {
         this.description = "description";
         this.city = this.getVille();
         this.idAddress = 1;
-        /*Bitmap bitmapOrg = BitmapFactory.decodeResource(getResources(), randomDrawable());
+        Bitmap bitmapOrg = BitmapFactory.decodeResource(context.getResources(), randomDrawable());
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 100, bao);
         byte [] ba = bao.toByteArray();
-        String ba1=Base64.encodeToString(ba,Base64.DEFAULT);*/
-        //this.picture = ba1;
+        String ba1=Base64.encodeToString(ba,Base64.DEFAULT);
+        this.picture = ba1;
     }
-
-    private Context context;
 
     public String getUsername() {
         return username;
