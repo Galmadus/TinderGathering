@@ -11,35 +11,52 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.tindergathering.AccesLocal;
 import com.example.tindergathering.ManageFragments;
 import com.example.tindergathering.R;
 import com.example.tindergathering.ui.swipe.SwipeFragment;
+import com.example.tindergathering.ui.user.User;
+
+import java.text.ParseException;
 
 public class OtherProfileFragment extends Fragment {
 
     private OtherProfileViewModel OtherProfileViewModel;
+    public AccesLocal accesLocal;
+
+    public AccesLocal getAccesLocal(){
+        return this.accesLocal;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         OtherProfileViewModel = ViewModelProviders.of(this).get(OtherProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_other_profile, container, false);
+
         final TextView pseudoTextView = root.findViewById(R.id.pseudo);
-
-
         final Bundle bundleRecieved = this.getArguments();
+        User user = null;
+
         if (bundleRecieved != null) {
-            String receivedPseudo = bundleRecieved.getString("name", "John");
-            pseudoTextView.setText(receivedPseudo);
-            //String receivedId = bundle.getString("id", "null");
+            int receivedId = Integer.parseInt(bundleRecieved.getString("id", "1"));
+            accesLocal = new AccesLocal(this.getContext());
+            try {
+                user = accesLocal.selectUserSQLite(receivedId);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            pseudoTextView.setText(user.getUsername());
+            
         }
 
         ImageButton goSwipe = (ImageButton) root.findViewById(R.id.go_swipe);
+        final User finalUser = user;
         goSwipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString("name", bundleRecieved.getString("name"));
+                bundle.putString("name", finalUser.getUsername());
                 new ManageFragments().goToWithParams(OtherProfileFragment.this, new SwipeFragment(),bundle);
             }
         });

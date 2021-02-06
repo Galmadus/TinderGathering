@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,8 +53,8 @@ public class RegistrationFragment extends Fragment {
                 TextView firstnameView =  view.getRootView().findViewById(R.id.firstname);
                 String firstname = firstnameView.getText().toString();
 
-                TextView birthdayView =  view.getRootView().findViewById(R.id.birthdate);
-                String birthday = birthdayView.getText().toString();
+                DatePicker birthdayView =  view.getRootView().findViewById(R.id.birthdate);
+                String birthday = birthdayView.getDayOfMonth()+"/"+birthdayView.getMonth()+"/"+birthdayView.getYear();
 
 
 //                if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
