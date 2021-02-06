@@ -256,5 +256,23 @@ public class User {
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", birthday=" + birthday +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", id=" + id +
+                ", picture=" + picture +
+                ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", description='" + description + '\'' +
+                ", city='" + city + '\'' +
+                ", idAddress=" + idAddress +
+                '}';
+    }
 }
 

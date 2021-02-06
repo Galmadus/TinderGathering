@@ -43,6 +43,7 @@ public class AccesLocal {
 
     // Return boolean true if entry found
     public User selectUserSQLite(int id) throws ParseException {
+        Log.v("selectUserSQLite", "id = "+id);
         DB = accesBD.getWritableDatabase();
         User u = new User();
         String req = "SELECT " +
@@ -59,27 +60,27 @@ public class AccesLocal {
                 "address_id " +
                 " FROM user WHERE id = "+id;
         Cursor cursor = DB .rawQuery(req,null);
-        if(cursor.getCount() <= 0){
-            cursor.moveToFirst();
-            if(cursor.isFirst()){
-                u.setUsername(cursor.getString(cursor.getColumnIndex("username")));
-                u.setGender(cursor.getString(cursor.getColumnIndex("gender")));
-                u.setEmail(cursor.getString(cursor.getColumnIndex("email")));
-                u.setPicture(cursor.getInt(cursor.getColumnIndex("picture")));
+        cursor.moveToFirst();
+        if(cursor.isFirst()){
+            u.setUsername(cursor.getString(cursor.getColumnIndex("username")));
+            u.setGender(cursor.getString(cursor.getColumnIndex("gender")));
+            u.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            u.setPicture(cursor.getInt(cursor.getColumnIndex("picture")));
 
-                String dateJson = cursor.getString(cursor.getColumnIndex("birthday"));
-                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                Date date = format.parse(dateJson);
-                u.setBirthday(date);
+            String dateJson = cursor.getString(cursor.getColumnIndex("birthday"));
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = format.parse(dateJson);
+            u.setBirthday(date);
 
-                u.setFirstName(cursor.getString(cursor.getColumnIndex("firstName")));
-                u.setName(cursor.getString(cursor.getColumnIndex("name")));
-                u.setPassword(cursor.getString(cursor.getColumnIndex("password")));
-                u.setDescription(cursor.getString(cursor.getColumnIndex("description")));
-                u.setCity(cursor.getString(cursor.getColumnIndex("city")));
+            u.setFirstName(cursor.getString(cursor.getColumnIndex("firstName")));
+            u.setName(cursor.getString(cursor.getColumnIndex("name")));
+            u.setPassword(cursor.getString(cursor.getColumnIndex("password")));
+            u.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+            u.setCity(cursor.getString(cursor.getColumnIndex("city")));
 //                u.setIdAddress(Integer.parseInt(cursor.getString(cursor.getColumnIndex("address_id"))));
-            }
         }
+
+        Log.v("selectUserSQLite", u.toString());
         boolean haveEntry = (cursor.getCount() <= 0);
         cursor.close();
         return u;
