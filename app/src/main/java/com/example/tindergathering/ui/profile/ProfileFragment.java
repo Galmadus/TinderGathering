@@ -52,6 +52,14 @@ public class ProfileFragment extends Fragment {
             User user = accesLocal.selectUserSQLite(1);
             final TextView textViewDescription = root.findViewById(R.id.biography);
             textViewDescription.setText(user.getDescription());
+            final TextView textViewUsername = root.findViewById(R.id.pseudo);
+            textViewUsername.setText(user.getUsername());
+            final TextView textViewCity = root.findViewById(R.id.city);
+            textViewCity.setText(user.getCity());
+            final TextView textViewGender = root.findViewById(R.id.gender);
+            textViewGender.setText(user.getGender());
+            final TextView textViewAge = root.findViewById(R.id.age);
+            textViewAge.setText(String.valueOf(user.getAge()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
