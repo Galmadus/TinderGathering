@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
-    private String createTableUser ="create table \"user\"\n" +
+    private String createTableUser ="create table user\n" +
             "(\n" +
             "    id         integer      not null\n" +
             "        constraint user_pkey\n" +
