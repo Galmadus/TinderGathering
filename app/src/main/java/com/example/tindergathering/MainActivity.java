@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             u.setName("Nus");
             u.setEmail("adminus@mail.com");
             u.setGender("Homme");
+            u.setDescription("Admirable et affectueux");
             // if BD not init with user data
 
             if(accesLocal.getUsersCount()==0){
