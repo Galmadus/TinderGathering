@@ -31,10 +31,6 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel ProfileViewModel;
     public AccesLocal accesLocal;
 
-    public AccesLocal getAccesLocal(){
-        return this.accesLocal;
-    }
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ProfileViewModel =

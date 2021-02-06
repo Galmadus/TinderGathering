@@ -139,7 +139,12 @@ public class AccesLocal {
         DB.close();
         return count;
     }
-
+    public long getMatchCount() {
+        DB = accesBD.getWritableDatabase();
+        long count = DatabaseUtils.queryNumEntries(DB, "`match`");
+        DB.close();
+        return count;
+    }
     public boolean findUserSQLite(int userId) throws ParseException {
         DB = accesBD.getWritableDatabase();
         String req = "SELECT " +
