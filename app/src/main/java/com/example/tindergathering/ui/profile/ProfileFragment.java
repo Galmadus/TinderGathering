@@ -52,6 +52,26 @@ public class ProfileFragment extends Fragment {
             textViewAge.setText(String.valueOf(user.getAge())+" ans");
             final ImageView imageViewPicture = root.findViewById(R.id.profile_picture);
             imageViewPicture.setImageResource(user.getPicture());
+            if(!user.getFormats().contains("Commander")){
+                TextView textViewCommander = root.findViewById(R.id.format_commander);
+                textViewCommander.setBackgroundColor(R.color.colorPrimary);
+            }
+            if(!user.getFormats().contains("Standard")){
+                TextView textViewCommander = root.findViewById(R.id.format_standard);
+                textViewCommander.setBackgroundColor(R.color.colorPrimary);
+            }
+            if(!user.getFormats().contains("Pioneer")){
+                TextView textViewCommander = root.findViewById(R.id.format_pioneer);
+                textViewCommander.setBackgroundColor(R.color.colorPrimary);
+            }
+            if(!user.getFormats().contains("Brawl")){
+                TextView textViewCommander = root.findViewById(R.id.format_brawl);
+                textViewCommander.setBackgroundColor(R.color.colorPrimary);
+            }
+            if(!user.getFormats().contains("Vintage")){
+                TextView textViewCommander = root.findViewById(R.id.format_vintage);
+                textViewCommander.setBackgroundColor(R.color.colorPrimary);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }

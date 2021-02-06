@@ -55,25 +55,25 @@ public class OtherProfileFragment extends Fragment {
                 textViewAge.setText(String.valueOf(user.getAge())+" ans");
                 final ImageView imageViewPicture = root.findViewById(R.id.profile_picture);
                 imageViewPicture.setImageResource(user.getPicture());
-                if(user.getFormats().contains("Commander")){
+                if(!user.getFormats().contains("Commander")){
                     TextView textViewCommander = root.findViewById(R.id.format_commander);
-                    textViewCommander.setBackgroundColor(0xfd5068);
+                    textViewCommander.setBackgroundColor(R.color.colorPrimary);
                 }
-                if(user.getFormats().contains("Standard")){
+                if(!user.getFormats().contains("Standard")){
                     TextView textViewCommander = root.findViewById(R.id.format_standard);
-                    textViewCommander.setBackgroundColor(0xfd5068);
+                    textViewCommander.setBackgroundColor(R.color.colorPrimary);
                 }
-                if(user.getFormats().contains("Pioneer")){
+                if(!user.getFormats().contains("Pioneer")){
                     TextView textViewCommander = root.findViewById(R.id.format_pioneer);
-                    textViewCommander.setBackgroundColor(0xfd5068);
+                    textViewCommander.setBackgroundColor(R.color.colorPrimary);
                 }
-                if(user.getFormats().contains("Brawl")){
+                if(!user.getFormats().contains("Brawl")){
                     TextView textViewCommander = root.findViewById(R.id.format_brawl);
-                    textViewCommander.setBackgroundColor(0xfd5068);
+                    textViewCommander.setBackgroundColor(R.color.colorPrimary);
                 }
-                if(user.getFormats().contains("Vintage")){
+                if(!user.getFormats().contains("Vintage")){
                     TextView textViewCommander = root.findViewById(R.id.format_vintage);
-                    textViewCommander.setBackgroundColor(0xfd5068);
+                    textViewCommander.setBackgroundColor(R.color.colorPrimary);
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
