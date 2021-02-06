@@ -17,25 +17,11 @@ import org.json.JSONObject;
 
 public class Profile {
     private User user;
-    private String description;
     private Context context;
 
     public Profile(User user, String description, Context context) {
         this.user = user;
-        this.description = description;
         this.context = context;
-    }
-
-    public Profile(String description) {
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Profile() {
@@ -92,7 +78,7 @@ public class Profile {
 
         }.execute();
 //        SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
-        this.setDescription(sharedPref.getString("description", null) );
+//        this.setDescription(sharedPref.getString("description", null) );
     }
 
 }
