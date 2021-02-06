@@ -134,25 +134,31 @@ public class User {
     }
 
 
-    public void selectUserSQLite(int id) throws ParseException {
+    // Return boolean true if entry found
+    public boolean selectUserSQLite(int id) throws ParseException {
         AccesLocal accesLocal = new AccesLocal(this.context);
         SQLiteDatabase DB = accesLocal.getDB();
         String req = "SELECT " +
                 "username, password, birthday, sexe,email" +
                 " FROM users WHERE id = "+id;
         Cursor cursor = DB .rawQuery(req,null);
-        cursor.moveToFirst();
-        if(cursor.isFirst()){
-            this.username = cursor.getString(1);
-            this.password = cursor.getString(2);
-            Date birthday= new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(3));
-            this.birthday = birthday;
-            this.sexe = cursor.getString(4);
-            this.email = cursor.getString(5);
+        if(cursor.getCount() <= 0){
+            cursor.moveToFirst();
+            if(cursor.isFirst()){
+                this.username = cursor.getString(1);
+                this.password = cursor.getString(2);
+                Date birthday= new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(3));
+                this.birthday = birthday;
+                this.sexe = cursor.getString(4);
+                this.email = cursor.getString(5);
+            }
         }
+        boolean haveEntry = (cursor.getCount() <= 0);
         cursor.close();
+        return haveEntry;
     }
-    public void insertUserSQLite(int id) throws ParseException {
+
+    public void insertUserSQLite() throws ParseException {
         AccesLocal accesLocal = new AccesLocal(this.context);
         SQLiteDatabase DB = accesLocal.getDB();
         String req = "INSERT INTO users" +
@@ -160,6 +166,7 @@ public class User {
                 "VALUES(\""+this.username+"\",\""+this.password+"\",\""+this.birthday+"\",\""+this.sexe+"\",\""+this.email+"\")";
         DB.execSQL(req);
     }
+
     public void updateUserSQLite() throws ParseException {
         AccesLocal accesLocal = new AccesLocal(this.context);
         SQLiteDatabase DB = accesLocal.getDB();

@@ -33,6 +33,13 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "    latitude  varchar(180)\n" +
             ");";
 
+    private String createTableMatch ="create table profile\n" +
+            "(\n" +
+            "    id integer not null constraint user_pkey primary key,\n" +
+            "    user1 integer," +
+            "    user2 integer" +
+            ");";
+
     public MySQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -42,6 +49,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(createTableUser);
         sqLiteDatabase.execSQL(createTableAdresse);
+        sqLiteDatabase.execSQL(createTableMatch);
     }
 
     //If BD version change
