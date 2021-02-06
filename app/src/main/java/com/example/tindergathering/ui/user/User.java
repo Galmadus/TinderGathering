@@ -203,6 +203,10 @@ public class User {
         this.email = email;
     }
 
+    public String getDisplayName() {
+        return firstName+' '+name;
+    }
+
     public String randomNameGirl(){
         List<String> list = new ArrayList<>();
         list.add("Alice");
