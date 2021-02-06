@@ -139,7 +139,12 @@ public class AccesLocal {
         DB.close();
         return count;
     }
-
+    public long getMatchCount() {
+        DB = accesBD.getWritableDatabase();
+        long count = DatabaseUtils.queryNumEntries(DB, "`match`");
+        DB.close();
+        return count;
+    }
     public boolean findUserSQLite(int userId) throws ParseException {
         DB = accesBD.getWritableDatabase();
         String req = "SELECT " +
@@ -215,7 +220,7 @@ public class AccesLocal {
                     "description, \n" +
                     "city, \n" +
                     "address_id " +
-                    " FROM user u JOIN `match` m ON u.id=m.user1 WHERE id <> "+id;
+                    " FROM user u JOIN `match` m ON u.id=m.user1 WHERE id == "+id;
             Cursor cursor = DB .rawQuery(req,null);
             if(cursor.moveToFirst()){
                 while (!cursor.isAfterLast()) {
