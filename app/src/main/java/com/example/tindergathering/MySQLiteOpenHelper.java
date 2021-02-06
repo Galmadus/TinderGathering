@@ -13,12 +13,14 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "        constraint user_pkey\n" +
             "            primary key,\n" +
             "    username   varchar(180) not null,\n" +
-            "    roles      json         not null,\n" +
             "    gender      varchar(5)         not null,\n" +
+            "    email      varchar(255)         not null,\n" +
+            "    birthday      date         not null,\n" +
+            "    firstName      varchar(55)         not null,\n" +
+            "    name      varchar(55)         not null,\n" +
             "    password   varchar(255) not null,\n" +
-            "    email   varchar(255) not null,\n" +
-            "    description   varchar(255) not null,\n" +
-            "    ville   varchar(255) not null,\n" +
+            "    description   varchar(255),\n" +
+            "    ville   varchar(255),\n" +
             "    address_id integer\n" +
             "        constraint fk_8d93d649f5b7af75\n" +
             "            references address\n" +

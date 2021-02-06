@@ -21,6 +21,10 @@ public class User {
     private String gender;
     private String email;
     private int id;
+    private String name;
+    private String firstName;
+    private String description;
+    private String ville;
 
     public User(String username) {
         this.username = username;
@@ -28,6 +32,34 @@ public class User {
 
     public User(Context context) {
         this.context = context;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public int getId() {
@@ -48,6 +80,10 @@ public class User {
         this.birthday = birthday;
         this.gender =  bool ? "Homme" : "Femme";
         this.email = this.username+"@email.com";
+        this.name = bool ? randomNameBoy() : randomNameGirl();
+        this.firstName = bool ? randomNameBoy() : randomNameGirl();
+        this.description = "description";
+        this.ville = this.getVille();
     }
 
     private Context context;
@@ -152,6 +188,7 @@ public class User {
                 this.birthday = birthday;
                 this.gender = cursor.getString(4);
                 this.email = cursor.getString(5);
+
             }
         }
         boolean haveEntry = (cursor.getCount() <= 0);
