@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
-    private String createTableUser ="create table \"user\"\n" +
+    private String createTableUser ="create table user\n" +
             "(\n" +
             "    id         integer      not null\n" +
             "        constraint user_pkey\n" +
@@ -29,6 +29,18 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "    longitude varchar(180),\n" +
             "    latitude  varchar(180)\n" +
             ");";
+    private String createTableProfile ="create table profile\n" +
+            "(\n" +
+            "    id         integer      not null\n" +
+            "        constraint user_pkey\n" +
+            "            primary key,\n" +
+            "    username   varchar(180) not null,\n" +
+            "    roles      json         not null,\n" +
+            "    description   varchar(255) not null,\n" +
+            "    address_id integer\n" +
+            "        constraint fk_8d93d649f5b7af75\n" +
+            "            references address\n" +
+            ");";
 
     public MySQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -39,7 +51,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(createTableUser);
         sqLiteDatabase.execSQL(createTableAdresse);
-        sqLiteDatabase.execSQL(createTableUser);
+        sqLiteDatabase.execSQL(createTableProfile);
     }
 
     //If BD version change
