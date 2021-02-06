@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.tindergathering.ui.user.User;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -106,9 +107,8 @@ public class AccesLocal {
                 user.setEmail(cursor.getColumnName(cursor.getColumnIndex("email")));
 
                 String dateJson = cursor.getColumnName(cursor.getColumnIndex("birthday"));
-//                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-//                Date date = format.parse(dateJson);
-                Date date = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = format.parse(dateJson);
                 user.setBirthday(date);
 
                 user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("firstName")));
@@ -166,13 +166,15 @@ public class AccesLocal {
 
     public void insertUserSQLite(User u) throws ParseException {
         DB = accesBD.getWritableDatabase();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = dateFormat.format(u.getBirthday());
         String req = "INSERT INTO user (username, gender,picture, email, birthday, firstName, name, password, description, city) " +
                 "VALUES (" +
                 "\""+u.getUsername()  +"\","+
                 "\""+u.getGender() +"\","+
                 "\""+u.getPicture() +"\","+
                 "\""+u.getEmail() +"\","+
-                "\""+u.getBirthday() +"\","+
+                "\""+strDate +"\","+
                 "\""+u.getFirstName() +"\","+
                 "\""+u.getName() +"\","+
                 "\""+u.getPassword() +"\","+
