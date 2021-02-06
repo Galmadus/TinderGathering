@@ -37,7 +37,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "    latitude  varchar(180)\n" +
             ");";
 
-    private String createTableMatch ="create table profile\n" +
+    private String createTableMatch ="create table `match`\n" +
             "(\n" +
             "    id integer not null constraint user_pkey primary key,\n" +
             "    user1 integer," +
