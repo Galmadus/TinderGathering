@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 //            if(accesLocal.findUserSQLite(u)){
 //                accesLocal.insertUserSQLite(u);
                 for (int i=0; i<20; i++){
-                    u = new User(this);
+                    u = new User();
                     accesLocal.insertUserSQLite(u);
                 }
 //            }

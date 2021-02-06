@@ -52,7 +52,7 @@ public class User {
         this.city = city;
     }
 
-    public User(String username, String password, Date birthday, String gender, String email, String picture, String name, String firstName, String description, String city) {
+    public User(String username, String password, Date birthday, String gender, String email, int picture, String name, String firstName, String description, String city) {
         this.username = username;
         this.password = password;
         this.birthday = birthday;
@@ -68,6 +68,7 @@ public class User {
     public User(String username) {
         this.username = username;
     }
+
 
     /*public Bitmap getPictureBitmap() {
         byte[] imageBytes = android.util.Base64.decode(picture, android.util.Base64.DEFAULT);

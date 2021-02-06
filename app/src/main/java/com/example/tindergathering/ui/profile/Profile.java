@@ -29,7 +29,7 @@ public class Profile {
     }
 
     User findUser(){
-        return new User(this.context);
+        return new User();
     }
     boolean acceptUser(User user){
         return false;
