@@ -52,7 +52,7 @@ public class User {
         this.city = city;
     }
 
-    public User(String username, String password, Date birthday, String gender, String email, int picture, String name, String firstName, String description, String city) {
+    public User(String username, String password, Date birthday, String gender, String email, String picture, String name, String firstName, String description, String city) {
         this.username = username;
         this.password = password;
         this.birthday = birthday;
@@ -67,10 +67,6 @@ public class User {
 
     public User(String username) {
         this.username = username;
-    }
-
-    public User(Context context) {
-        this.context = context;
     }
 
     /*public Bitmap getPictureBitmap() {
@@ -135,8 +131,6 @@ public class User {
         this.idAddress = 1;
         this.picture = randomDrawable();
     }
-
-    private Context context;
 
     public String getUsername() {
         return username;
