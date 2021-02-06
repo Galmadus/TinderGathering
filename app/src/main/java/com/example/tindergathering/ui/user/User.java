@@ -20,6 +20,7 @@ public class User {
     private Date birthday;
     private String gender;
     private String email;
+    private int id;
 
     public User(String username) {
         this.username = username;
@@ -27,6 +28,14 @@ public class User {
 
     public User(Context context) {
         this.context = context;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public User(){
