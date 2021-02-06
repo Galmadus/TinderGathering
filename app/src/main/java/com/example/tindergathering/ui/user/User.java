@@ -134,12 +134,12 @@ public class User {
     }
 
 
-    public void getUserSQLite(int id) throws ParseException {
+    public void selectUserSQLite(int id) throws ParseException {
         AccesLocal accesLocal = new AccesLocal(this.context);
         SQLiteDatabase DB = accesLocal.getDB();
         String req = "SELECT " +
                 "username, password, birthday, sexe,email" +
-                " FROM CLIENTS WHERE id = "+id;
+                " FROM users WHERE id = "+id;
         Cursor cursor = DB .rawQuery(req,null);
         cursor.moveToFirst();
         if(cursor.isFirst()){
@@ -152,5 +152,26 @@ public class User {
         }
         cursor.close();
     }
+    public void insertUserSQLite(int id) throws ParseException {
+        AccesLocal accesLocal = new AccesLocal(this.context);
+        SQLiteDatabase DB = accesLocal.getDB();
+        String req = "INSERT INTO users" +
+                "(username, password, birthday, sexe,email)" +
+                "VALUES(\""+this.username+"\",\""+this.password+"\",\""+this.birthday+"\",\""+this.sexe+"\",\""+this.email+"\")";
+        DB.execSQL(req);
+    }
+    public void updateUserSQLite() throws ParseException {
+        AccesLocal accesLocal = new AccesLocal(this.context);
+        SQLiteDatabase DB = accesLocal.getDB();
+        String req = "UPDATE users " +
+                "SET username"+"="+this.username+" AND " +
+                "password"+"="+this.password+" AND " +
+                "birthday"+"="+this.birthday+" AND " +
+                "sexe"+"="+this.sexe+" AND " +
+                "email"+"="+this.email+" " +
+                " WHERE id ="+1;
+        DB.execSQL(req);
+    }
+
 }
 
