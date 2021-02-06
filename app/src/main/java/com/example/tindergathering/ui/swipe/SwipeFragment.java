@@ -76,6 +76,7 @@ public class SwipeFragment extends Fragment {
             public void onCardSwiped(Direction direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
                 ItemModel current = items.get(current_item);
+                User user = current.getUser();
                 if (direction == Direction.Right) {
                     Toast.makeText(getContext(), "Matched : "+current.getUser().getName(), Toast.LENGTH_SHORT).show();
                     // TODO Send User swiped to API
