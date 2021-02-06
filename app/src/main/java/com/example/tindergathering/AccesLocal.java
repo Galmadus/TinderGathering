@@ -175,8 +175,57 @@ public class AccesLocal {
         DB.execSQL(req);
     }
 
+    // MATCHS
+    public ArrayList<User> selectMatchFromUserSQLite(int id) throws ParseException {
+            DB = accesBD.getWritableDatabase();
+            ArrayList<User> users = new ArrayList<>();
+            String req = "SELECT " +
+                    "id,\n"+
+                    "username, \n" +
+                    "gender, \n" +
+                    "email, \n" +
+                    "birthday, \n" +
+                    "firstName, \n" +
+                    "name, \n" +
+                    "password, \n" +
+                    "description, \n" +
+                    "city, \n" +
+                    "address_id " +
+                    " FROM user u JOIN `match` m ON u.id=m.user1 WHERE id <> "+id;
+            Cursor cursor = DB .rawQuery(req,null);
+            if(cursor.moveToFirst()){
+                while (!cursor.isAfterLast()) {
+                    User user = new User();
+                    user.setId(Integer.parseInt(cursor.getColumnName(cursor.getColumnIndex("id"))));
+                    user.setUsername(cursor.getColumnName(cursor.getColumnIndex("username")));
+                    user.setGender(cursor.getColumnName(cursor.getColumnIndex("gender")));
+                    user.setEmail(cursor.getColumnName(cursor.getColumnIndex("email")));
 
+                    String dateJson = cursor.getColumnName(cursor.getColumnIndex("birthday"));
+                    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                    Date date = format.parse(dateJson);
+                    user.setBirthday(date);
 
+                    user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("firstName")));
+                    user.setName(cursor.getColumnName(cursor.getColumnIndex("name")));
+                    user.setPassword(cursor.getColumnName(cursor.getColumnIndex("password")));
+                    user.setDescription(cursor.getColumnName(cursor.getColumnIndex("description")));
+                    user.setCity(cursor.getColumnName(cursor.getColumnIndex("city")));
+                    user.setIdAddress(Integer.parseInt(cursor.getColumnName(cursor.getColumnIndex("address_id"))));
+                    users.add(user);
+                    cursor.moveToNext();
+                }
+            }
+            cursor.close();
+            return users;
+        }
+
+    public void insertMatchSQLite(int idUserCurrent, int idUserMatched) throws ParseException {
+        DB = accesBD.getWritableDatabase();
+        String req = "INSERT INTO `match` (user1, user2) " +
+                "VALUES ("+idUserCurrent+", "+idUserMatched+")";
+        DB.execSQL(req);
+    }
 
 //    //  CLIENTS
 //    public void createClient(Client client){
