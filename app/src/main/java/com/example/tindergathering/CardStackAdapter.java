@@ -58,7 +58,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
                     .centerCrop()
                     .into(image);
             name.setText(data.getUser().getName());
-            age.setText(data.getUser().getAge());
+            age.setText(String.valueOf(data.getUser().getAge()));
             city.setText(data.getUser().getCity());
             formats.setText("INSERER LES FORMATS DANS USER");
         }
