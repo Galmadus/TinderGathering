@@ -158,7 +158,7 @@ public class User {
         return haveEntry;
     }
 
-    public void insertUserSQLite(int id) throws ParseException {
+    public void insertUserSQLite() throws ParseException {
         AccesLocal accesLocal = new AccesLocal(this.context);
         SQLiteDatabase DB = accesLocal.getDB();
         String req = "INSERT INTO users" +
