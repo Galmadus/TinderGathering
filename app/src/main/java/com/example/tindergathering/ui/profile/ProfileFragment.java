@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.tindergathering.ManageFragments;
 import com.example.tindergathering.R;
 import com.example.tindergathering.ui.edit_profile.EditProfileFragment;
 import com.example.tindergathering.ui.edit_profile_activity.EditProfileActivity;
@@ -44,11 +45,6 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(intent);
-                /*FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                EditProfileFragment editProfileFragment = new EditProfileFragment();
-                fragmentTransaction.replace(R.id.layout_profile, editProfileFragment, "Edit profile");
-                fragmentTransaction.commit();*/
             }
         });
 
@@ -56,11 +52,7 @@ public class ProfileFragment extends Fragment {
         goMatchs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                MatchsFragment matchsFragment = new MatchsFragment();
-                fragmentTransaction.replace(R.id.layout_profile, matchsFragment, "Matchs");
-                fragmentTransaction.commit();
+                new ManageFragments().goTo(ProfileFragment.this,new MatchsFragment());
             }
         });
 

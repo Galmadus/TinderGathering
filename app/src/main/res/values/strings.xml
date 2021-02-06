@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">TinderGathering</string>
     <string name="nav_swipe">Swipe</string>
-    <string name="title_swipe">Tinder : The Gathering</string>
-    <string name="title_matchs">Matchs</string>
-    <string name="title_profile">Profil</string>
-    <string name="title_edit_profile">Modifier mon profil</string>
+    <string name="title_app">Tinder : The Gathering</string>
+    <string name="nav_matchs">Matchs</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_edit_profile">Modifier mon profil</string>
     <string name="title_login">Connexion</string>
     <string name="title_registration">Inscription</string>
 <!--    <string name="url_start">http://appandroid.vqkxiaz.cluster023.hosting.ovh.net/</string>-->

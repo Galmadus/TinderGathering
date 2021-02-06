@@ -88,6 +88,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 startMainActivity();
             }
         });
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.app_logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);

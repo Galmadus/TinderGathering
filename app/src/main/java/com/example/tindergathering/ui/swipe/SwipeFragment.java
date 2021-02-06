@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import com.example.tindergathering.CardStackAdapter;
 import com.example.tindergathering.CardStackCallback;
 import com.example.tindergathering.ItemModel;
+import com.example.tindergathering.ManageFragments;
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.matchs.MatchsFragment;
 import com.example.tindergathering.ui.other_profile.OtherProfileFragment;
 import com.example.tindergathering.ui.user.User;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
@@ -83,16 +85,10 @@ public class SwipeFragment extends Fragment {
                 if (direction == Direction.Top){
                     Toast.makeText(getContext(), "View profile", Toast.LENGTH_SHORT).show();
                     // Set data to pass
-                    OtherProfileFragment fragment = new OtherProfileFragment(); //Your Fragment
                     Bundle bundle = new Bundle();
                     bundle.putString("name", current.getName());  // Key, value
                     bundle.putString("id", "45");
-                    fragment.setArguments(bundle);
-                    // Pass data to other Fragment
-                    getFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.layout_swipe, fragment)
-                            .commit();
+                    new ManageFragments().goToWithParams(SwipeFragment.this, new OtherProfileFragment(),bundle);
                 }
                 /* A ajouter si l'on met une action dans la direction top et bottom (intéressé, non intéréssé)
                 if (direction == Direction.Bottom){

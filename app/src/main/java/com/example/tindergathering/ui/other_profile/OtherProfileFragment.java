@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.tindergathering.ManageFragments;
 import com.example.tindergathering.R;
 import com.example.tindergathering.ui.swipe.SwipeFragment;
 
@@ -26,9 +27,9 @@ public class OtherProfileFragment extends Fragment {
         final TextView pseudoTextView = root.findViewById(R.id.pseudo);
 
 
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            String receivedPseudo = bundle.getString("name", "John");
+        final Bundle bundleRecieved = this.getArguments();
+        if (bundleRecieved != null) {
+            String receivedPseudo = bundleRecieved.getString("name", "John");
             pseudoTextView.setText(receivedPseudo);
             //String receivedId = bundle.getString("id", "null");
         }
@@ -37,15 +38,9 @@ public class OtherProfileFragment extends Fragment {
         goSwipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SwipeFragment fragment = new SwipeFragment(); //Your Fragment
                 Bundle bundle = new Bundle();
-                bundle.putString("name", "JUL");
-                fragment.setArguments(bundle);
-                // Pass data to other Fragment
-                getFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.layout_other_profile, fragment)
-                        .commit();
+                bundle.putString("name", bundleRecieved.getString("name"));
+                new ManageFragments().goToWithParams(OtherProfileFragment.this, new SwipeFragment(),bundle);
             }
         });
 
