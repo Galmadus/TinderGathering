@@ -3,6 +3,7 @@ package com.example.tindergathering;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
@@ -50,9 +51,17 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     //If BD change
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(createTableUser);
-        sqLiteDatabase.execSQL(createTableAdresse);
-        sqLiteDatabase.execSQL(createTableMatch);
+        Log.v("MySQLiteOpenHelper", "onCreate");
+        try{
+            sqLiteDatabase.execSQL(createTableUser);
+            Log.v("MySQLiteOpenHelper", "createTableUser created");
+            sqLiteDatabase.execSQL(createTableAdresse);
+            Log.v("MySQLiteOpenHelper", "createTableAdresse created");
+            sqLiteDatabase.execSQL(createTableMatch);
+            Log.v("MySQLiteOpenHelper", "createTableMatch created");
+        }catch (Exception e){
+            Log.v("MySQLiteOpenHelper", e.toString());
+        }
     }
 
     //If BD version change
