@@ -16,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.text.ParseException;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,10 +58,15 @@ public class MainActivity extends AppCompatActivity {
         try{
             accesLocal = new AccesLocal(getApplicationContext());
             User u;
-            for (int i=0; i<20; i++){
-                u = new User();
+            u = new User("Adminus", "123", new Date("01/01/1970"), "Homme", "adminus@mail.com", "", "John", "Does", "Admirable et affectueux", "Reims");
+            // if BD not init with user data
+            if(accesLocal.findUserSQLite(u)){
                 accesLocal.insertUserSQLite(u);
-                Log.v("MainActivity", accesLocal.selectAllUserExceptUserInParamSQLite(new User()).toString());
+                for (int i=0; i<20; i++){
+                    u = new User();
+                    accesLocal.insertUserSQLite(u);
+                    Log.v("MainActivity", accesLocal.selectAllUserExceptUserInParamSQLite(new User()).toString());
+                }
             }
         }catch (Exception e){
             Log.v("MainActivity", e.toString());
