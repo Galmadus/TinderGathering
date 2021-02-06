@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -132,24 +134,23 @@ public class User {
     }
 
 
-    public User getUserSQLite(){
+    public void getUserSQLite(int id) throws ParseException {
         AccesLocal accesLocal = new AccesLocal(this.context);
         SQLiteDatabase DB = accesLocal.getDB();
-        User user = null;
-        String req = "SELECT * FROM CLIENTS WHERE id = 1";
+        String req = "SELECT " +
+                "username, password, birthday, sexe,email" +
+                " FROM CLIENTS WHERE id = "+id;
         Cursor cursor = DB .rawQuery(req,null);
         cursor.moveToFirst();
         if(cursor.isFirst()){
-            String name = cursor.getString(1);
-            String surname = cursor.getString(2);
-            String gender = cursor.getString(3);
-            String mail = cursor.getString(4);
-            String phone = cursor.getString(5);
-            String adress = cursor.getString(6);
-            user = new User();
+            this.username = cursor.getString(1);
+            this.password = cursor.getString(2);
+            Date birthday= new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(3));
+            this.birthday = birthday;
+            this.sexe = cursor.getString(4);
+            this.email = cursor.getString(5);
         }
         cursor.close();
-        return user;
     }
 }
 
