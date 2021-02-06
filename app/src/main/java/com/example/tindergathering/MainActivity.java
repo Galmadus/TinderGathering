@@ -2,12 +2,11 @@ package com.example.tindergathering;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.AsyncTask;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.tindergathering.ui.Network;
-import com.example.tindergathering.ui.swipe.SwipeFragment;
+import com.example.tindergathering.ui.user.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +15,21 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.io.IOException;
+import java.text.ParseException;
 
 public class MainActivity extends AppCompatActivity {
 
     private Context context = this;
-    private static AccesLocal accesLocal;
+    public AccesLocal accesLocal;
+
+
+    public AccesLocal getAccesLocal(){
+        return this.accesLocal;
+    }
+    public SQLiteDatabase getDB(){
+        return this.accesLocal.getDB();
+    }
+
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         try{
             accesLocal = new AccesLocal(getApplicationContext());
+            User u;
+            for (int i=0; i<20; i++){
+                u = new User();
+                try {
+                    accesLocal.insertUserSQLite(u);
+                } catch (ParseException e) {
+                    Log.v("MainActivity", e.toString());
+                    e.printStackTrace();
+                }
+            }
         }catch (Exception e){
             Log.v("MainActivity", e.toString());
         }
