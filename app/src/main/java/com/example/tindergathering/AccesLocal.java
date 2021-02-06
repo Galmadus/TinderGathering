@@ -220,7 +220,7 @@ public class AccesLocal {
                     "description, \n" +
                     "city, \n" +
                     "address_id " +
-                    " FROM user u JOIN `match` m ON u.id=m.user1 WHERE id <> "+id;
+                    " FROM user u JOIN `match` m ON u.id=m.user1 WHERE id == "+id;
             Cursor cursor = DB .rawQuery(req,null);
             if(cursor.moveToFirst()){
                 while (!cursor.isAfterLast()) {
