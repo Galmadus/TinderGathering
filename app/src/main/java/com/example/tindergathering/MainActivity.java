@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.tindergathering.ui.Network;
 import com.example.tindergathering.ui.swipe.SwipeFragment;
@@ -25,26 +26,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new AsyncTask<Void,String,String>(){
-
-            Network network = new Network(context);
-            @Override
-            protected String doInBackground(Void... voids) {
-                String url = "https://localhost/users";
-                String testJson = "{ \"username\": \"hugo\",  \"password\": \"error\" }";
-                try {
-                    // API Request
-                    network.postRequest(url, testJson);
-
-                    String s = "mc";
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-        }.execute();
+//        new AsyncTask<Void,String,String>(){
+//
+//            Network network = new Network(context);
+//            @Override
+//            protected String doInBackground(Void... voids) {
+//                String url = "https://localhost/users";
+//                String testJson = "{ \"username\": \"hugo\",  \"password\": \"error\" }";
+//                try {
+//                    // API Request
+//                    network.postRequest(url, testJson);
+//
+//                    String s = "mc";
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                return null;
+//            }
+//
+//        }.execute();
         setContentView(R.layout.activity_main);
+        try{
+            accesLocal = new AccesLocal(getApplicationContext());
+        }catch (Exception e){
+            Log.v("MainActivity", e.toString());
+        }
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
