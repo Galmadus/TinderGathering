@@ -51,7 +51,7 @@ public class AccesLocal {
                 "name, \n" +
                 "password, \n" +
                 "description, \n" +
-                "ville, \n" +
+                "city, \n" +
                 "address_id " +
                 " FROM user WHERE id = "+id;
         Cursor cursor = DB .rawQuery(req,null);
@@ -71,7 +71,7 @@ public class AccesLocal {
                 u.setName(cursor.getColumnName(cursor.getColumnIndex("name")));
                 u.setPassword(cursor.getColumnName(cursor.getColumnIndex("password")));
                 u.setDescription(cursor.getColumnName(cursor.getColumnIndex("description")));
-                u.setVille(cursor.getColumnName(cursor.getColumnIndex("ville")));
+                u.setCity(cursor.getColumnName(cursor.getColumnIndex("city")));
                 u.setIdAddress(Integer.parseInt(cursor.getColumnName(cursor.getColumnIndex("address_id"))));
             }
         }
@@ -92,7 +92,7 @@ public class AccesLocal {
                 "name, \n" +
                 "password, \n" +
                 "description, \n" +
-                "ville, \n" +
+                "city, \n" +
                 "address_id " +
                 " FROM user WHERE id <> 1" /*+u.getId()*/;
         Cursor cursor = DB .rawQuery(req,null);
@@ -112,7 +112,7 @@ public class AccesLocal {
                 user.setName(cursor.getColumnName(cursor.getColumnIndex("name")));
                 user.setPassword(cursor.getColumnName(cursor.getColumnIndex("password")));
                 user.setDescription(cursor.getColumnName(cursor.getColumnIndex("description")));
-                user.setVille(cursor.getColumnName(cursor.getColumnIndex("ville")));
+                user.setCity(cursor.getColumnName(cursor.getColumnIndex("city")));
                 user.setIdAddress(Integer.parseInt(cursor.getColumnName(cursor.getColumnIndex("address_id"))));
                 users.add(user);
                 cursor.moveToNext();
@@ -133,7 +133,7 @@ public class AccesLocal {
                 "name, \n" +
                 "password, \n" +
                 "description, \n" +
-                "ville, \n" +
+                "city, \n" +
                 "address_id " +
                 " FROM user WHERE id = "+u.getId();
         Cursor cursor = DB .rawQuery(req,null);
@@ -146,22 +146,22 @@ public class AccesLocal {
     public void updateUserSQLite(User u) throws ParseException {
         DB = accesBD.getWritableDatabase();
         String req = "UPDATE " +
-                "SET username=\""+u.getEmail()+"\", \n" +
-                "SET gender=\""+u.getEmail()+"\", \n" +
+                "SET username=\""+u.getUsername()+"\", \n" +
+                "SET gender=\""+u.getGender()+"\", \n" +
                 "SET email=\""+u.getEmail()+"\", \n" +
-                "SET birthday=\""+u.getEmail()+"\", \n" +
-                "SET firstName=\""+u.getEmail()+"\", \n" +
-                "SET name=\""+u.getEmail()+"\", \n" +
-                "SET password=\""+u.getEmail()+"\", \n" +
-                "SET description=\""+u.getEmail()+"\", \n" +
-                "SET ville=\""+u.getEmail()+"\" \n" +
+                "SET birthday=\""+u.getBirthday()+"\", \n" +
+                "SET firstName=\""+u.getFirstName()+"\", \n" +
+                "SET name=\""+u.getName()+"\", \n" +
+                "SET password=\""+u.getPassword()+"\", \n" +
+                "SET description=\""+u.getDescription()+"\", \n" +
+                "SET city=\""+u.getCity()+"\" \n" +
                 " FROM user WHERE id = "+u.getId();
         DB.execSQL(req);
     }
 
     public void insertUserSQLite(User u) throws ParseException {
         DB = accesBD.getWritableDatabase();
-        String req = "INSERT INTO user (username, gender, email, birthday, firstName, name, password, description, ville) " +
+        String req = "INSERT INTO user (username, gender, email, birthday, firstName, name, password, description, city) " +
                 "VALUES (" +
                 "\""+u.getUsername()  +"\","+
                 "\""+u.getGender() +"\","+
@@ -171,7 +171,7 @@ public class AccesLocal {
                 "\""+u.getName() +"\","+
                 "\""+u.getPassword() +"\","+
                 "\""+u.getDescription() +"\","+
-                "\""+u.getVille() +"\")";
+                "\""+u.getCity() +"\")";
         DB.execSQL(req);
     }
 
