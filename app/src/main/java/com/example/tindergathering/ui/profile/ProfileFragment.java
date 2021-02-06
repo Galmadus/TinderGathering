@@ -1,5 +1,6 @@
 package com.example.tindergathering.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tindergathering.R;
 import com.example.tindergathering.ui.edit_profile.EditProfileFragment;
+import com.example.tindergathering.ui.edit_profile_activity.EditProfileActivity;
 import com.example.tindergathering.ui.matchs.MatchsFragment;
 
 public class ProfileFragment extends Fragment {
@@ -40,11 +42,13 @@ public class ProfileFragment extends Fragment {
         goEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager = getFragmentManager();
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(intent);
+                /*FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 EditProfileFragment editProfileFragment = new EditProfileFragment();
                 fragmentTransaction.replace(R.id.layout_profile, editProfileFragment, "Edit profile");
-                fragmentTransaction.commit();
+                fragmentTransaction.commit();*/
             }
         });
 
