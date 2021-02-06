@@ -1,6 +1,7 @@
 package com.example.tindergathering.ui.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.tindergathering.MainActivity;
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.edit_profile_activity.EditProfileActivity;
 
 public class LoginFragment extends Fragment {
 
@@ -45,6 +48,8 @@ public class LoginFragment extends Fragment {
                     Login login = new Login(context, pseudo, password);
                     login.connect();
                     login.getCurrentUser();
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
                 }
 
                 //TODO change to homeFragment
