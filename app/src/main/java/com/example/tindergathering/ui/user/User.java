@@ -3,17 +3,9 @@ package com.example.tindergathering.ui.user;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.tindergathering.AccesLocal;
-import com.example.tindergathering.R;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,7 +18,7 @@ public class User {
     private String username;
     private String password;
     private Date birthday;
-    private String sexe;
+    private String gender;
     private String email;
 
     public User(String username) {
@@ -45,7 +37,7 @@ public class User {
         Date birthday = new Date(ThreadLocalRandom.current().nextInt() * 1000L);
         birthday.setYear(new Random().nextInt((2002 - 1950) + 1) + 1950);
         this.birthday = birthday;
-        this.sexe =  bool ? "Homme" : "Femme";
+        this.gender =  bool ? "Homme" : "Femme";
         this.email = this.username+"@email.com";
     }
 
@@ -75,12 +67,12 @@ public class User {
         this.birthday = birthday;
     }
 
-    public String getSexe() {
-        return sexe;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSexe(String sexe) {
-        this.sexe = sexe;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getAge() {
@@ -139,7 +131,7 @@ public class User {
         AccesLocal accesLocal = new AccesLocal(this.context);
         SQLiteDatabase DB = accesLocal.getDB();
         String req = "SELECT " +
-                "username, password, birthday, sexe,email" +
+                "username, password, birthday, gender, email" +
                 " FROM users WHERE id = "+id;
         Cursor cursor = DB .rawQuery(req,null);
         if(cursor.getCount() <= 0){
@@ -149,7 +141,7 @@ public class User {
                 this.password = cursor.getString(2);
                 Date birthday= new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(3));
                 this.birthday = birthday;
-                this.sexe = cursor.getString(4);
+                this.gender = cursor.getString(4);
                 this.email = cursor.getString(5);
             }
         }
@@ -162,8 +154,8 @@ public class User {
         AccesLocal accesLocal = new AccesLocal(this.context);
         SQLiteDatabase DB = accesLocal.getDB();
         String req = "INSERT INTO users" +
-                "(username, password, birthday, sexe,email)" +
-                "VALUES(\""+this.username+"\",\""+this.password+"\",\""+this.birthday+"\",\""+this.sexe+"\",\""+this.email+"\")";
+                "(username, password, birthday, gender ,email)" +
+                "VALUES(\""+this.username+"\",\""+this.password+"\",\""+this.birthday+"\",\""+this.gender+"\",\""+this.email+"\")";
         DB.execSQL(req);
     }
 
@@ -174,7 +166,7 @@ public class User {
                 "SET username"+"="+this.username+" AND " +
                 "password"+"="+this.password+" AND " +
                 "birthday"+"="+this.birthday+" AND " +
-                "sexe"+"="+this.sexe+" AND " +
+                "gender"+"="+this.gender+" AND " +
                 "email"+"="+this.email+" " +
                 " WHERE id ="+1;
         DB.execSQL(req);
