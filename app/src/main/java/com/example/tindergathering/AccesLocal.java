@@ -57,16 +57,21 @@ public class AccesLocal {
         if(cursor.getCount() <= 0){
             cursor.moveToFirst();
             if(cursor.isFirst()){
-                u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("username")));
-                u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("gender")));
-                u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("email")));
-                u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("birthday")));
+                u.setUsername(cursor.getColumnName(cursor.getColumnIndex("username")));
+                u.setGender(cursor.getColumnName(cursor.getColumnIndex("gender")));
+                u.setEmail(cursor.getColumnName(cursor.getColumnIndex("email")));
+
+                String dateJson = cursor.getColumnName(cursor.getColumnIndex("birthday"));
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = format.parse(dateJson);
+                u.setBirthday(date);
+
                 u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("firstName")));
-                u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("name")));
-                u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("password")));
-                u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("description")));
-                u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("ville")));
-                u.setFirstName(cursor.getColumnName(cursor.getColumnIndex("address")));
+                u.setName(cursor.getColumnName(cursor.getColumnIndex("name")));
+                u.setPassword(cursor.getColumnName(cursor.getColumnIndex("password")));
+                u.setDescription(cursor.getColumnName(cursor.getColumnIndex("description")));
+                u.setVille(cursor.getColumnName(cursor.getColumnIndex("ville")));
+                u.setIdAddress(Integer.parseInt(cursor.getColumnName(cursor.getColumnIndex("address_id"))));
             }
         }
         boolean haveEntry = (cursor.getCount() <= 0);
@@ -93,16 +98,21 @@ public class AccesLocal {
         if(cursor.moveToFirst()){
             while (!cursor.isAfterLast()) {
                 User user = new User();
-                user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("username")));
-                user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("gender")));
-                user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("email")));
-                user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("birthday")));
+                user.setUsername(cursor.getColumnName(cursor.getColumnIndex("username")));
+                user.setGender(cursor.getColumnName(cursor.getColumnIndex("gender")));
+                user.setEmail(cursor.getColumnName(cursor.getColumnIndex("email")));
+
+                String dateJson = cursor.getColumnName(cursor.getColumnIndex("birthday"));
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = format.parse(dateJson);
+                u.setBirthday(date);
+
                 user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("firstName")));
-                user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("name")));
-                user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("password")));
-                user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("description")));
-                user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("ville")));
-                user.setFirstName(cursor.getColumnName(cursor.getColumnIndex("address")));
+                user.setName(cursor.getColumnName(cursor.getColumnIndex("name")));
+                user.setPassword(cursor.getColumnName(cursor.getColumnIndex("password")));
+                user.setDescription(cursor.getColumnName(cursor.getColumnIndex("description")));
+                user.setVille(cursor.getColumnName(cursor.getColumnIndex("ville")));
+                user.setIdAddress(Integer.parseInt(cursor.getColumnName(cursor.getColumnIndex("address_id"))));
                 users.add(user);
                 cursor.moveToNext();
             }
