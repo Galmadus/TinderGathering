@@ -91,7 +91,7 @@ public class SwipeFragment extends Fragment {
                     Toast.makeText(getContext(), "View profile", Toast.LENGTH_SHORT).show();
                     // Set data to pass
                     Bundle bundle = new Bundle();
-                    bundle.putString("id", "1");
+                    bundle.putInt("id", current.getUser().getId());
                     new ManageFragments().goToWithParams(SwipeFragment.this, new OtherProfileFragment(),bundle);
                 }
                 /* A ajouter si l'on met une action dans la direction top et bottom (intéressé, non intéréssé)
@@ -107,7 +107,6 @@ public class SwipeFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-
             }
 
             @Override

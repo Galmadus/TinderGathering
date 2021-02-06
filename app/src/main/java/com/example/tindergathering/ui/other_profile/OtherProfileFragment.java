@@ -1,5 +1,6 @@
 package com.example.tindergathering.ui.other_profile;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,17 +30,16 @@ public class OtherProfileFragment extends Fragment {
         return this.accesLocal;
     }
 
+    @SuppressLint("ResourceAsColor")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         OtherProfileViewModel = ViewModelProviders.of(this).get(OtherProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_other_profile, container, false);
-
         final Bundle bundleRecieved = this.getArguments();
         User user = null;
         if (bundleRecieved != null) {
-            //receivedId = Integer.parseInt(bundleRecieved.getString("id"));
-            receivedId = 1;
+            receivedId = bundleRecieved.getInt("id");
             accesLocal = new AccesLocal(this.getContext());
             try {
                 user = accesLocal.selectUserSQLite(receivedId);
@@ -55,10 +55,29 @@ public class OtherProfileFragment extends Fragment {
                 textViewAge.setText(String.valueOf(user.getAge())+" ans");
                 final ImageView imageViewPicture = root.findViewById(R.id.profile_picture);
                 imageViewPicture.setImageResource(user.getPicture());
+                if(user.getFormats().contains("Commander")){
+                    TextView textViewCommander = root.findViewById(R.id.format_commander);
+                    textViewCommander.setBackgroundColor(0xfd5068);
+                }
+                if(user.getFormats().contains("Standard")){
+                    TextView textViewCommander = root.findViewById(R.id.format_standard);
+                    textViewCommander.setBackgroundColor(0xfd5068);
+                }
+                if(user.getFormats().contains("Pioneer")){
+                    TextView textViewCommander = root.findViewById(R.id.format_pioneer);
+                    textViewCommander.setBackgroundColor(0xfd5068);
+                }
+                if(user.getFormats().contains("Brawl")){
+                    TextView textViewCommander = root.findViewById(R.id.format_brawl);
+                    textViewCommander.setBackgroundColor(0xfd5068);
+                }
+                if(user.getFormats().contains("Vintage")){
+                    TextView textViewCommander = root.findViewById(R.id.format_vintage);
+                    textViewCommander.setBackgroundColor(0xfd5068);
+                }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            
         }
 
         ImageButton goSwipe = (ImageButton) root.findViewById(R.id.go_swipe);

@@ -228,6 +228,10 @@ public class User {
         return firstName+' '+name;
     }
 
+    public String getFormats() {
+        return formats;
+    }
+
     public String randomNameGirl(){
         List<String> list = new ArrayList<>();
         list.add("Alice");

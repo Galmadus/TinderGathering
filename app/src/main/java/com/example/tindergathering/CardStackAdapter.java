@@ -60,7 +60,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             name.setText(data.getUser().getDisplayName());
             age.setText(String.valueOf(data.getUser().getAge())+" ans");
             city.setText(data.getUser().getCity());
-            formats.setText("INSERER LES FORMATS DANS USER");
+            formats.setText(data.getUser().getFormats().substring(0, data.getUser().getFormats().length() - 1).replace(",",", "));
         }
     }
 
