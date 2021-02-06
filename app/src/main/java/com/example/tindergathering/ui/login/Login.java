@@ -129,12 +129,12 @@ public class Login {
                     user.setEmail(obj.getString("email"));
                     user.setId(obj.getInt("id"));
 
-                    boolean alreadyExist = user.selectUserSQLite(obj.getInt("id"));
-                    if(alreadyExist){
-                        user.updateUserSQLite();
-                    } else {
-                        user.insertUserSQLite();
-                    }
+//                    boolean alreadyExist = user.selectUserSQLite(obj.getInt("id"));
+//                    if(alreadyExist){
+//                        user.updateUserSQLite();
+//                    } else {
+//                        user.insertUserSQLite();
+//                    }
 
 
                 } catch (IOException | JSONException | ParseException e) {
