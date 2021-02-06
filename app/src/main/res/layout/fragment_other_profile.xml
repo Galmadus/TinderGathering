@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
-        android:id="@+id/view6"
+        android:id="@+id/button_logout"
         android:layout_width="426dp"
         android:layout_height="188dp"
         android:background="#E9FD5068"

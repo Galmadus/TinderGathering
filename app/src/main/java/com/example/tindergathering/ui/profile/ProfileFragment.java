@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.tindergathering.DisconnectActivity;
 import com.example.tindergathering.ManageFragments;
 import com.example.tindergathering.R;
 import com.example.tindergathering.ui.edit_profile.EditProfileFragment;
@@ -55,6 +57,16 @@ public class ProfileFragment extends Fragment {
                 new ManageFragments().goTo(ProfileFragment.this,new MatchsFragment());
             }
         });
+
+        ImageButton goLogOut = (ImageButton) root.findViewById(R.id.bouton_logout);
+        goLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DisconnectActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         return root;
