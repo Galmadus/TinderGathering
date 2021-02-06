@@ -1,9 +1,12 @@
 package com.example.tindergathering.ui.user;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.tindergathering.AccesLocal;
 import com.example.tindergathering.R;
 
 import java.io.BufferedInputStream;
@@ -128,5 +131,25 @@ public class User {
         return list.get(rand.nextInt(list.size()));
     }
 
+
+    public User getUserSQLite(){
+        AccesLocal accesLocal = new AccesLocal(this.context);
+        SQLiteDatabase DB = accesLocal.getDB();
+        User user = null;
+        String req = "SELECT * FROM CLIENTS WHERE id = 1";
+        Cursor cursor = DB .rawQuery(req,null);
+        cursor.moveToFirst();
+        if(cursor.isFirst()){
+            String name = cursor.getString(1);
+            String surname = cursor.getString(2);
+            String gender = cursor.getString(3);
+            String mail = cursor.getString(4);
+            String phone = cursor.getString(5);
+            String adress = cursor.getString(6);
+            user = new User();
+        }
+        cursor.close();
+        return user;
+    }
 }
 
