@@ -35,7 +35,7 @@ public class RegistrationFragment extends Fragment {
             public void onClick(View view) {
                 Context context = view.getContext();
 
-                TextView pseudoView =  view.getRootView().findViewById(R.id.mail);
+                TextView pseudoView =  view.getRootView().findViewById(R.id.pseudo);
                 String pseudo = pseudoView.getText().toString();
 
                 TextView mailView =  view.getRootView().findViewById(R.id.mail);
@@ -49,10 +49,10 @@ public class RegistrationFragment extends Fragment {
                 TextView nameView =  view.getRootView().findViewById(R.id.name);
                 String name = nameView.getText().toString();
 
-                TextView firstnameView =  view.getRootView().findViewById(R.id.mail);
+                TextView firstnameView =  view.getRootView().findViewById(R.id.firstname);
                 String firstname = firstnameView.getText().toString();
 
-                TextView birthdayView =  view.getRootView().findViewById(R.id.firstname);
+                TextView birthdayView =  view.getRootView().findViewById(R.id.birthdate);
                 String birthday = birthdayView.getText().toString();
 
 
@@ -67,8 +67,6 @@ public class RegistrationFragment extends Fragment {
                     startActivity(intent);
 //                }
 
-
-
                 //redirection
                 // Intent intent = new Intent(context, LoginFragment.class);
                 // startActivity(intent);
@@ -76,5 +74,4 @@ public class RegistrationFragment extends Fragment {
         });
         return root;
     }
-
 }
