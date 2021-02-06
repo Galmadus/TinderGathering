@@ -46,6 +46,7 @@ public class AccesLocal {
                 "username, \n" +
                 "gender, \n" +
                 "email, \n" +
+                "picture, \n" +
                 "birthday, \n" +
                 "firstName, \n" +
                 "name, \n" +
@@ -61,6 +62,7 @@ public class AccesLocal {
                 u.setUsername(cursor.getColumnName(cursor.getColumnIndex("username")));
                 u.setGender(cursor.getColumnName(cursor.getColumnIndex("gender")));
                 u.setEmail(cursor.getColumnName(cursor.getColumnIndex("email")));
+                u.setPicture(cursor.getColumnName(cursor.getColumnIndex("picture")));
 
                 String dateJson = cursor.getColumnName(cursor.getColumnIndex("birthday"));
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -128,6 +130,7 @@ public class AccesLocal {
                 "username, \n" +
                 "gender, \n" +
                 "email, \n" +
+                "picture, \n" +
                 "birthday, \n" +
                 "firstName, \n" +
                 "name, \n" +
@@ -148,6 +151,7 @@ public class AccesLocal {
         String req = "UPDATE " +
                 "SET username=\""+u.getUsername()+"\", \n" +
                 "SET gender=\""+u.getGender()+"\", \n" +
+                "SET picture=\""+u.getPicture()+"\", \n" +
                 "SET email=\""+u.getEmail()+"\", \n" +
                 "SET birthday=\""+u.getBirthday()+"\", \n" +
                 "SET firstName=\""+u.getFirstName()+"\", \n" +
@@ -161,10 +165,11 @@ public class AccesLocal {
 
     public void insertUserSQLite(User u) throws ParseException {
         DB = accesBD.getWritableDatabase();
-        String req = "INSERT INTO user (username, gender, email, birthday, firstName, name, password, description, city) " +
+        String req = "INSERT INTO user (username, gender,picture, email, birthday, firstName, name, password, description, city) " +
                 "VALUES (" +
                 "\""+u.getUsername()  +"\","+
                 "\""+u.getGender() +"\","+
+                "\""+u.getPicture() +"\","+
                 "\""+u.getEmail() +"\","+
                 "\""+u.getBirthday() +"\","+
                 "\""+u.getFirstName() +"\","+
@@ -183,6 +188,7 @@ public class AccesLocal {
                     "id,\n"+
                     "username, \n" +
                     "gender, \n" +
+                    "picture, \n" +
                     "email, \n" +
                     "birthday, \n" +
                     "firstName, \n" +
@@ -199,6 +205,7 @@ public class AccesLocal {
                     user.setId(Integer.parseInt(cursor.getColumnName(cursor.getColumnIndex("id"))));
                     user.setUsername(cursor.getColumnName(cursor.getColumnIndex("username")));
                     user.setGender(cursor.getColumnName(cursor.getColumnIndex("gender")));
+                    user.setPicture(cursor.getColumnName(cursor.getColumnIndex("picture")));
                     user.setEmail(cursor.getColumnName(cursor.getColumnIndex("email")));
 
                     String dateJson = cursor.getColumnName(cursor.getColumnIndex("birthday"));

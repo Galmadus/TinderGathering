@@ -3,6 +3,9 @@ package com.example.tindergathering.ui.user;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
 
 import com.example.tindergathering.AccesLocal;
 
@@ -21,6 +24,7 @@ public class User {
     private String gender;
     private String email;
     private int id;
+    private String picture;
     private String name;
     private String firstName;
     private String description;
@@ -49,6 +53,19 @@ public class User {
 
     public User(Context context) {
         this.context = context;
+    }
+
+    public Bitmap getPictureBitmap() {
+        byte[] imageBytes = android.util.Base64.decode(picture, android.util.Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        return decodedImage;
+    }
+
+    public String getPicture() {
+        return this.picture;
+    }
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public String getName() {

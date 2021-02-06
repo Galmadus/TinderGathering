@@ -13,6 +13,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "        constraint user_pkey\n" +
             "            primary key,\n" +
             "    username   varchar(180) not null,\n" +
+            "    picture   varchar(1000),\n" +
             "    gender      varchar(5)         not null,\n" +
             "    email      varchar(255)         not null,\n" +
             "    birthday      date         not null,\n" +
