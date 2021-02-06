@@ -5,10 +5,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.widget.ImageView;
 
 import com.example.tindergathering.AccesLocal;
+import com.example.tindergathering.R;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,7 +29,7 @@ public class User {
     private String gender;
     private String email;
     private int id;
-    private String picture;
+    private int picture;
     private String name;
     private String firstName;
     private String description;
@@ -49,7 +52,7 @@ public class User {
         this.city = city;
     }
 
-    public User(String username, String password, Date birthday, String gender, String email, String picture, String name, String firstName, String description, String city) {
+    public User(String username, String password, Date birthday, String gender, String email, int picture, String name, String firstName, String description, String city) {
         this.username = username;
         this.password = password;
         this.birthday = birthday;
@@ -66,20 +69,17 @@ public class User {
         this.username = username;
     }
 
-    public User(Context context) {
-        this.context = context;
-    }
 
-    public Bitmap getPictureBitmap() {
+    /*public Bitmap getPictureBitmap() {
         byte[] imageBytes = android.util.Base64.decode(picture, android.util.Base64.DEFAULT);
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
         return decodedImage;
-    }
+    }*/
 
-    public String getPicture() {
+    public int getPicture() {
         return this.picture;
     }
-    public void setPicture(String picture) {
+    public void setPicture(int picture) {
         this.picture = picture;
     }
 
@@ -130,9 +130,8 @@ public class User {
         this.description = "description";
         this.city = this.getVille();
         this.idAddress = 1;
+        this.picture = randomDrawable();
     }
-
-    private Context context;
 
     public String getUsername() {
         return username;
@@ -222,6 +221,10 @@ public class User {
         this.email = email;
     }
 
+    public String getDisplayName() {
+        return firstName+' '+name;
+    }
+
     public String randomNameGirl(){
         List<String> list = new ArrayList<>();
         list.add("Alice");
@@ -245,6 +248,49 @@ public class User {
         list.add("Adam");
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
+    }
+
+    public int randomDrawable(){
+        List<Integer>list = new ArrayList<>();
+        list.add(R.drawable.sample1);
+        list.add(R.drawable.sample2);
+        list.add(R.drawable.sample3);
+        list.add(R.drawable.sample4);
+        list.add(R.drawable.sample5);
+        list.add(R.drawable.sample6);
+        list.add(R.drawable.sample7);
+        list.add(R.drawable.sample8);
+        list.add(R.drawable.sample9);
+        list.add(R.drawable.sample10);
+        list.add(R.drawable.sample11);
+        list.add(R.drawable.sample12);
+        list.add(R.drawable.sample13);
+        list.add(R.drawable.sample14);
+        list.add(R.drawable.sample15);
+        list.add(R.drawable.sample16);
+        list.add(R.drawable.sample17);
+        list.add(R.drawable.sample18);
+        list.add(R.drawable.sample19);
+        Random rand = new Random();
+        return list.get(rand.nextInt(list.size()));
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", birthday=" + birthday +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", id=" + id +
+                ", picture=" + picture +
+                ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", description='" + description + '\'' +
+                ", city='" + city + '\'' +
+                ", idAddress=" + idAddress +
+                '}';
     }
 }
 

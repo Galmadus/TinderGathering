@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +24,7 @@ public class OtherProfileFragment extends Fragment {
 
     private OtherProfileViewModel OtherProfileViewModel;
     public AccesLocal accesLocal;
-
+    public int receivedId;
     public AccesLocal getAccesLocal(){
         return this.accesLocal;
     }
@@ -34,19 +35,29 @@ public class OtherProfileFragment extends Fragment {
         OtherProfileViewModel = ViewModelProviders.of(this).get(OtherProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_other_profile, container, false);
 
-        final TextView pseudoTextView = root.findViewById(R.id.pseudo);
         final Bundle bundleRecieved = this.getArguments();
         User user = null;
-
         if (bundleRecieved != null) {
-            int receivedId = Integer.parseInt(bundleRecieved.getString("id", "1"));
+            //receivedId = Integer.parseInt(bundleRecieved.getString("id"));
+            receivedId = 1;
             accesLocal = new AccesLocal(this.getContext());
             try {
                 user = accesLocal.selectUserSQLite(receivedId);
+                final TextView textViewDescription = root.findViewById(R.id.biography);
+                textViewDescription.setText(user.getDescription());
+                final TextView textViewUsername = root.findViewById(R.id.pseudo);
+                textViewUsername.setText(user.getDisplayName());
+                final TextView textViewCity = root.findViewById(R.id.city);
+                textViewCity.setText(user.getCity());
+                final TextView textViewGender = root.findViewById(R.id.gender);
+                textViewGender.setText(user.getGender());
+                final TextView textViewAge = root.findViewById(R.id.age);
+                textViewAge.setText(String.valueOf(user.getAge())+" ans");
+                final ImageView imageViewPicture = root.findViewById(R.id.profile_picture);
+                imageViewPicture.setImageResource(user.getPicture());
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            pseudoTextView.setText(user.getUsername());
             
         }
 
@@ -56,12 +67,10 @@ public class OtherProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString("name", finalUser.getUsername());
+                bundle.putInt("id", finalUser.getId());
                 new ManageFragments().goToWithParams(OtherProfileFragment.this, new SwipeFragment(),bundle);
             }
         });
-
-
         return root;
     }
 }
