@@ -16,7 +16,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "    picture   varchar(1000),\n" +
             "    gender      varchar(5)         not null,\n" +
             "    email      varchar(255)         not null,\n" +
-            "    birthday      date         not null,\n" +
+            "    birthday      varchar(255)         not null,\n" +
             "    firstName      varchar(55)         not null,\n" +
             "    name      varchar(55)         not null,\n" +
             "    password   varchar(255) not null,\n" +
