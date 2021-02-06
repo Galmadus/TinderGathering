@@ -201,7 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="#C1C1C1"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Commander"
                 android:textColor="#FFFFFF" />
@@ -211,7 +211,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="#C1C1C1"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Standard"
                 android:textColor="#FFFFFF" />
@@ -230,7 +230,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#C1C1C1"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Pioneer"
                 android:textColor="#FFFFFF" />
@@ -241,7 +241,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#C1C1C1"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Vintage"
                 android:textColor="#FFFFFF" />
@@ -252,7 +252,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#C1C1C1"
+                android:background="@color/colorPrimary"
                 android:padding="5dp"
                 android:text="Brawl"
                 android:textColor="#FFFFFF" />
