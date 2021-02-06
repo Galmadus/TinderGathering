@@ -57,16 +57,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         try{
             accesLocal = new AccesLocal(getApplicationContext());
-            User u;
-//            u = new User("Adminus", "123", new Date("01-01-1970"), "Homme", "adminus@mail.com", "", "John", "Does", "Admirable et affectueux", "Reims");
+            Log.v("MainActivity", "numberRow " + accesLocal.getUsersCount());
+            User u = new User();
+//            u = new User("Adminus", "123", new Date("01-01-1970"), "Homme", "adminus@mail.com", 1, "John", "Does", "Admirable et affectueux", "Reims");
+            u.setUsername("Adminus");
+            u.setFirstName("Admi");
+            u.setName("Nus");
+            u.setEmail("adminus@mail.com");
+            u.setGender("Homme");
             // if BD not init with user data
-//            if(accesLocal.findUserSQLite(u)){
-//                accesLocal.insertUserSQLite(u);
-                for (int i=0; i<20; i++){
+
+            if(accesLocal.getUsersCount()==0){
+                accesLocal.insertUserSQLite(u);
+                for (int i=0; i<50; i++){
                     u = new User();
                     accesLocal.insertUserSQLite(u);
                 }
-//            }
+            }
+
+            Log.v("MainActivity", "numberRow " + accesLocal.getUsersCount());
         }catch (Exception e){
             Log.v("MainActivity", e.toString());
         }

@@ -2,6 +2,7 @@ package com.example.tindergathering;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -127,7 +128,14 @@ public class AccesLocal {
         return users;
     }
 
-    public boolean findUserSQLite(User u) throws ParseException {
+    public long getUsersCount() {
+        DB = accesBD.getWritableDatabase();
+        long count = DatabaseUtils.queryNumEntries(DB, "user");
+        DB.close();
+        return count;
+    }
+
+    public boolean findUserSQLite(int userId) throws ParseException {
         DB = accesBD.getWritableDatabase();
         String req = "SELECT " +
                 "username, \n" +
@@ -141,9 +149,9 @@ public class AccesLocal {
                 "description, \n" +
                 "city, \n" +
                 "address_id " +
-                " FROM user WHERE id = "+u.getId();
+                " FROM user WHERE id = "+userId;
         Cursor cursor = DB .rawQuery(req,null);
-        boolean haveEntry = (cursor.getCount() <= 0);
+        boolean haveEntry = (cursor.getCount() < 0);
         cursor.close();
         return haveEntry;
     }
