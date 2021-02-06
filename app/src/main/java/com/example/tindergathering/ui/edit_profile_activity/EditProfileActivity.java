@@ -95,7 +95,6 @@ public class EditProfileActivity extends AppCompatActivity {
             case 0:
                 if(resultCode== RESULT_OK){
                     Bundle extras = imageReturnedIntent.getExtras();
-                    Log.d("------------------------------------------------------NORMAL :",extras.toString());
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     imageView.setImageBitmap(imageBitmap);
                 }

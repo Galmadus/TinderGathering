@@ -1,6 +1,7 @@
 package com.example.tindergathering.ui.Registration;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.tindergathering.MainActivity;
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.edit_profile_activity.EditProfileActivity;
 
 public class RegistrationFragment extends Fragment {
 
@@ -60,6 +63,8 @@ public class RegistrationFragment extends Fragment {
                     Boolean registered = registration.register();
                     String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
                     Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
 //                }
 
 
