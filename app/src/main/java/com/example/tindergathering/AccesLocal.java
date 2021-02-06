@@ -64,7 +64,7 @@ public class AccesLocal {
                 u.setUsername(cursor.getString(cursor.getColumnIndex("username")));
                 u.setGender(cursor.getString(cursor.getColumnIndex("gender")));
                 u.setEmail(cursor.getString(cursor.getColumnIndex("email")));
-                u.setPicture(cursor.getString(cursor.getColumnIndex("picture")));
+                u.setPicture(cursor.getInt(cursor.getColumnIndex("picture")));
 
                 String dateJson = cursor.getString(cursor.getColumnIndex("birthday"));
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -210,7 +210,7 @@ public class AccesLocal {
                     user.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex("id"))));
                     user.setUsername(cursor.getString(cursor.getColumnIndex("username")));
                     user.setGender(cursor.getString(cursor.getColumnIndex("gender")));
-                    user.setPicture(cursor.getString(cursor.getColumnIndex("picture")));
+                    user.setPicture(cursor.getInt(cursor.getColumnIndex("picture")));
                     user.setEmail(cursor.getString(cursor.getColumnIndex("email")));
 
                     String dateJson = cursor.getString(cursor.getColumnIndex("birthday"));

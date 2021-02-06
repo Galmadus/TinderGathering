@@ -42,7 +42,7 @@ public class OtherProfileFragment extends Fragment {
             int receivedId = Integer.parseInt(bundleRecieved.getString("id"));
             accesLocal = new AccesLocal(this.getContext());
             try {
-                user = accesLocal.selectUserSQLite(receivedId);
+                user = accesLocal.selectUserSQLite(1);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

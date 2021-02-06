@@ -29,7 +29,7 @@ public class User {
     private String gender;
     private String email;
     private int id;
-    private String picture;
+    private int picture;
     private String name;
     private String firstName;
     private String description;
@@ -52,7 +52,7 @@ public class User {
         this.city = city;
     }
 
-    public User(String username, String password, Date birthday, String gender, String email, String picture, String name, String firstName, String description, String city) {
+    public User(String username, String password, Date birthday, String gender, String email, int picture, String name, String firstName, String description, String city) {
         this.username = username;
         this.password = password;
         this.birthday = birthday;
@@ -73,16 +73,16 @@ public class User {
         this.context = context;
     }
 
-    public Bitmap getPictureBitmap() {
+    /*public Bitmap getPictureBitmap() {
         byte[] imageBytes = android.util.Base64.decode(picture, android.util.Base64.DEFAULT);
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
         return decodedImage;
-    }
+    }*/
 
-    public String getPicture() {
+    public int getPicture() {
         return this.picture;
     }
-    public void setPicture(String picture) {
+    public void setPicture(int picture) {
         this.picture = picture;
     }
 
@@ -133,12 +133,7 @@ public class User {
         this.description = "description";
         this.city = this.getVille();
         this.idAddress = 1;
-        /*Bitmap bitmapOrg = BitmapFactory.decodeResource(getResources(), randomDrawable());
-        ByteArrayOutputStream bao = new ByteArrayOutputStream();
-        bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 100, bao);
-        byte [] ba = bao.toByteArray();
-        String ba1=Base64.encodeToString(ba,Base64.DEFAULT);*/
-        //this.picture = ba1;
+        this.picture = randomDrawable();
     }
 
     private Context context;
