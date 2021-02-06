@@ -24,7 +24,7 @@ public class User {
     private String name;
     private String firstName;
     private String description;
-    private String ville;
+    private String city;
     private int idAddress;
 
     public int getIdAddress() {
@@ -33,6 +33,14 @@ public class User {
 
     public void setIdAddress(int idAddress) {
         this.idAddress = idAddress;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public User(String username) {
@@ -53,10 +61,6 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
     }
 
     public void setName(String name) {
@@ -92,7 +96,7 @@ public class User {
         this.name = bool ? randomNameBoy() : randomNameGirl();
         this.firstName = bool ? randomNameBoy() : randomNameGirl();
         this.description = "description";
-        this.ville = this.getVille();
+        this.city = this.getVille();
         this.idAddress = 1;
     }
 
@@ -179,54 +183,5 @@ public class User {
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }
-
-
-    // Return boolean true if entry found
-    public boolean selectUserSQLite(int id) throws ParseException {
-        AccesLocal accesLocal = new AccesLocal(this.context);
-        SQLiteDatabase DB = accesLocal.getDB();
-        String req = "SELECT " +
-                "username, password, birthday, gender, email" +
-                " FROM users WHERE id = "+id;
-        Cursor cursor = DB .rawQuery(req,null);
-        if(cursor.getCount() <= 0){
-            cursor.moveToFirst();
-            if(cursor.isFirst()){
-                this.username = cursor.getString(1);
-                this.password = cursor.getString(2);
-                Date birthday= new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(3));
-                this.birthday = birthday;
-                this.gender = cursor.getString(4);
-                this.email = cursor.getString(5);
-
-            }
-        }
-        boolean haveEntry = (cursor.getCount() <= 0);
-        cursor.close();
-        return haveEntry;
-    }
-
-    public void insertUserSQLite() throws ParseException {
-        AccesLocal accesLocal = new AccesLocal(this.context);
-        SQLiteDatabase DB = accesLocal.getDB();
-        String req = "INSERT INTO users" +
-                "(username, password, birthday, gender ,email)" +
-                "VALUES(\""+this.username+"\",\""+this.password+"\",\""+this.birthday+"\",\""+this.gender+"\",\""+this.email+"\")";
-        DB.execSQL(req);
-    }
-
-    public void updateUserSQLite() throws ParseException {
-        AccesLocal accesLocal = new AccesLocal(this.context);
-        SQLiteDatabase DB = accesLocal.getDB();
-        String req = "UPDATE users " +
-                "SET username"+"="+this.username+" AND " +
-                "password"+"="+this.password+" AND " +
-                "birthday"+"="+this.birthday+" AND " +
-                "gender"+"="+this.gender+" AND " +
-                "email"+"="+this.email+" " +
-                " WHERE id ="+1;
-        DB.execSQL(req);
-    }
-
 }
 
