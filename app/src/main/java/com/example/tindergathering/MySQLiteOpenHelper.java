@@ -16,6 +16,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "    roles      json         not null,\n" +
             "    gender      varchar(5)         not null,\n" +
             "    password   varchar(255) not null,\n" +
+            "    email   varchar(255) not null,\n" +
             "    description   varchar(255) not null,\n" +
             "    ville   varchar(255) not null,\n" +
             "    address_id integer\n" +
