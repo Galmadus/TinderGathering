@@ -149,7 +149,7 @@ public class AccesLocal {
         DB.close();
         return count;
     }
-    public boolean findUserSQLite(int userId) throws ParseException {
+    public boolean findMatchByUserNameSQLite(int userId) throws ParseException {
         DB = accesBD.getWritableDatabase();
         String req = "SELECT " +
                 "username, \n" +
@@ -164,7 +164,7 @@ public class AccesLocal {
                 "city, \n" +
                 "formats, \n" +
                 "address_id " +
-                " FROM user WHERE id = "+userId;
+                " FROM user u JOIN `match` m WHERE m.id = "+userId;
         Cursor cursor = DB .rawQuery(req,null);
         boolean haveEntry = (cursor.getCount() < 0);
         cursor.close();
@@ -258,6 +258,58 @@ public class AccesLocal {
             cursor.close();
             return users;
         }
+        public ArrayList<User> selectMatchByNameUserSQLite(String name) throws ParseException {
+            DB = accesBD.getWritableDatabase();
+            ArrayList<User> users = new ArrayList<>();
+            String req = "SELECT " +
+                    "u.id,\n"+
+                    "username, \n" +
+                    "gender, \n" +
+                    "picture, \n" +
+                    "email, \n" +
+                    "birthday, \n" +
+                    "firstName, \n" +
+                    "name, \n" +
+                    "password, \n" +
+                    "description, \n" +
+                    "city, \n" +
+                    "formats, \n" +
+                    "address_id " +
+                    "FROM user u JOIN `match` m ON u.id=m.user2 " +
+                    "WHERE " +
+                    " m.user1 == "+ 1 +
+                    " m.username LIKE \"%"+ name + "%\"" +
+                    " m.name LIKE \"%"+ name + "%\"" +
+                    " m.firstName LIKE \"%"+ name + "%\"";
+            Cursor cursor = DB .rawQuery(req,null);
+            if(cursor.moveToFirst()){
+                while (!cursor.isAfterLast()) {
+                    User user = new User();
+                    user.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex("id"))));
+                    user.setUsername(cursor.getString(cursor.getColumnIndex("username")));
+                    user.setGender(cursor.getString(cursor.getColumnIndex("gender")));
+                    user.setPicture(cursor.getInt(cursor.getColumnIndex("picture")));
+                    user.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+
+                    String dateJson = cursor.getString(cursor.getColumnIndex("birthday"));
+                    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                    Date date = format.parse(dateJson);
+                    user.setBirthday(date);
+
+                    user.setFirstName(cursor.getString(cursor.getColumnIndex("firstName")));
+                    user.setName(cursor.getString(cursor.getColumnIndex("name")));
+                    user.setPassword(cursor.getString(cursor.getColumnIndex("password")));
+                    user.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+                    user.setCity(cursor.getString(cursor.getColumnIndex("city")));
+                    user.setFormats(cursor.getString(cursor.getColumnIndex("formats")));
+//                    user.setIdAddress(Integer.parseInt(cursor.getString(cursor.getColumnIndex("address_id"))));
+                    users.add(user);
+                    cursor.moveToNext();
+                }
+            }
+            cursor.close();
+            return users;
+        }
 
     public void insertMatchSQLite(int idUserCurrent, int idUserMatched) throws ParseException {
         DB = accesBD.getWritableDatabase();
@@ -265,6 +317,8 @@ public class AccesLocal {
                 "VALUES ("+idUserCurrent+", "+idUserMatched+")";
         DB.execSQL(req);
     }
+
+
 
 //    //  CLIENTS
 //    public void createClient(Client client){
