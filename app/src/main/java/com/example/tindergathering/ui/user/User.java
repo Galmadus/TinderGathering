@@ -122,9 +122,8 @@ public class User {
         Boolean bool = rd.nextBoolean();
         this.username = bool ? randomNameBoy() : randomNameGirl();
         this.password = "";
-        Date birthday = new Date(ThreadLocalRandom.current().nextInt() * 1000L);
-        birthday.setYear(new Random().nextInt((2002 - 1950) + 1) + 1950);
-        this.birthday = birthday;
+        long milliseconde = -946771200000L + (Math.abs(rd.nextLong()) % (60L * 365 * 24 * 60 * 60 * 1000));
+        this.birthday = new Date(milliseconde);
         this.gender =  bool ? "Homme" : "Femme";
         this.email = this.username+"@email.com";
         this.name = bool ? randomNameBoy() : randomNameGirl();
