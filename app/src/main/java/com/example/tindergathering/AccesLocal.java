@@ -278,8 +278,8 @@ public class AccesLocal {
                     "FROM user u JOIN `match` m ON u.id=m.user2 " +
                     "WHERE " +
                     " m.user1 == 1"+
-                    " OR m.name LIKE \"%"+ name + "%\"" +
-                    " OR m.firstName LIKE \"%"+ name + "%\"";
+                    " AND (m.name LIKE \"%"+ name + "%\"" +
+                    " OR m.firstName LIKE \"%"+ name + "%\")";
             Cursor cursor = DB .rawQuery(req,null);
             if(cursor.moveToFirst()){
                 while (!cursor.isAfterLast()) {
