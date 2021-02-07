@@ -197,6 +197,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/format_commander"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -206,6 +207,7 @@
                 android:textColor="#FFFFFF" />
 
             <TextView
+                android:id="@+id/format_standard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -223,6 +225,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/format_pioneer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -233,6 +236,7 @@
                 android:textColor="#FFFFFF" />
 
             <TextView
+                android:id="@+id/format_vintage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -243,7 +247,7 @@
                 android:textColor="#FFFFFF" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/format_brawl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

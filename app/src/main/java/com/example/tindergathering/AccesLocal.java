@@ -93,6 +93,7 @@ public class AccesLocal {
                 "id, \n" +
                 "username, \n" +
                 "gender, \n" +
+                "picture, \n" +
                 "email, \n" +
                 "birthday, \n" +
                 "firstName, \n" +
@@ -110,6 +111,7 @@ public class AccesLocal {
                 user.setUsername(cursor.getString(cursor.getColumnIndex("username")));
                 user.setGender(cursor.getString(cursor.getColumnIndex("gender")));
                 user.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+                user.setPicture(cursor.getInt(cursor.getColumnIndex("picture")));
 
                 String dateJson = cursor.getString(cursor.getColumnIndex("birthday"));
                 Log.v("AccesLocal", dateJson);
@@ -137,7 +139,12 @@ public class AccesLocal {
         DB.close();
         return count;
     }
-
+    public long getMatchCount() {
+        DB = accesBD.getWritableDatabase();
+        long count = DatabaseUtils.queryNumEntries(DB, "`match`");
+        DB.close();
+        return count;
+    }
     public boolean findUserSQLite(int userId) throws ParseException {
         DB = accesBD.getWritableDatabase();
         String req = "SELECT " +
@@ -213,7 +220,7 @@ public class AccesLocal {
                     "description, \n" +
                     "city, \n" +
                     "address_id " +
-                    " FROM user u JOIN `match` m ON u.id=m.user1 WHERE id <> "+id;
+                    " FROM user u JOIN `match` m ON u.id=m.user1 WHERE id == "+id;
             Cursor cursor = DB .rawQuery(req,null);
             if(cursor.moveToFirst()){
                 while (!cursor.isAfterLast()) {

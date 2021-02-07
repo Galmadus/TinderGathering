@@ -44,7 +44,7 @@ public class SwipeFragment extends Fragment {
     private CardStackAdapter adapter;
     private List<ItemModel> items = new ArrayList<>();
     private int current_item;
-    private Context context = this.getContext();
+    public AccesLocal accesLocal;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_swipe, container, false);
@@ -54,8 +54,7 @@ public class SwipeFragment extends Fragment {
         if (bundle != null) {
             String receivedPseudo = bundle.getString("name", "John");
 //            items.add(new ItemModel(R.drawable.sample4, receivedPseudo, "19", "Reims","Commander, Standard"));
-        }
-        try {
+        } try {
             init(root);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -78,11 +77,21 @@ public class SwipeFragment extends Fragment {
                 ItemModel current = items.get(current_item);
                 User user = current.getUser();
                 if (direction == Direction.Right) {
-                    Toast.makeText(getContext(), "Matched : "+current.getUser().getName(), Toast.LENGTH_SHORT).show();
-                    // TODO Send User swiped to API
+
+                    // Une chance sur trois de match avec la personne
+                    int in = new Random().nextInt(3);
+                    if(in == 2){
+                        Toast.makeText(getContext(), "Matched : "+current.getUser().getName(), Toast.LENGTH_SHORT).show();
+                        Log.v("Swiped", "Swipe Matched");
+                        try {
+                            insertMatch(user.getId());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
                 if (direction == Direction.Left){
-                    Toast.makeText(getContext(), "Discarded : "+current.getUser().getName(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "Discarded : "+current.getUser().getName(), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -91,7 +100,7 @@ public class SwipeFragment extends Fragment {
                     Toast.makeText(getContext(), "View profile", Toast.LENGTH_SHORT).show();
                     // Set data to pass
                     Bundle bundle = new Bundle();
-                    bundle.putString("id", "1");
+                    bundle.putInt("id", current.getUser().getId());
                     new ManageFragments().goToWithParams(SwipeFragment.this, new OtherProfileFragment(),bundle);
                 }
                 /* A ajouter si l'on met une action dans la direction top et bottom (intéressé, non intéréssé)
@@ -107,7 +116,6 @@ public class SwipeFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-
             }
 
             @Override
@@ -164,16 +172,6 @@ public class SwipeFragment extends Fragment {
     private List<ItemModel> addList() throws ParseException {
         AccesLocal accesLocal = new AccesLocal(this.getContext());
         ArrayList<User> users = accesLocal.selectAllUserExceptUserInParamSQLite(1);
-        User u;
-
-//        for (int i=0; i<20; i++){
-//            u = new User();
-//            items.add(new ItemModel(randomNameDrawable(), u.getUsername(), u.getAge()+"", u.getVille(),"Pioneer, Commander, Standard"));
-//        }
-//        items.add(new ItemModel(R.drawable.sample1, "Antonin", "24", "Reims","Pioneer, Commander, Standard"));
-//        items.add(new ItemModel(R.drawable.sample2, "Clément", "20", "Épernay","Commander, Standard"));
-//        items.add(new ItemModel(R.drawable.sample3, "Hugo", "27", "Reims","Brawl"));
-//        items.add(new ItemModel(R.drawable.sample4, "Jérémy", "19", "Reims","Commander, Standard"));
         for(User s : users)
             items.add(new ItemModel(s));
         return items;
@@ -202,6 +200,12 @@ public class SwipeFragment extends Fragment {
         list.add(R.drawable.sample19);
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
+    }
+
+    public void insertMatch(int idNewMatch) throws ParseException {
+        accesLocal = new AccesLocal(this.getContext());
+        accesLocal.insertMatchSQLite(1, idNewMatch);
+        Log.v("Swiped", "Row in match table : " + accesLocal.getMatchCount());
     }
 
 }
