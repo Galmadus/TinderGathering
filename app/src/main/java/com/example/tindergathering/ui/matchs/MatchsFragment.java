@@ -54,7 +54,6 @@ public class MatchsFragment extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(context, "You Selected "+ arrayList.get(position).getDisplayName()+ " as Match",Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", arrayList.get(position).getId());
                 new ManageFragments().goToWithParams(MatchsFragment.this, new OtherProfileFragment(),bundle);

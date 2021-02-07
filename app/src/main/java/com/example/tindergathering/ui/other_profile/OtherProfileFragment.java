@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.example.tindergathering.ui.swipe.SwipeFragment;
 import com.example.tindergathering.ui.user.User;
 
 import java.text.ParseException;
+import java.util.Random;
 
 public class OtherProfileFragment extends Fragment {
 
@@ -55,6 +57,9 @@ public class OtherProfileFragment extends Fragment {
                 textViewAge.setText(String.valueOf(user.getAge())+" ans");
                 final ImageView imageViewPicture = root.findViewById(R.id.profile_picture);
                 imageViewPicture.setImageResource(user.getPicture());
+                final TextView go_matchs = root.findViewById(R.id.other_matchs_number);
+                int randomMatch = 1 + (int)(Math.random() * (50 - 1)+1);
+                go_matchs.setText(randomMatch +" MATCHS");
                 if(!user.getFormats().contains("Commander")){
                     TextView textViewCommander = root.findViewById(R.id.format_commander);
                     textViewCommander.setBackgroundColor(R.color.colorPrimary);

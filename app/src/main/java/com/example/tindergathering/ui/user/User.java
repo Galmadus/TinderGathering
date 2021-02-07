@@ -126,7 +126,7 @@ public class User {
         this.birthday = new Date(milliseconde);
         this.gender =  bool ? "Homme" : "Femme";
         this.email = this.username+"@email.com";
-        this.name = bool ? randomNameBoy() : randomNameGirl();
+        this.name = randomLastName();
         this.firstName = bool ? randomNameBoy() : randomNameGirl();
         this.description = "description";
         this.city = this.getVille();
@@ -239,7 +239,30 @@ public class User {
         list.add("Rose");
         list.add("Lea");
         list.add("Mila");
-        list.add("Mila");
+        list.add("Josephine");
+        list.add("Clemence");
+        list.add("Clara");
+        list.add("Mathilde");
+        list.add("Sylvie");
+        list.add("Patricia");
+        Random rand = new Random();
+        return list.get(rand.nextInt(list.size()));
+    }
+
+    public String randomLastName(){
+        List<String> list = new ArrayList<>();
+        list.add("Lefebvre");
+        list.add("Robert");
+        list.add("Leroy");
+        list.add("Morel");
+        list.add("Dupont");
+        list.add("Fournier");
+        list.add("Girard");
+        list.add("Fontaine");
+        list.add("Lambert");
+        list.add("Muller");
+        list.add("Mercier");
+        list.add("Legrand");
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }
@@ -252,6 +275,12 @@ public class User {
         list.add("Louis");
         list.add("Lucas");
         list.add("Adam");
+        list.add("Jean");
+        list.add("Sam");
+        list.add("Felix");
+        list.add("John");
+        list.add("Philippe");
+        list.add("Jacky");
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }
