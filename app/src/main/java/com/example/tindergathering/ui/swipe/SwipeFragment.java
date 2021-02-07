@@ -84,6 +84,7 @@ public class SwipeFragment extends Fragment {
                 ItemModel current = items.get(current_item);
                 items.remove(current);
                 User user = current.getUser();
+                Log.d(TAG, "current user "+user.getId());
                 if (direction == Direction.Right) {
 
                     // Une chance sur trois de match avec la personne

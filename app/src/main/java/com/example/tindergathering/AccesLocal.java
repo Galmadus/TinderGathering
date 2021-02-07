@@ -47,6 +47,7 @@ public class AccesLocal {
         DB = accesBD.getWritableDatabase();
         User u = new User();
         String req = "SELECT " +
+                "id, \n" +
                 "username, \n" +
                 "gender, \n" +
                 "email, \n" +
@@ -63,6 +64,7 @@ public class AccesLocal {
         Cursor cursor = DB .rawQuery(req,null);
         cursor.moveToFirst();
         if(cursor.isFirst()){
+            u.setId((cursor.getInt(cursor.getColumnIndex("id"))));
             u.setUsername(cursor.getString(cursor.getColumnIndex("username")));
             u.setGender(cursor.getString(cursor.getColumnIndex("gender")));
             u.setEmail(cursor.getString(cursor.getColumnIndex("email")));

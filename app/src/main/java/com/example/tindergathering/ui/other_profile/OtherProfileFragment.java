@@ -2,6 +2,7 @@ package com.example.tindergathering.ui.other_profile;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,11 @@ public class OtherProfileFragment extends Fragment {
         if (bundleRecieved != null) {
             receivedId = bundleRecieved.getInt("id");
             accesLocal = new AccesLocal(this.getContext());
+            Log.d("SwipeFragment", "receivedId user "+receivedId);
+
             try {
                 user = accesLocal.selectUserSQLite(receivedId);
+                Log.d("SwipeFragment", "user "+user);
                 final TextView textViewDescription = root.findViewById(R.id.biography);
                 textViewDescription.setText(user.getDescription());
                 final TextView textViewUsername = root.findViewById(R.id.pseudo);
