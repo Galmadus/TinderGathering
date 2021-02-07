@@ -1,5 +1,6 @@
 package com.example.tindergathering.ui.profile;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel ProfileViewModel;
     public AccesLocal accesLocal;
 
+    @SuppressLint("ResourceAsColor")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ProfileViewModel =
@@ -52,6 +54,9 @@ public class ProfileFragment extends Fragment {
             textViewAge.setText(String.valueOf(user.getAge())+" ans");
             final ImageView imageViewPicture = root.findViewById(R.id.profile_picture);
             imageViewPicture.setImageResource(user.getPicture());
+            final Button go_matchs = root.findViewById(R.id.go_matchs);
+            go_matchs.setText(accesLocal.getMatchCount()+" MATCHS");
+                    //acces local get matchs count
             if(!user.getFormats().contains("Commander")){
                 TextView textViewCommander = root.findViewById(R.id.format_commander);
                 textViewCommander.setBackgroundColor(R.color.colorPrimary);
