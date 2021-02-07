@@ -298,5 +298,9 @@ public class User {
                 ", idAddress=" + idAddress +
                 '}';
     }
+
+    public void setFormats(String formats) {
+        this.formats=formats;
+    }
 }
 

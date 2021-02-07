@@ -57,6 +57,7 @@ public class AccesLocal {
                 "password, \n" +
                 "description, \n" +
                 "city, \n" +
+                "formats, \n" +
                 "address_id " +
                 " FROM user WHERE id = "+id;
         Cursor cursor = DB .rawQuery(req,null);
@@ -77,6 +78,7 @@ public class AccesLocal {
             u.setPassword(cursor.getString(cursor.getColumnIndex("password")));
             u.setDescription(cursor.getString(cursor.getColumnIndex("description")));
             u.setCity(cursor.getString(cursor.getColumnIndex("city")));
+            u.setFormats(cursor.getString(cursor.getColumnIndex("formats")));
 //                u.setIdAddress(Integer.parseInt(cursor.getString(cursor.getColumnIndex("address_id"))));
         }
 
@@ -101,6 +103,7 @@ public class AccesLocal {
                 "password, \n" +
                 "description, \n" +
                 "city, \n" +
+                "formats, \n" +
                 "address_id " +
                 " FROM user WHERE id <> "+idCurrentUser;
         Cursor cursor = DB .rawQuery(req,null);
@@ -124,6 +127,7 @@ public class AccesLocal {
                 user.setPassword(cursor.getString(cursor.getColumnIndex("password")));
                 user.setDescription(cursor.getString(cursor.getColumnIndex("description")));
                 user.setCity(cursor.getString(cursor.getColumnIndex("city")));
+                user.setFormats(cursor.getString(cursor.getColumnIndex("formats")));
 //                user.setIdAddress(Integer.parseInt(cursor.getString(cursor.getColumnIndex("address_id"))));
                 users.add(user);
                 cursor.moveToNext();
@@ -158,6 +162,7 @@ public class AccesLocal {
                 "password, \n" +
                 "description, \n" +
                 "city, \n" +
+                "formats, \n" +
                 "address_id " +
                 " FROM user WHERE id = "+userId;
         Cursor cursor = DB .rawQuery(req,null);
@@ -179,6 +184,7 @@ public class AccesLocal {
                 "SET name=\""+u.getName()+"\", \n" +
                 "SET password=\""+u.getPassword()+"\", \n" +
                 "SET description=\""+u.getDescription()+"\", \n" +
+                "SET formats=\""+u.getFormats()+"\", \n" +
                 "SET city=\""+u.getCity()+"\" \n" +
                 " FROM user WHERE id = "+u.getId();
         DB.execSQL(req);
@@ -199,6 +205,7 @@ public class AccesLocal {
                 "\""+u.getName() +"\","+
                 "\""+u.getPassword() +"\","+
                 "\""+u.getDescription() +"\","+
+                "\""+u.getFormats() +"\","+
                 "\""+u.getCity() +"\")";
         DB.execSQL(req);
     }
@@ -219,6 +226,7 @@ public class AccesLocal {
                     "password, \n" +
                     "description, \n" +
                     "city, \n" +
+                    "formats, \n" +
                     "address_id " +
                     " FROM user u JOIN `match` m ON u.id=m.user1 WHERE id == "+id;
             Cursor cursor = DB .rawQuery(req,null);
@@ -241,6 +249,7 @@ public class AccesLocal {
                     user.setPassword(cursor.getString(cursor.getColumnIndex("password")));
                     user.setDescription(cursor.getString(cursor.getColumnIndex("description")));
                     user.setCity(cursor.getString(cursor.getColumnIndex("city")));
+                    user.setFormats(cursor.getString(cursor.getColumnIndex("formats")));
 //                    user.setIdAddress(Integer.parseInt(cursor.getString(cursor.getColumnIndex("address_id"))));
                     users.add(user);
                     cursor.moveToNext();
