@@ -22,6 +22,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "    password   varchar(255) not null,\n" +
             "    description   varchar(255),\n" +
             "    city   varchar(255),\n" +
+            "    formats   varchar(255),\n" +
             "    address_id integer\n" +
             "        constraint fk_8d93d649f5b7af75\n" +
             "            references address\n" +
