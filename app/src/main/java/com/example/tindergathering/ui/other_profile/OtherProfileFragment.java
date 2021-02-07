@@ -86,7 +86,7 @@ public class OtherProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putInt("id", finalUser.getId());
+                bundle.putInt("id", receivedId);
                 new ManageFragments().goToWithParams(OtherProfileFragment.this, new SwipeFragment(),bundle);
             }
         });

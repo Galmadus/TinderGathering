@@ -215,7 +215,7 @@ public class AccesLocal {
             DB = accesBD.getWritableDatabase();
             ArrayList<User> users = new ArrayList<>();
             String req = "SELECT " +
-                    "id,\n"+
+                    "u.id,\n"+
                     "username, \n" +
                     "gender, \n" +
                     "picture, \n" +
@@ -228,7 +228,7 @@ public class AccesLocal {
                     "city, \n" +
                     "formats, \n" +
                     "address_id " +
-                    " FROM user u JOIN `match` m ON u.id=m.user1 WHERE id == "+id;
+                    " FROM user u JOIN `match` m ON u.id=m.user2 WHERE m.user1 == "+id;
             Cursor cursor = DB .rawQuery(req,null);
             if(cursor.moveToFirst()){
                 while (!cursor.isAfterLast()) {
