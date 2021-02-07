@@ -27,11 +27,17 @@ import com.example.tindergathering.R;
 import com.example.tindergathering.ui.user.User;
 
 import java.text.ParseException;
+import java.util.Date;
 
 public class EditProfileActivity extends AppCompatActivity {
     private ImageView imageView;
     public AccesLocal accesLocal;
-
+    private CheckBox checkBoxCommander;
+    private CheckBox checkBoxStandard;
+    private CheckBox checkBoxPioneer;
+    private CheckBox checkBoxBrawl;
+    private CheckBox checkBoxVintage;
+    private String formats = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,24 +75,39 @@ public class EditProfileActivity extends AppCompatActivity {
             final ImageView imageViewPicture = findViewById(R.id.new_profile_picture);
             imageViewPicture.setImageResource(user.getPicture());
             if(user.getFormats().contains("Commander")){
-                CheckBox checkBoxCommander = findViewById(R.id.format_commander);
+                checkBoxCommander = findViewById(R.id.format_commander);
                 checkBoxCommander.setChecked(true);
             }
             if(user.getFormats().contains("Standard")){
-                CheckBox checkBoxStandard = findViewById(R.id.format_standard);
+                checkBoxStandard = findViewById(R.id.format_standard);
                 checkBoxStandard.setChecked(true);
             }
             if(user.getFormats().contains("Pioneer")){
-                CheckBox checkBoxPioneer = findViewById(R.id.format_pioneer);
+                checkBoxPioneer = findViewById(R.id.format_pioneer);
                 checkBoxPioneer.setChecked(true);
             }
             if(user.getFormats().contains("Brawl")){
-                CheckBox checkBoxBrawl = findViewById(R.id.format_brawl);
+                checkBoxBrawl = findViewById(R.id.format_brawl);
                 checkBoxBrawl.setChecked(true);
             }
             if(user.getFormats().contains("Vintage")){
-                CheckBox checkBoxVintage = findViewById(R.id.format_vintage);
+                checkBoxVintage = findViewById(R.id.format_vintage);
                 checkBoxVintage.setChecked(true);
+            }
+            if(checkBoxCommander.isChecked()){
+                formats += "Commander,";
+            }
+            if(checkBoxStandard.isChecked()){
+                formats += "Standard,";
+            }
+            if(checkBoxPioneer.isChecked()){
+                formats += "Pioneer,";
+            }
+            if(checkBoxBrawl.isChecked()){
+                formats += "Brawl,";
+            }
+            if(checkBoxVintage.isChecked()){
+                formats += "Vintage,";
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -112,6 +133,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 TextView firstnameView =  findViewById(R.id.firstname);
                 String firstname = firstnameView.getText().toString();
 
+                TextView descriptionView =  findViewById(R.id.description);
+                String description = descriptionView.getText().toString();
+
                 DatePicker birthdayView =  findViewById(R.id.birthdate);
                 String birthday = birthdayView.getDayOfMonth()+"/"+birthdayView.getMonth()+"/"+birthdayView.getYear();
 
@@ -121,13 +145,25 @@ public class EditProfileActivity extends AppCompatActivity {
                 byte[] imageBytes = baos.toByteArray();
                 String imageString = android.util.Base64.encodeToString(imageBytes, android.util.Base64.DEFAULT);
 
+                //int drawableId = Integer.parseInt(findViewById(R.id.new_profile_picture).getTag().toString());
+
                 if(mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
                     Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
                 }else{
-                    EditProfile registration = new EditProfile(context, imageString, mail, "", password, name, firstname);
-                    Boolean registered = registration.register();
-                    String textToastRegistered = registered ? "Profil mis à jour":"Echec de la mise à jour!";
-                    Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
+                    User user = null;
+                    try {
+                        user = accesLocal.selectUserSQLite(1);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    User registration = new User(user.getUsername(), password, new Date(birthday), user.getGender(), mail, imageView.getId(), name, firstname, description, user.getCity(), formats);
+                    registration.setId(1);
+                    try {
+                        accesLocal.updateUserSQLite(registration);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(view.getContext().getApplicationContext(), "Modification terminée", Toast.LENGTH_SHORT).show();
                 }
 
 

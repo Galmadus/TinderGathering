@@ -176,19 +176,19 @@ public class AccesLocal {
 
     public void updateUserSQLite(User u) throws ParseException {
         DB = accesBD.getWritableDatabase();
-        String req = "UPDATE " +
+        String req = "UPDATE user \"" +
                 "SET username=\""+u.getUsername()+"\", \n" +
-                "SET gender=\""+u.getGender()+"\", \n" +
-                "SET picture=\""+u.getPicture()+"\", \n" +
-                "SET email=\""+u.getEmail()+"\", \n" +
-                "SET birthday=\""+u.getBirthday()+"\", \n" +
-                "SET firstName=\""+u.getFirstName()+"\", \n" +
-                "SET name=\""+u.getName()+"\", \n" +
-                "SET password=\""+u.getPassword()+"\", \n" +
-                "SET description=\""+u.getDescription()+"\", \n" +
-                "SET formats=\""+u.getFormats()+"\", \n" +
-                "SET city=\""+u.getCity()+"\" \n" +
-                " FROM user WHERE id = "+u.getId();
+                " gender=\""+u.getGender()+"\", \n" +
+                " picture=\""+u.getPicture()+"\", \n" +
+                " email=\""+u.getEmail()+"\", \n" +
+                " birthday=\""+u.getBirthday()+"\", \n" +
+                " firstName=\""+u.getFirstName()+"\", \n" +
+                " name=\""+u.getName()+"\", \n" +
+                " password=\""+u.getPassword()+"\", \n" +
+                " description=\""+u.getDescription()+"\", \n" +
+                " formats=\""+u.getFormats()+"\", \n" +
+                " city=\""+u.getCity()+"\" \n" +
+                " WHERE id = "+u.getId();
         DB.execSQL(req);
     }
 

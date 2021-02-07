@@ -30,7 +30,7 @@ public class EditProfile {
 
     private static final String TAG = "Registration";
 
-    public EditProfile(Context context, String image, String email, String pseudo, String password, String name, String firstname ) {
+    public EditProfile(Context context, String image, String email, String pseudo, String password, String name, String firstname) {
         this.context = context;
         this.image = image;
         this.email = email;
