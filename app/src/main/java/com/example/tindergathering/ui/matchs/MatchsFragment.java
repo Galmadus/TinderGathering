@@ -6,26 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tindergathering.AccesLocal;
-import com.example.tindergathering.MainActivity;
 import com.example.tindergathering.ManageFragments;
 import com.example.tindergathering.MatchsListAdapter;
 import com.example.tindergathering.R;
-import com.example.tindergathering.ui.other_profile.OtherProfile;
 import com.example.tindergathering.ui.other_profile.OtherProfileFragment;
-import com.example.tindergathering.ui.swipe.SwipeFragment;
 import com.example.tindergathering.ui.user.User;
 
 import java.text.ParseException;

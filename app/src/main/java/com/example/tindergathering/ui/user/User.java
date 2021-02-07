@@ -1,26 +1,13 @@
 package com.example.tindergathering.ui.user;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
-import android.widget.ImageView;
-
-import com.example.tindergathering.AccesLocal;
 import com.example.tindergathering.R;
 
-import java.io.ByteArrayOutputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class User {
     private String username;
@@ -71,12 +58,6 @@ public class User {
         this.username = username;
     }
 
-
-    /*public Bitmap getPictureBitmap() {
-        byte[] imageBytes = android.util.Base64.decode(picture, android.util.Base64.DEFAULT);
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        return decodedImage;
-    }*/
 
     public int getPicture() {
         return this.picture;

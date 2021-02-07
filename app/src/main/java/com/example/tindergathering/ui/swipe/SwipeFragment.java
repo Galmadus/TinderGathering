@@ -1,7 +1,5 @@
 package com.example.tindergathering.ui.swipe;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +20,6 @@ import com.example.tindergathering.CardStackCallback;
 import com.example.tindergathering.ItemModel;
 import com.example.tindergathering.ManageFragments;
 import com.example.tindergathering.R;
-import com.example.tindergathering.ui.matchs.MatchsFragment;
 import com.example.tindergathering.ui.other_profile.OtherProfileFragment;
 import com.example.tindergathering.ui.user.User;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
@@ -112,12 +109,8 @@ public class SwipeFragment extends Fragment {
                     bundle.putInt("id", user.getId());
                     new ManageFragments().goToWithParams(SwipeFragment.this, new OtherProfileFragment(),bundle);
                 }
-                /* A ajouter si l'on met une action dans la direction top et bottom (intéressé, non intéréssé)
-                if (direction == Direction.Bottom){
-                    Toast.makeText(getContext(), "Matched", Toast.LENGTH_SHORT).show();
-                }*/
 
-                // Paginating
+                // Pagination
                 if (manager.getTopPosition() == adapter.getItemCount() - 5){
                     try {
                         paginate();

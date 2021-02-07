@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tindergathering.MainActivity;
 import com.example.tindergathering.R;
-import com.example.tindergathering.ui.edit_profile_activity.EditProfileActivity;
 
 public class RegistrationFragment extends Fragment {
 
@@ -28,7 +27,6 @@ public class RegistrationFragment extends Fragment {
         registrationViewModel =
                 ViewModelProviders.of(this).get(com.example.tindergathering.ui.Registration.RegistrationViewModel.class);
         View root = inflater.inflate(R.layout.fragment_registration, container, false);
-        // final TextView textView = root.findViewById(R.id.text_registration);
 
         Button valider = root.findViewById(R.id.registration_button);
         valider.setOnClickListener(new View.OnClickListener() {
@@ -70,10 +68,6 @@ public class RegistrationFragment extends Fragment {
                 }else{
                     Toast.makeText(context, "Les mots de passes ne correspondent pas. Veuillez corriger.", Toast.LENGTH_SHORT).show();
                 }
-
-                //redirection
-                // Intent intent = new Intent(context, LoginFragment.class);
-                // startActivity(intent);
             }
         });
         return root;

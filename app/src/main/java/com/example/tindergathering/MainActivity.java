@@ -15,8 +15,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.text.ParseException;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -91,24 +89,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
-
-
-        /*Logo dans la navigation à droite, à supprimer si non fonctionnel
-        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(actionBar.getDisplayOptions()
-                | ActionBar.DISPLAY_SHOW_CUSTOM);
-        ImageView imageView = new ImageView(actionBar.getThemedContext());
-        imageView.setScaleType(ImageView.ScaleType.FIT_END);
-        imageView.setImageResource(R.drawable.app_logo);
-        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.RIGHT
-                | Gravity.CENTER_VERTICAL);
-        imageView.setLayoutParams(layoutParams);
-        actionBar.setCustomView(imageView);
-        */
-        // Ajouter un logo à la nav à gauche du titre de la page
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.app_logo);
