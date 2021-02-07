@@ -175,13 +175,16 @@ public class AccesLocal {
 
 
     public void updateUserSQLite(User u) throws ParseException {
+        Log.v("EditProfil", u.toString());
         DB = accesBD.getWritableDatabase();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = dateFormat.format(u.getBirthday());
         String req = "UPDATE user " +
                 "SET username=\""+u.getUsername()+"\", \n" +
                 " gender=\""+u.getGender()+"\", \n" +
                 " picture=\""+u.getPicture()+"\", \n" +
                 " email=\""+u.getEmail()+"\", \n" +
-                " birthday=\""+u.getBirthday()+"\", \n" +
+                " birthday=\""+strDate+"\", \n" +
                 " firstName=\""+u.getFirstName()+"\", \n" +
                 " name=\""+u.getName()+"\", \n" +
                 " password=\""+u.getPassword()+"\", \n" +
@@ -189,6 +192,7 @@ public class AccesLocal {
                 " formats=\""+u.getFormats()+"\", \n" +
                 " city=\""+u.getCity()+"\" \n" +
                 " WHERE id = "+u.getId();
+        Log.v("EditProfil", req);
         DB.execSQL(req);
     }
 
