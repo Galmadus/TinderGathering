@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,13 +43,27 @@ public class MatchsFragment extends Fragment {
                 ViewModelProviders.of(this).get(MatchsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_matchs, container, false);
         list = root.findViewById(R.id.list);
-        AccesLocal accesLocal = new AccesLocal(this.getContext());
+        final AccesLocal accesLocal = new AccesLocal(this.getContext());
         try {
             arrayList = accesLocal.selectMatchFromUserSQLite(1);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        ImageButton button_search = root.findViewById(R.id.search_button);
+        final TextView search = root.findViewById(R.id.search);
+        button_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    arrayList = accesLocal.selectMatchByNameUserSQLite(search.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                MatchsListAdapter matchsList = new MatchsListAdapter(getActivity(), arrayList);
+                list.setAdapter(matchsList);
 
+            }
+        });
         MatchsListAdapter matchsList = new MatchsListAdapter(getActivity(), arrayList);
         list.setAdapter(matchsList);
         final Context context = this.getContext();
