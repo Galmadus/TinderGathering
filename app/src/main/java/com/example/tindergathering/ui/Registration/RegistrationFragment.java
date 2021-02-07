@@ -56,16 +56,19 @@ public class RegistrationFragment extends Fragment {
                 DatePicker birthdayView =  view.getRootView().findViewById(R.id.birthdate);
                 String birthday = birthdayView.getDayOfMonth()+"/"+birthdayView.getMonth()+"/"+birthdayView.getYear();
 
-
-                if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
-                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
+                if(passwordView.equals(passwordConfirm)){
+                    if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
+                        Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
+                    }else{
+                        com.example.tindergathering.ui.Registration.Registration registration = new com.example.tindergathering.ui.Registration.Registration(context, mail, pseudo, password, name, firstname);
+                        Boolean registered = registration.register();
+                        String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
+                        Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                    }
                 }else{
-                    com.example.tindergathering.ui.Registration.Registration registration = new com.example.tindergathering.ui.Registration.Registration(context, mail, pseudo, password, name, firstname);
-                    Boolean registered = registration.register();
-                    String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
-                    Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(context, "Les mots de passes ne correspondent pas. Veuillez corriger.", Toast.LENGTH_SHORT).show();
                 }
 
                 //redirection
