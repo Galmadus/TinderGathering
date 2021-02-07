@@ -47,6 +47,7 @@ public class OtherProfileFragment extends Fragment {
             Log.d("SwipeFragment", "receivedId user "+receivedId);
 
             try {
+                Log.d("SwipeFragment", "receivedId user "+receivedId);
                 user = accesLocal.selectUserSQLite(receivedId);
                 Log.d("SwipeFragment", "user "+user);
                 final TextView textViewDescription = root.findViewById(R.id.biography);

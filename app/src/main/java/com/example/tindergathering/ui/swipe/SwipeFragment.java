@@ -82,7 +82,6 @@ public class SwipeFragment extends Fragment {
             public void onCardSwiped(Direction direction) {
                 Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction+ " userId : "+items.get(manager.getTopPosition()).getUser().getId());
                 ItemModel current = items.get(current_item);
-                items.remove(current);
                 User user = current.getUser();
                 Log.d(TAG, "current user "+user.getId());
                 if (direction == Direction.Right) {
@@ -109,8 +108,8 @@ public class SwipeFragment extends Fragment {
                     Toast.makeText(getContext(), "View profile", Toast.LENGTH_SHORT).show();
                     // Set data to pass
                     Bundle bundle = new Bundle();
-                    Log.v(TAG, "Swipe TOP id : "+current.getUser().getId());
-                    bundle.putInt("id", current.getUser().getId());
+                    Log.v(TAG, "Swipe TOP id : "+user.getId());
+                    bundle.putInt("id", user.getId());
                     new ManageFragments().goToWithParams(SwipeFragment.this, new OtherProfileFragment(),bundle);
                 }
                 /* A ajouter si l'on met une action dans la direction top et bottom (intéressé, non intéréssé)

@@ -314,11 +314,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
+                ", id='" + id + '\'' +
                 ", password='" + password + '\'' +
                 ", birthday=" + birthday +
                 ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
-                ", id=" + id +
                 ", picture=" + picture +
                 ", name='" + name + '\'' +
                 ", firstName='" + firstName + '\'' +
