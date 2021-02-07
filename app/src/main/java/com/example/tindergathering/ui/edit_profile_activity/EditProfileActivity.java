@@ -12,18 +12,25 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tindergathering.AccesLocal;
 import com.example.tindergathering.MainActivity;
 import com.example.tindergathering.R;
+import com.example.tindergathering.ui.user.User;
+
+import java.text.ParseException;
 
 public class EditProfileActivity extends AppCompatActivity {
     private ImageView imageView;
+    public AccesLocal accesLocal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,44 @@ public class EditProfileActivity extends AppCompatActivity {
                 startActivityForResult(takePicture, 0);
             }
         });
+
+        accesLocal = new AccesLocal(this);
+        try {
+            User user = accesLocal.selectUserSQLite(1);
+            final EditText editTextMail = findViewById(R.id.mail);
+            editTextMail.setText(user.getEmail());
+            final EditText editTextName = findViewById(R.id.name);
+            editTextName.setText(user.getName());
+            final EditText editTextFirstName = findViewById(R.id.firstname);
+            editTextFirstName.setText(user.getFirstName());
+            final EditText editTextDescription = findViewById(R.id.description);
+            editTextDescription.setText(user.getDescription());
+            final ImageView imageViewPicture = findViewById(R.id.new_profile_picture);
+            imageViewPicture.setImageResource(user.getPicture());
+            if(user.getFormats().contains("Commander")){
+                CheckBox checkBoxCommander = findViewById(R.id.format_commander);
+                checkBoxCommander.setChecked(true);
+            }
+            if(user.getFormats().contains("Standard")){
+                CheckBox checkBoxStandard = findViewById(R.id.format_standard);
+                checkBoxStandard.setChecked(true);
+            }
+            if(user.getFormats().contains("Pioneer")){
+                CheckBox checkBoxPioneer = findViewById(R.id.format_pioneer);
+                checkBoxPioneer.setChecked(true);
+            }
+            if(user.getFormats().contains("Brawl")){
+                CheckBox checkBoxBrawl = findViewById(R.id.format_brawl);
+                checkBoxBrawl.setChecked(true);
+            }
+            if(user.getFormats().contains("Vintage")){
+                CheckBox checkBoxVintage = findViewById(R.id.format_vintage);
+                checkBoxVintage.setChecked(true);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 
         Button valider = findViewById(R.id.edit_profile_button);
         valider.setOnClickListener(new View.OnClickListener() {

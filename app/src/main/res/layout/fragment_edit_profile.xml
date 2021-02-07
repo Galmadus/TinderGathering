@@ -195,7 +195,7 @@
                 android:text="@string/commander" />
 
             <CheckBox
-                android:id="@+id/brawl"
+                android:id="@+id/format_brawl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-72dp"

@@ -62,20 +62,20 @@ public class ProfileFragment extends Fragment {
                 textViewCommander.setBackgroundColor(R.color.colorPrimary);
             }
             if(!user.getFormats().contains("Standard")){
-                TextView textViewCommander = root.findViewById(R.id.format_standard);
-                textViewCommander.setBackgroundColor(R.color.colorPrimary);
+                TextView textViewStandard = root.findViewById(R.id.format_standard);
+                textViewStandard.setBackgroundColor(R.color.colorPrimary);
             }
             if(!user.getFormats().contains("Pioneer")){
-                TextView textViewCommander = root.findViewById(R.id.format_pioneer);
-                textViewCommander.setBackgroundColor(R.color.colorPrimary);
+                TextView textViewPioneer = root.findViewById(R.id.format_pioneer);
+                textViewPioneer.setBackgroundColor(R.color.colorPrimary);
             }
             if(!user.getFormats().contains("Brawl")){
-                TextView textViewCommander = root.findViewById(R.id.format_brawl);
-                textViewCommander.setBackgroundColor(R.color.colorPrimary);
+                TextView textViewBrawl = root.findViewById(R.id.format_brawl);
+                textViewBrawl.setBackgroundColor(R.color.colorPrimary);
             }
             if(!user.getFormats().contains("Vintage")){
-                TextView textViewCommander = root.findViewById(R.id.format_vintage);
-                textViewCommander.setBackgroundColor(R.color.colorPrimary);
+                TextView textViewVintage = root.findViewById(R.id.format_vintage);
+                textViewVintage.setBackgroundColor(R.color.colorPrimary);
             }
         } catch (ParseException e) {
             e.printStackTrace();
