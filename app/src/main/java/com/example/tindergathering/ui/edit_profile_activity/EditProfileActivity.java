@@ -172,7 +172,7 @@ public class EditProfileActivity extends AppCompatActivity {
                      user = null;
                     try {
                         user = accesLocal.selectUserSQLite(1);
-                        registration = new User(user.getUsername(), password, new Date(birthday), user.getGender(), mail, imageView.getId(), name, firstname, description, user.getCity(), formats);
+                        registration = new User(user.getUsername(), password, new Date(birthday), user.getGender(), mail, user.getPicture(), name, firstname, description, user.getCity(), formats);
                         registration.setId(1);
                         accesLocal.updateUserSQLite(registration);
                     } catch (ParseException e) {
