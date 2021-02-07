@@ -56,7 +56,7 @@ public class RegistrationFragment extends Fragment {
                 DatePicker birthdayView =  view.getRootView().findViewById(R.id.birthdate);
                 String birthday = birthdayView.getDayOfMonth()+"/"+birthdayView.getMonth()+"/"+birthdayView.getYear();
 
-                if(passwordView.equals(passwordConfirm)){
+                if(password.equals(passwordConfirm)){
                     if(pseudo.equals("") & mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
                         Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
                     }else{
