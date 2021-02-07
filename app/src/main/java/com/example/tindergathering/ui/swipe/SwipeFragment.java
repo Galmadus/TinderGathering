@@ -52,9 +52,17 @@ public class SwipeFragment extends Fragment {
         //Si l'on provient de la page profil
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            String receivedPseudo = bundle.getString("name", "John");
-//            items.add(new ItemModel(R.drawable.sample4, receivedPseudo, "19", "Reims","Commander, Standard"));
-        } try {
+            int receivedId = bundle.getInt("id", 0);
+            Log.v(TAG, "receivedId "+receivedId);
+            accesLocal = new AccesLocal(this.getContext());
+            try {
+                User userSeen = accesLocal.selectUserSQLite(receivedId);
+                items.add(new ItemModel(userSeen));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
             init(root);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -64,17 +72,17 @@ public class SwipeFragment extends Fragment {
 
     private void init(View root) throws ParseException {
         CardStackView cardStackView = root.findViewById(R.id.card_stack_view);
+        Log.d(TAG, "init()");
         manager = new CardStackLayoutManager(getContext(), new CardStackListener() {
-
             @Override
             public void onCardDragging(Direction direction, float ratio) {
-                Log.d(TAG, "onCardDragging: d=" + direction.name() + " ratio=" + ratio);
             }
 
             @Override
             public void onCardSwiped(Direction direction) {
-                Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction);
+                Log.d(TAG, "onCardSwiped: p=" + manager.getTopPosition() + " d=" + direction+ " userId : "+items.get(manager.getTopPosition()).getUser().getId());
                 ItemModel current = items.get(current_item);
+                items.remove(current);
                 User user = current.getUser();
                 if (direction == Direction.Right) {
 
@@ -82,7 +90,7 @@ public class SwipeFragment extends Fragment {
                     int in = new Random().nextInt(3);
                     if(in == 2){
                         Toast.makeText(getContext(), "Matched : "+current.getUser().getName(), Toast.LENGTH_SHORT).show();
-                        Log.v("Swiped", "Swipe Matched");
+                        Log.v(TAG, "Swipe Matched");
                         try {
                             insertMatch(user.getId());
                         } catch (ParseException e) {
@@ -100,6 +108,7 @@ public class SwipeFragment extends Fragment {
                     Toast.makeText(getContext(), "View profile", Toast.LENGTH_SHORT).show();
                     // Set data to pass
                     Bundle bundle = new Bundle();
+                    Log.v(TAG, "Swipe TOP id : "+current.getUser().getId());
                     bundle.putInt("id", current.getUser().getId());
                     new ManageFragments().goToWithParams(SwipeFragment.this, new OtherProfileFragment(),bundle);
                 }
@@ -120,25 +129,25 @@ public class SwipeFragment extends Fragment {
 
             @Override
             public void onCardRewound() {
-                Log.d(TAG, "onCardRewound: " + manager.getTopPosition());
+                Log.d(TAG, "onCardRewound: " + manager.getTopPosition()+ " userId : "+items.get(manager.getTopPosition()).getUser().getId());
             }
 
             @Override
             public void onCardCanceled() {
-                Log.d(TAG, "onCardRewound: " + manager.getTopPosition());
+                Log.d(TAG, "onCardRewound: " + manager.getTopPosition()+ " userId : "+items.get(manager.getTopPosition()).getUser().getId());
             }
 
             @Override
             public void onCardAppeared(View view, int position) {
                 TextView tv = view.findViewById(R.id.item_name);
-                Log.d(TAG, "onCardAppeared: " + position + ", name: " + tv.getText());
+                Log.d(TAG, "onCardAppeared: " + position + ", name: " + tv.getText()+ " userId : "+items.get(position).getUser().getId());
             }
 
             @Override
             public void onCardDisappeared(View view, int position) {
                 TextView tv = view.findViewById(R.id.item_name);
                 current_item = position;
-                Log.d(TAG, "onCardAppeared: " + position + ", name: " + tv.getText());
+                Log.d(TAG, "onCardAppeared: " + position + ", name: " + tv.getText()+ " userId : "+items.get(manager.getTopPosition()).getUser().getId());
             }
         });
         manager.setStackFrom(StackFrom.None);
@@ -160,7 +169,9 @@ public class SwipeFragment extends Fragment {
         cardStackView.setItemAnimator(new DefaultItemAnimator());
     }
 
+    // Rajoute des cartes dans le swipe
     private void paginate() throws ParseException {
+        Log.d(TAG, "paginate()");
         List<ItemModel> ancien = adapter.getItems();
         List<ItemModel> nouveau = new ArrayList<>(addList());
         CardStackCallback callback = new CardStackCallback(ancien, nouveau);
@@ -169,7 +180,9 @@ public class SwipeFragment extends Fragment {
         hasil.dispatchUpdatesTo(adapter);
     }
 
+    // Ajoute des item(User) dans la list des items utilisé par le Swipe
     private List<ItemModel> addList() throws ParseException {
+        Log.d(TAG, "addList()");
         AccesLocal accesLocal = new AccesLocal(this.getContext());
         ArrayList<User> users = accesLocal.selectAllUserExceptUserInParamSQLite(1);
         for(User s : users)
@@ -203,6 +216,7 @@ public class SwipeFragment extends Fragment {
     }
 
     public void insertMatch(int idNewMatch) throws ParseException {
+        Log.d(TAG, "insertMatch()");
         accesLocal = new AccesLocal(this.getContext());
         accesLocal.insertMatchSQLite(1, idNewMatch);
         Log.v("Swiped", "Row in match table : " + accesLocal.getMatchCount());
