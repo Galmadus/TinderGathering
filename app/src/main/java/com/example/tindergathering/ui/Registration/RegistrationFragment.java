@@ -45,7 +45,7 @@ public class RegistrationFragment extends Fragment {
                 TextView passwordView =  view.getRootView().findViewById(R.id.password);
                 String password = passwordView.getText().toString();
                 TextView passwordConfirmView =  view.getRootView().findViewById(R.id.password_confirm);
-                String passwordConfirm = passwordView.getText().toString();
+                String passwordConfirm = passwordConfirmView.getText().toString();
 
                 TextView nameView =  view.getRootView().findViewById(R.id.name);
                 String name = nameView.getText().toString();
