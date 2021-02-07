@@ -38,6 +38,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private CheckBox checkBoxBrawl;
     private CheckBox checkBoxVintage;
     private String formats = "";
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,21 +95,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 checkBoxVintage = findViewById(R.id.format_vintage);
                 checkBoxVintage.setChecked(true);
             }
-            if(checkBoxCommander.isChecked()){
-                formats += "Commander,";
-            }
-            if(checkBoxStandard.isChecked()){
-                formats += "Standard,";
-            }
-            if(checkBoxPioneer.isChecked()){
-                formats += "Pioneer,";
-            }
-            if(checkBoxBrawl.isChecked()){
-                formats += "Brawl,";
-            }
-            if(checkBoxVintage.isChecked()){
-                formats += "Vintage,";
-            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -116,6 +102,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Button valider = findViewById(R.id.edit_profile_button);
         valider.setOnClickListener(new View.OnClickListener() {
+            private Uri URI = null;
+            private String ImagePath;
+
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
@@ -139,26 +128,52 @@ public class EditProfileActivity extends AppCompatActivity {
                 DatePicker birthdayView =  findViewById(R.id.birthdate);
                 String birthday = birthdayView.getDayOfMonth()+"/"+birthdayView.getMonth()+"/"+birthdayView.getYear();
 
-                java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+                checkBoxCommander = findViewById(R.id.format_commander);
+                if(checkBoxCommander.isChecked()){
+                    formats += "Commander,";
+                }
+                checkBoxStandard = findViewById(R.id.format_standard);
+                if(checkBoxStandard.isChecked()){
+                    formats += "Standard,";
+                }
+                checkBoxPioneer = findViewById(R.id.format_pioneer);
+                if(checkBoxPioneer.isChecked()){
+                    formats += "Pioneer,";
+                }
+                checkBoxBrawl = findViewById(R.id.format_brawl);
+                if(checkBoxBrawl.isChecked()){
+                    formats += "Brawl,";
+                }
+                checkBoxVintage = findViewById(R.id.format_vintage);
+                if(checkBoxVintage.isChecked()){
+                    formats += "Vintage,";
+                }
+
+                /*java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
                 Bitmap bm = ((android.graphics.drawable.BitmapDrawable) imageView.getDrawable()).getBitmap();
                 bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] imageBytes = baos.toByteArray();
                 String imageString = android.util.Base64.encodeToString(imageBytes, android.util.Base64.DEFAULT);
 
-                //int drawableId = Integer.parseInt(findViewById(R.id.new_profile_picture).getTag().toString());
+                // save the image
+                ImagePath = MediaStore.Images.Media.insertImage(
+                        getContentResolver(),
+                        bm,
+                        "profile_picture",
+                        "profile_picture"
+                );
 
+                URI = Uri.parse(ImagePath);*/
+                //int drawableId = Integer.parseInt(findViewById(R.id.new_profile_picture).getTag().toString());
+                User registration = null;
                 if(mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
                     Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
                 }else{
-                    User user = null;
+                     user = null;
                     try {
                         user = accesLocal.selectUserSQLite(1);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    User registration = new User(user.getUsername(), password, new Date(birthday), user.getGender(), mail, imageView.getId(), name, firstname, description, user.getCity(), formats);
-                    registration.setId(1);
-                    try {
+                        registration = new User(user.getUsername(), password, new Date(birthday), user.getGender(), mail, imageView.getId(), name, firstname, description, user.getCity(), formats);
+                        registration.setId(1);
                         accesLocal.updateUserSQLite(registration);
                     } catch (ParseException e) {
                         e.printStackTrace();

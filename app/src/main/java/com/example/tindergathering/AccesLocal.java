@@ -176,7 +176,7 @@ public class AccesLocal {
 
     public void updateUserSQLite(User u) throws ParseException {
         DB = accesBD.getWritableDatabase();
-        String req = "UPDATE user \"" +
+        String req = "UPDATE user " +
                 "SET username=\""+u.getUsername()+"\", \n" +
                 " gender=\""+u.getGender()+"\", \n" +
                 " picture=\""+u.getPicture()+"\", \n" +
