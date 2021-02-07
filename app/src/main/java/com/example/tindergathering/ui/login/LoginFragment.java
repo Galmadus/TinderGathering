@@ -42,15 +42,15 @@ public class LoginFragment extends Fragment {
                 TextView passwordView =  view.getRootView().findViewById(R.id.pseudo);
                 String password = passwordView.getText().toString();
 
-//                if(pseudo.equals("") & password.equals("")){
-//                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
-//                }else{
+                if(pseudo.equals("") & password.equals("")){
+                    Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
+                }else{
                     Login login = new Login(context, pseudo, password);
                     login.connect();
                     login.getCurrentUser();
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
-//                }
+                }
 
                 //TODO change to homeFragment
             }
