@@ -265,15 +265,6 @@ public class AccesLocal {
                 "VALUES ("+idUserCurrent+", "+idUserMatched+")";
         DB.execSQL(req);
     }
-    public int numberMatchForUserSQLite(int userId) throws ParseException {
-        DB = accesBD.getWritableDatabase();
-        String req = "SELECT * " +
-                " FROM match WHERE user2 = "+userId;
-        Cursor cursor = DB .rawQuery(req,null);
-        int numberRows = cursor.getCount();
-        cursor.close();
-        return numberRows;
-    }
 
 //    //  CLIENTS
 //    public void createClient(Client client){
