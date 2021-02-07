@@ -194,7 +194,7 @@ public class AccesLocal {
         DB = accesBD.getWritableDatabase();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String strDate = dateFormat.format(u.getBirthday());
-        String req = "INSERT INTO user (username, gender,picture, email, birthday, firstName, name, password, description, city) " +
+        String req = "INSERT INTO user (username, gender,picture, email, birthday, firstName, name, password, description,formats, city) " +
                 "VALUES (" +
                 "\""+u.getUsername()  +"\","+
                 "\""+u.getGender() +"\","+
