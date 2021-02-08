@@ -30,6 +30,7 @@ public class EditProfile {
 
     private static final String TAG = "Registration";
 
+    // Constructeur
     public EditProfile(Context context, String image, String email, String pseudo, String password, String name, String firstname) {
         this.context = context;
         this.image = image;
@@ -48,19 +49,21 @@ public class EditProfile {
             @Override
             protected String doInBackground(Void... voids) {
                 Network network = new Network(context);
-                String url = context.getResources().getString(R.string.url_start) + "user";
+                String url = context.getResources().getString(R.string.url_start) + "users";
                 try {
                     // API Request
-                    // TODO Change to POST
-//                    String result = network.getRequest(url);
-                    String result = "{\n" +
-                            "  \"@context\": \"string\",\n" +
-                            "  \"@id\": \"string\",\n" +
-                            "  \"@type\": \"string\",\n" +
-                            "  \"id\": 0,\n" +
-                            "  \"username\": \"string\"\n" +
-                            "}";
+                    String result = network.putRequest(url, "");
+
+                    // Exemple de ce qui est renvoyé
+//                    String result = "{\n" +
+//                            "  \"@context\": \"string\",\n" +
+//                            "  \"@id\": \"string\",\n" +
+//                            "  \"@type\": \"string\",\n" +
+//                            "  \"id\": 0,\n" +
+//                            "  \"username\": \"string\"\n" +
+//                            "}";
                     // Read result
+
                     JSONObject obj = new JSONObject(result);
                     // Get values
                     String username = obj.getString("username");
@@ -69,7 +72,7 @@ public class EditProfile {
 
                     // TODO move to LoginFragment
 
-                } catch (JSONException e) {
+                } catch (JSONException | IOException e) {
                     e.printStackTrace();
                     Log.v(TAG, e.toString() );
                 }

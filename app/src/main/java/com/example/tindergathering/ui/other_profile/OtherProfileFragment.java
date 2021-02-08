@@ -32,6 +32,8 @@ public class OtherProfileFragment extends Fragment {
     }
 
     @SuppressLint("ResourceAsColor")
+    // Méthode appelée lorsqu'on arrive sur le profil d'une autre personne
+    // Affiche les données dans les bons champs
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

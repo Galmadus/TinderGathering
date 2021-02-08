@@ -31,6 +31,8 @@ public class ProfileFragment extends Fragment {
     public AccesLocal accesLocal;
 
     @SuppressLint("ResourceAsColor")
+    // Méthode appelée lorsqu'on arrive sur son profil
+    // Affiche les données dans les bons champs
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ProfileViewModel =

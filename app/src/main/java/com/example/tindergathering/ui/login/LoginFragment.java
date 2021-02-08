@@ -21,6 +21,11 @@ public class LoginFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
 
+    // Instance crée lorsqu'on arrive sur la page de connexion
+    // Attribue les donnees dans les bons champs
+    // Apres un click sur le bouton se connecter :
+    //      si les champs sont vides, envoie un toast
+    //      sinon créer un login, se connecte et récupère l'utilisateur courant
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         loginViewModel =

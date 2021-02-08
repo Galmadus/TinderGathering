@@ -49,6 +49,7 @@ public class Network {
         this.context = context;
     }
 
+    // Récupère le nom du réseau internet sur lequel le téléphone est connecté
     private String getNetworkName() {
 
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
@@ -67,6 +68,7 @@ public class Network {
         return "";
     }
 
+    // Affichage
     public void checkNetwork(View v) {
 
         String rtmp = getNetworkName();
@@ -114,6 +116,8 @@ public class Network {
         }
     }
 
+    // Requête HTTPS Get vers le serveur via l'url fourni en parametre
+    // Récupère les données de la requête dans un String
     public String getRequest(String myurl) throws IOException {
 
         InputStream is = null;
@@ -174,6 +178,8 @@ public class Network {
 
     }
 
+    // Requete HTTPS Post vers le serveur via l'url fourni en parametre
+    // Le deuxième parametre est un String qui correspond au Json que l'on va envoyer a l'API
     public String postRequest(String myurl, String attributes) throws IOException {
 
         OutputStream os = null;
@@ -229,6 +235,8 @@ public class Network {
         return null;
     }
 
+    // Requete HTTPS Put vers le serveur via l'url fourni en parametre
+    // Le deuxième parametre est un String qui correspond au Json que l'on va envoyer a l'API
     public String putRequest(String myurl, String attributes) throws IOException {
 
         OutputStreamWriter osw = null;

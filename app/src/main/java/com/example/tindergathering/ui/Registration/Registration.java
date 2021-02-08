@@ -38,7 +38,8 @@ public class Registration {
         this.firstname = firstname;
     }
 
-    //Send registration to API
+    //Envoie une requete de creation de compte
+    //
     public boolean register(){
         new AsyncTask<Void,String,String>(){
 
@@ -46,12 +47,10 @@ public class Registration {
             @Override
             protected String doInBackground(Void... voids) {
                 Network network = new Network(context);
-//                String url = context.getResources().getString(R.string.url_start) + "user";
-                String url = "https://192.168.1.26/user";
+                String url = context.getResources().getString(R.string.url_start) + "users";
                 try {
                     // API Request
-                    // TODO Change to POST
-                    String result = network.getRequest(url);
+                    String result = network.postRequest(url, "");
 //                    result = "{\n" +
 //                            "  \"@context\": \"string\",\n" +
 //                            "  \"@id\": \"string\",\n" +
