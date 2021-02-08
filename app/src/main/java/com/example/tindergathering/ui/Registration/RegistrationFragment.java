@@ -22,6 +22,10 @@ public class RegistrationFragment extends Fragment {
 
     private com.example.tindergathering.ui.Registration.RegistrationViewModel registrationViewModel;
 
+    // Méthode appelée lorsqu'on arrive sur la page de création de compte
+    // Affiche les données dans les bons champs
+    // Si les champs ne sont pas remplis, envoie un toast
+    // Sinon appel la méthode registration
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         registrationViewModel =
@@ -62,7 +66,7 @@ public class RegistrationFragment extends Fragment {
                     }else{
                         // Envoie l'enregistrement à l'API
                         com.example.tindergathering.ui.Registration.Registration registration = new com.example.tindergathering.ui.Registration.Registration(context, mail, pseudo, password, name, firstname);
-                        Boolean registered = registration.register();
+                        Boolean registered = registration.register(mail, pseudo, password, name, firstname);
                         String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
                         Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
                         //Lance l'activité principale

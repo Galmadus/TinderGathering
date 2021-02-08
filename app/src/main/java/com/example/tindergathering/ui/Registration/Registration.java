@@ -40,22 +40,34 @@ public class Registration {
 
     //Envoie une requete de creation de compte
     //
-    public boolean register(){
+    public boolean register(final String mail, final String pseudo, final String password, final String name, final String firstName){
         new AsyncTask<Void,String,String>(){
+
             Network network = new Network(context);
             @Override
             protected String doInBackground(Void... voids) {
                 Network network = new Network(context);
                 String url = context.getResources().getString(R.string.url_start) + "users";
                 try {
+                    String jsonParam = "{\n" +
+                            "  \"mail\":" + mail +",\n" +
+                            "  \"username\":" + pseudo +",\n" +
+                            "  \"password\":" + password +",\n" +
+                            "  \"name\":" + name +",\n" +
+                            "  \"firstName\":" + firstName +"\n" +
+                            "}";
                     // API Request
-                    String result = network.postRequest(url, "");
+                    String result = network.postRequest(url, jsonParam);
 //                    result = "{\n" +
 //                            "  \"@context\": \"string\",\n" +
 //                            "  \"@id\": \"string\",\n" +
 //                            "  \"@type\": \"string\",\n" +
-//                            "  \"id\": 0,\n" +
-//                            "  \"username\": \"string\"\n" +
+//                            "  \"id\": 1,\n" +
+//                            "  \"mail\": \"felix.felice@gmail.com\",\n"
+//                            "  \"username\": \"username\",\n"
+//                            "  \"password\": \"password\",\n"
+//                            "  \"name\": \"Felix\",\n"
+//                            "  \"firstName\": \"Felice\"\n"
 //                            "}";
                     // Read result
                     JSONObject obj = new JSONObject(result);
@@ -63,7 +75,6 @@ public class Registration {
                     String username = obj.getString("username");
 
                     Log.v(TAG, "username :"+username );
-
 
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
