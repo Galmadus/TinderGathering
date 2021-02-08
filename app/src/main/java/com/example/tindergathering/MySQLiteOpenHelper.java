@@ -7,6 +7,7 @@ import android.util.Log;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
+    // Class qui permet d'initialiser la BD
     private String createTableUser ="create table user\n" +
             "(\n" +
             "    id         integer      not null\n" +

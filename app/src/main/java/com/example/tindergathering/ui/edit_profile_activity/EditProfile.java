@@ -41,8 +41,8 @@ public class EditProfile {
         this.firstname = firstname;
     }
 
-    //Send registration to API
-    public boolean register(){
+    //Send registration to APIBoolean registered = registration.register(mail, pseudo, password, name, firstname);
+    public boolean register(final String mail, final String pseudo, final String password, final String name, final String firstName){
         new AsyncTask<Void,String,String>(){
 
             Network network = new Network(context);
@@ -70,7 +70,6 @@ public class EditProfile {
 
                     Log.v(TAG, "username :"+username );
 
-                    // TODO move to LoginFragment
 
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();

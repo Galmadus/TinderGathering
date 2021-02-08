@@ -42,7 +42,6 @@ public class Registration {
     //
     public boolean register(){
         new AsyncTask<Void,String,String>(){
-
             Network network = new Network(context);
             @Override
             protected String doInBackground(Void... voids) {
@@ -65,7 +64,6 @@ public class Registration {
 
                     Log.v(TAG, "username :"+username );
 
-                    // TODO move to LoginFragment
 
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();

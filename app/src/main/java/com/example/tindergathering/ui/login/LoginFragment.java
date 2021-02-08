@@ -39,22 +39,25 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 Context context = view.getContext();
 
+                // récupère des valeurs sur la vue Login
                 TextView pseudoView =  view.getRootView().findViewById(R.id.pseudo);
                 String pseudo = pseudoView.getText().toString();
-                TextView passwordView =  view.getRootView().findViewById(R.id.pseudo);
+                TextView passwordView =  view.getRootView().findViewById(R.id.password);
                 String password = passwordView.getText().toString();
 
+                // vérifie que les champs ne sont pas vident
                 if(pseudo.equals("") & password.equals("")){
                     Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
                 }else{
+                    // envoie la demande de connexion à l'API
                     Login login = new Login(context, pseudo, password);
                     login.connect();
                     login.getCurrentUser();
+                    //Lance l'activité principale
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }
 
-                //TODO change to homeFragment
             }
         });
 
