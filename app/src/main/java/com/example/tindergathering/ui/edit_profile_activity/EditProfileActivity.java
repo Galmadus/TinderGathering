@@ -160,16 +160,18 @@ public class EditProfileActivity extends AppCompatActivity {
                 );
 
                 URI = Uri.parse(ImagePath);*/
-                User registration = null;
+                User user = null;
                 if(mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
                     Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
                 }else{
                      user = null;
                     try {
                         user = accesLocal.selectUserSQLite(1);
-                        registration = new User(user.getUsername(), password, new Date(birthday), user.getGender(), mail, user.getPicture(), name, firstname, description, user.getCity(), formats);
-                        registration.setId(1);
-                        accesLocal.updateUserSQLite(registration);
+                        user = new User(user.getUsername(), password, new Date(birthday), user.getGender(), mail, user.getPicture(), name, firstname, description, user.getCity(), formats);
+                        user.setId(1);
+                        accesLocal.updateUserSQLite(user);
+                        EditProfile editProfile = new EditProfile();
+                        editProfile.updateUser(user);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }

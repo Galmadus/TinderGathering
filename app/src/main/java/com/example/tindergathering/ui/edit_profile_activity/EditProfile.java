@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.tindergathering.R;
 import com.example.tindergathering.ui.Network;
 import com.example.tindergathering.ui.login.LoginFragment;
+import com.example.tindergathering.ui.user.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,17 +33,15 @@ public class EditProfile {
 
     // Constructeur
     public EditProfile(Context context, String image, String email, String pseudo, String password, String name, String firstname) {
-        this.context = context;
-        this.image = image;
-        this.email = email;
-        this.pseudo = pseudo;
-        this.password = password;
-        this.name = name;
-        this.firstname = firstname;
+        User user;
+    }
+
+    public EditProfile() {
+
     }
 
     //Send registration to APIBoolean registered = registration.register(mail, pseudo, password, name, firstname);
-    public boolean register(final String mail, final String pseudo, final String password, final String name, final String firstName){
+    public boolean updateUser(final User u){
         new AsyncTask<Void,String,String>(){
 
             Network network = new Network(context);
@@ -51,6 +50,13 @@ public class EditProfile {
                 Network network = new Network(context);
                 String url = context.getResources().getString(R.string.url_start) + "users";
                 try {
+                    String jsonParam = "{\n" +
+                            "  \"mail\":" + u.mail +",\n" +
+                            "  \"username\":" + u.pseudo +",\n" +
+                            "  \"password\":" + u.password +",\n" +
+                            "  \"name\":" + u.name +",\n" +
+                            "  \"firstName\":" + u.firstName +"\n" +
+                            "}";
                     // API Request
                     String result = network.putRequest(url, "");
 
