@@ -27,21 +27,30 @@ public class Registration {
     private String password;
     private String name;
     private String firstname;
+    private Date birthday;
 
     private static final String TAG = "Registration";
 
-    public Registration(Context context, String email, String pseudo, String password, String name, String firstname ) {
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Registration(Context context, String email, String pseudo, String password, String name, String firstname, Date birthday) {
         this.context = context;
         this.email = email;
         this.pseudo = pseudo;
         this.password = password;
         this.name = name;
         this.firstname = firstname;
+        this.birthday = birthday;
     }
 
     //Envoie une requete de creation de compte
-    //
-    public boolean register(final String mail, final String pseudo, final String password, final Date birthday, final String name, final String firstName){
+    public boolean register(final String mail, final String pseudo, final String password, final String name, final String firstName, final Date birthday){
         new AsyncTask<Void,String,String>(){
 
             Network network = new Network(context);

@@ -18,6 +18,10 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.tindergathering.MainActivity;
 import com.example.tindergathering.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class RegistrationFragment extends Fragment {
 
     private com.example.tindergathering.ui.Registration.RegistrationViewModel registrationViewModel;
@@ -65,8 +69,15 @@ public class RegistrationFragment extends Fragment {
                         Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
                     }else{
                         // Envoie l'enregistrement à l'API
-                        com.example.tindergathering.ui.Registration.Registration registration = new com.example.tindergathering.ui.Registration.Registration(context, mail, pseudo, password, name, firstname);
-                        Boolean registered = registration.register(mail, pseudo, password, name, firstname);
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                        Date date = null;
+                        try {
+                            date = formatter.parse(birthday);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        com.example.tindergathering.ui.Registration.Registration registration = new com.example.tindergathering.ui.Registration.Registration(context, mail, pseudo, password, name, firstname,  date);
+                        Boolean registered = registration.register(mail, pseudo, password, name, firstname, date);
                         String textToastRegistered = registered ? "Inscription terminée":"L'inscription a échoué !";
                         Toast.makeText(view.getContext().getApplicationContext(), textToastRegistered, Toast.LENGTH_SHORT).show();
                         //Lance l'activité principale
