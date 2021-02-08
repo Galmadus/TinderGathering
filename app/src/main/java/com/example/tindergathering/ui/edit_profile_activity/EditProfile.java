@@ -51,11 +51,14 @@ public class EditProfile {
                 String url = context.getResources().getString(R.string.url_start) + "users";
                 try {
                     String jsonParam = "{\n" +
-                            "  \"mail\":" + u.mail +",\n" +
-                            "  \"username\":" + u.pseudo +",\n" +
-                            "  \"password\":" + u.password +",\n" +
-                            "  \"name\":" + u.name +",\n" +
-                            "  \"firstName\":" + u.firstName +"\n" +
+                            "  \"mail\":" + u.getEmail() +",\n" +
+                            "  \"username\":" + u.getUsername() +",\n" +
+                            "  \"password\":" + u.getPassword() +",\n" +
+                            "  \"name\":" + u.getName() +",\n" +
+                            "  \"firstName\":" + u.getFirstName() +",\n" +
+                            "  \"formats\":" + u.getFormats() +",\n" +
+                            "  \"description\":" + u.getDescription() +",\n" +
+                            "  \"ville\":" + u.getVille() +"\n" +
                             "}";
                     // API Request
                     String result = network.putRequest(url, "");
