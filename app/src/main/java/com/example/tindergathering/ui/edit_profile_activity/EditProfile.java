@@ -61,7 +61,7 @@ public class EditProfile {
                             "  \"ville\":" + u.getVille() +"\n" +
                             "}";
                     // API Request
-                    String result = network.putRequest(url, "");
+                    String result = network.putRequest(url, jsonParam);
 
                     // Exemple de ce qui est renvoyé
 //                    String result = "{\n" +
@@ -73,14 +73,8 @@ public class EditProfile {
 //                            "}";
                     // Read result
 
-                    JSONObject obj = new JSONObject(result);
-                    // Get values
-                    String username = obj.getString("username");
 
-                    Log.v(TAG, "username :"+username );
-
-
-                } catch (JSONException | IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                     Log.v(TAG, e.toString() );
                 }
