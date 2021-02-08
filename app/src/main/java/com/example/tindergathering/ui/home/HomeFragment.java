@@ -18,7 +18,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-    // Instance crée lorsqu'on arrive sur la page d'accueil
+    // Instance créée lorsqu'on arrive sur la page d'accueil
     // Attribue les données dans les bons champs
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         

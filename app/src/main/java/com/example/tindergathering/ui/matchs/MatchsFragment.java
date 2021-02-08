@@ -30,7 +30,7 @@ public class MatchsFragment extends Fragment {
     private ListView list;
     private ArrayList<User> arrayList = null;
 
-    // Instance crée lorsqu'on arrive sur la page des matchs
+    // Instance créée lorsqu'on arrive sur la page des matchs
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         matchsViewModel =
