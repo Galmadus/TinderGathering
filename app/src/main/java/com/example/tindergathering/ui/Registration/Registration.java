@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Date;
 
 
 public class Registration {
@@ -40,7 +41,7 @@ public class Registration {
 
     //Envoie une requete de creation de compte
     //
-    public boolean register(final String mail, final String pseudo, final String password, final String name, final String firstName){
+    public boolean register(final String mail, final String pseudo, final String password, final Date birthday, final String name, final String firstName){
         new AsyncTask<Void,String,String>(){
 
             Network network = new Network(context);
@@ -53,6 +54,7 @@ public class Registration {
                             "  \"mail\":" + mail +",\n" +
                             "  \"username\":" + pseudo +",\n" +
                             "  \"password\":" + password +",\n" +
+                            "  \"birthday\":" + birthday +",\n" +
                             "  \"name\":" + name +",\n" +
                             "  \"firstName\":" + firstName +"\n" +
                             "}";
