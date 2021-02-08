@@ -38,15 +38,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.CertificatePinner;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-
 import static android.content.Context.CONNECTIVITY_SERVICE;
 import static androidx.core.content.ContextCompat.getSystemService;
 import static org.apache.http.conn.ssl.SSLSocketFactory.SSL;
@@ -140,11 +131,11 @@ public class Network {
             conn.setRequestMethod("GET");
 
             // Add AuthToken un param
-//            SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
-//            String authToken = sharedPref.getString("AuthToken", null);
-//            if(authToken != null)
-//                conn.setRequestProperty("Authorization", "Bearer "+authToken);
-//            conn.setDoInput(true);
+            SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
+            String authToken = sharedPref.getString("AuthToken", null);
+            if(authToken != null)
+                conn.setRequestProperty("Authorization", "Bearer "+authToken);
+            conn.setDoInput(true);
             // Starts the query
             conn.connect();
 
@@ -194,15 +185,20 @@ public class Network {
 
 
             URL url = new URL(myurl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            conn.setRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.setRequestMethod("POST");
-            int code = conn.getResponseCode();
-//            conn.connect();
+
+            // Add AuthToken un param
+            SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
+            String authToken = sharedPref.getString("AuthToken", null);
+            if(authToken != null)
+                conn.setRequestProperty("Authorization", "Bearer "+authToken);
 
             os = conn.getOutputStream();
             os.write(attributes.getBytes("UTF-8"));
@@ -236,14 +232,14 @@ public class Network {
     public String putRequest(String myurl, String attributes) throws IOException {
 
         OutputStreamWriter osw = null;
-        HttpURLConnection conn = null;
+        HttpsURLConnection conn = null;
         // Only display the first 500 characters of the retrieved
         // web page content.
         int len = 500;
 
         try {
             URL url = new URL(myurl);
-            conn = (HttpURLConnection) url.openConnection();
+            conn = (HttpsURLConnection) url.openConnection();
             conn.setReadTimeout(10000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
@@ -251,6 +247,12 @@ public class Network {
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.setRequestMethod("PUT");
+
+            // Add AuthToken un param
+            SharedPreferences sharedPref = context.getSharedPreferences("com.example.tindergathering", Context.MODE_PRIVATE);
+            String authToken = sharedPref.getString("AuthToken", null);
+            if(authToken != null)
+                conn.setRequestProperty("Authorization", "Bearer "+authToken);
 
             osw = new OutputStreamWriter(conn.getOutputStream());
             osw.write(attributes);
