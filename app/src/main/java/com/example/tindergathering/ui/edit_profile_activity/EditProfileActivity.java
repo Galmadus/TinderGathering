@@ -1,15 +1,11 @@
 package com.example.tindergathering.ui.edit_profile_activity;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -155,7 +151,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 byte[] imageBytes = baos.toByteArray();
                 String imageString = android.util.Base64.encodeToString(imageBytes, android.util.Base64.DEFAULT);
 
-                // save the image
+                // sauvegarde de l'image
                 ImagePath = MediaStore.Images.Media.insertImage(
                         getContentResolver(),
                         bm,
@@ -164,7 +160,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 );
 
                 URI = Uri.parse(ImagePath);*/
-                //int drawableId = Integer.parseInt(findViewById(R.id.new_profile_picture).getTag().toString());
                 User registration = null;
                 if(mail.equals("") & password.equals("") & name.equals("") & firstname.equals("") & birthday.equals("")){
                     Toast.makeText(context, "Merci de remplir les champs", Toast.LENGTH_SHORT).show();
