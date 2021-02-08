@@ -98,6 +98,7 @@ public class User {
         this.id = id;
     }
 
+    // Generer un utilisateur aléatoire
     public User(){
         Random rd = new Random();
         Boolean bool = rd.nextBoolean();

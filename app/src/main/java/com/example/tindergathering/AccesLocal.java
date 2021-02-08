@@ -21,6 +21,8 @@ public class AccesLocal {
     private MySQLiteOpenHelper accesBD;
     private SQLiteDatabase DB;
 
+    // Classe d'acces a la BD
+    // Toutes les requetes doivent etre presentes ici
     public AccesLocal(Context context){
         accesBD = new MySQLiteOpenHelper(context,DBName,null,DBVersion);
     }
